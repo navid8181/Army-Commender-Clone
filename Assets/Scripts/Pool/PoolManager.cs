@@ -41,7 +41,7 @@ public class PoolManager : MonoBehaviour
 
     public PoolObject[] poolObjectsData;
 
-    [SerializeField] private PoolObjects[] poolObjects;
+    private PoolObjects[] poolObjects;
 
     private Dictionary<string, int> poolObjectsIndex;
 
