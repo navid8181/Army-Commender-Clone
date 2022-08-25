@@ -13,16 +13,23 @@ public class AIDistribution : MonoBehaviour
     [SerializeField] private Vector3 offfset = Vector3.one;
 
 
-    public AiBase[] aiBase;
+    private List<AiBase> aiBase;
 
     public int getWith { get { return with; } }
     public Vector3 getOfffset { get { return offfset; } }
 
-    public int getLenght { get { return aiBase.Length; } }
+    public int getLenght { get { return aiBase.Count; } }
+
+
+
+    private void Awake()
+    {
+        aiBase = new List<AiBase>();
+    }
 
     private void FixedUpdate()
     {
-        Utility. RectangleDistribute(aiBase,taregt,with,offfset);
+        Utility. RectangleDistribute(aiBase.ToArray(),taregt,with,offfset);
     }
 
     private void CircleDistribute( IDistributable[] aiBases)
@@ -41,6 +48,9 @@ public class AIDistribution : MonoBehaviour
         }
     }
 
-
+    public void SetAi(params AiBase[] ai)
+    {
+        aiBase.AddRange(ai);
+    }
 
 }

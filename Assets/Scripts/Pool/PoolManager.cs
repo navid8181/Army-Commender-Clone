@@ -34,8 +34,11 @@ public class PoolManager : MonoBehaviour
 
     #region static
 
-    public static string goldCoin = "gold coin";
-    public static string ironCoin = "iron coin";
+    public  const string goldCoin = "gold coin";
+    public  const string ironCoin = "iron coin";
+
+    public  const string sowrdManAI = "sword man AI";
+
     #endregion
 
 

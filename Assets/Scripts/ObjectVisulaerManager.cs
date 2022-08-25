@@ -21,7 +21,7 @@ public class ObjectVisulaerManager : MonoBehaviour
     public void ApplyVisualer()
     {
         objectRectangleVisualzers.Clear();
-        for (int i = 0; i < aiDistribution.aiBase.Length; i++)
+        for (int i = 0; i < aiDistribution.getLenght; i++)
         {
             ObjectRectangleVisualzer obV = Instantiate(prefab);
 

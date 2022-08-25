@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5052824838231906057}
   - component: {fileID: 6049660998857569572}
   - component: {fileID: 1516825887448968373}
+  - component: {fileID: 6464853325621577370}
+  - component: {fileID: 6464853325621577374}
+  - component: {fileID: 6464853325621577375}
   m_Layer: 0
   m_Name: blue camp
   m_TagString: Untagged
@@ -84,6 +87,51 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6464853325621577370
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460154708101320372}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.025, y: 0.02, z: 0.008}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.001, y: 0, z: 0.006}
+  m_TimeToStationary: 0.5
+--- !u!114 &6464853325621577374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460154708101320372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e1e4d450892a84da508a9fc7097831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToCreateAiBace: 4
+  maxAi: 5
+--- !u!114 &6464853325621577375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460154708101320372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c559557a456bf1469f98d2cbbdfdf08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taregt: {fileID: 0}
+  with: 4
+  offfset: {x: 1, y: 1, z: 1}
 --- !u!1 &3983852684968234538
 GameObject:
   m_ObjectHideFlags: 0

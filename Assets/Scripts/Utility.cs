@@ -24,7 +24,12 @@ public class Utility : MonoBehaviour
 
         Vector3 rightStartPos = Vector3.zero;
 
+        Vector3 flatfwd = target.transform.forward;
+        flatfwd.y = 0;
 
+
+        Vector3 flatrgh = target.transform.right;
+        flatrgh.y = 0;
 
         int rowCount = 0;
 
@@ -49,10 +54,10 @@ public class Utility : MonoBehaviour
 
                 rowCount++;
 
-                center = target.position - target.transform.forward * offset.z * rowCount;
+                center = target.position - flatfwd * offset.z * rowCount;
 
-                leftStartPos = center - target.transform.right * with * offset.x;
-                rightStartPos = center + target.transform.right * with * offset.x;
+                leftStartPos = center - flatrgh * with * offset.x;
+                rightStartPos = center + flatrgh * with * offset.x;
 
                 Vector3 finalPos = Vector3.Lerp(leftStartPos, rightStartPos, 0);
 

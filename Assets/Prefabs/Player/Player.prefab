@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 6741883176687391432}
   - component: {fileID: 6741883176687391433}
   - component: {fileID: 6741883176687391438}
+  - component: {fileID: 1425214574357191023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -271,11 +272,11 @@ Rigidbody:
   m_Mass: 80
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6741883176687391436
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -334,6 +335,21 @@ MonoBehaviour:
   rotationSpeed: 2.5
   camera: {fileID: 0}
   coinChest: {fileID: 8134333327866684726}
+--- !u!114 &1425214574357191023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144279157682284540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c559557a456bf1469f98d2cbbdfdf08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taregt: {fileID: 7144279157682650076}
+  with: 4
+  offfset: {x: 1, y: 1, z: 1}
 --- !u!1 &8134333327866684724
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d566c5537172b44a669222c693d108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: 1
+  yOffset: 0.07
   coins: []
   coinMove:
     serializedVersion: 2
@@ -386,42 +402,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: -1.4811759
+      outSlope: -1.4811759
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.07903366
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  coinMoveZZZZ:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      time: 0.99139404
+      value: -0.50045776
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -433,35 +425,34 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  coinPrefab: {fileID: 0}
   CoinDirection: {x: 0, y: 0, z: 0}
-  xDamp: 0.14
-  zDamp: 0.07
-  lenght: 0.574
-  speed: 2
+  xDamp: 0.5
+  zDamp: 0.74
+  lenght: 0.05
+  speed: 20
   idleSpeed: 0.6
-  maxSpeed: 60
+  maxSpeed: 20
   minSpeed: 10
-  lenghtSlips: 0.5
+  lenghtSlips: 0.7
   jj: {fileID: 0}
 --- !u!1 &8491933916346571123
 GameObject:
