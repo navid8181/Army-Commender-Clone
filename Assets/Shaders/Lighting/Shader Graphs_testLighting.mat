@@ -25,6 +25,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: afed4e45cf3825844a9f9c4ddd1547d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Main_Text:
+        m_Texture: {fileID: 2800000, guid: 53e71cc60705d4a49ad71768851612fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _rampTexure:
+        m_Texture: {fileID: 2800000, guid: b04cc7d457ff1b24ba9297b7b5287427, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _toon:
         m_Texture: {fileID: 2800000, guid: b04cc7d457ff1b24ba9297b7b5287427, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -43,10 +51,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Ambient: 1
     - _AmbientOcclusion: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.196
+    - _smothness: 1
     m_Colors:
     - _Color: {r: 1, g: 0.3706433, b: 0, a: 0}
   m_BuildTextureStacks: []
