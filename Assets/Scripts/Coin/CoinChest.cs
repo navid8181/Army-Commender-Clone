@@ -10,10 +10,10 @@ public class CoinChest : MonoBehaviour
     public List<GameObject> coins;
 
 
-    public AnimationCurve coinMove,coinMoveZZZZ;
+    public AnimationCurve coinMove;
 
     public AnimationCurve TcoinMove;
-    [SerializeField] private GameObject coinPrefab;
+
 
 
     public Vector3 CoinDirection;
@@ -60,7 +60,7 @@ public class CoinChest : MonoBehaviour
 
         if (instanceCoin == null) return;
 
-        coinPrefab.transform.position = transform.position;
+       // coinPrefab.transform.position = transform.position;
 
         coins.Add(instanceCoin);
 
@@ -129,7 +129,7 @@ public class CoinChest : MonoBehaviour
 
             currentCoinPos.x = Mathf.Lerp(currentCoinPos.x,  transform.position.x + CoinDirection.x * coinMove.Evaluate(((i) / (float)(coins.Count))), speed * Time.deltaTime);
 
-            currentCoinPos.z = Mathf.Lerp(currentCoinPos.z, transform.position.z + CoinDirection.z * coinMoveZZZZ.Evaluate(((i) / (float)(coins.Count))), speed * Time.deltaTime);
+            currentCoinPos.z = Mathf.Lerp(currentCoinPos.z, transform.position.z + CoinDirection.z * coinMove.Evaluate(((i) / (float)(coins.Count))), speed * Time.deltaTime);
 
 
             coin.transform.position = currentCoinPos;
