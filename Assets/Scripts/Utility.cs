@@ -13,16 +13,15 @@ public class Utility : MonoBehaviour
     }
 
 
-    public static void RectangleDistribute(IDistributable[] objectDistribut, Transform target, int with, Vector3 offset)
+    public static void RectangleDistribute(IDistributable[] objectDistribut, Transform target, int with, Vector3 offset,int i)
     {
+        int rowCount = (i / with) + 1;
+
+
+
+        int index = i % (with);
         float tempOffsetZ = offset.z;
 
-        Vector3 center = Vector3.zero;
-
-
-        Vector3 leftStartPos = Vector3.zero;
-
-        Vector3 rightStartPos = Vector3.zero;
 
         Vector3 flatfwd = target.transform.forward;
         flatfwd.y = 0;
@@ -31,40 +30,24 @@ public class Utility : MonoBehaviour
         Vector3 flatrgh = target.transform.right;
         flatrgh.y = 0;
 
-        int rowCount = 0;
 
-        for (int i = 0; i < objectDistribut.Length; i++)
-        {
-            int index = i % (with);
+        Vector3 center = target.position - flatfwd * offset.z * rowCount;
 
 
+        Vector3 leftStartPos = center - flatrgh * with * offset.x;
 
-            // if (!aiBases[i].validPos) continue;
+        Vector3 rightStartPos = center + flatrgh * with * offset.x;
 
-            if (index != 0)
-            {
+        Vector3 finalPos = Vector3.Lerp(leftStartPos, rightStartPos, index / (float)with);
 
-                Vector3 finalPos = Vector3.Lerp(leftStartPos, rightStartPos, index / (float)with);
+        objectDistribut[i].SetTraget(finalPos);
 
-                objectDistribut[i].SetTraget(finalPos);
 
-            }
-            else
-            {
 
-                rowCount++;
 
-                center = target.position - flatfwd * offset.z * rowCount;
 
-                leftStartPos = center - flatrgh * with * offset.x;
-                rightStartPos = center + flatrgh * with * offset.x;
 
-                Vector3 finalPos = Vector3.Lerp(leftStartPos, rightStartPos, 0);
 
-                objectDistribut[i].SetTraget(finalPos);
-            }
-
-        }
     }
 
 }

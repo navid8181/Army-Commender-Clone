@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 327773474970798998}
   - component: {fileID: 4190057604089307784}
   - component: {fileID: 4190057604089307785}
+  - component: {fileID: 2071852401935312933}
+  - component: {fileID: 7520926224585125712}
+  - component: {fileID: 4914331910657513340}
   m_Layer: 0
   m_Name: Swordsman Player AI
   m_TagString: Player
@@ -62,7 +65,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 4d20c62a46f4d9b48ae8bc125f9b550f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75
+  m_Radius: 0.46
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
@@ -93,9 +96,46 @@ MonoBehaviour:
   isMove: 0
   PathStatus: 0
   brackDistance: 1
-  moveSpeed: 2.5
+  moveSpeed: 2
   rotationSpeed: 2.5
   distanceToStop: 4
+--- !u!114 &2071852401935312933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190057604089478822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c01111b28fb95642a16e3a50ffbff35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7520926224585125712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190057604089478822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2044be069dfab43a9c9438c1e6f9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4914331910657513340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190057604089478822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febf60cb87f6c30438207a513cbbbfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 7520926224585125712}
 --- !u!1001 &2634554899656319686
 PrefabInstance:
   m_ObjectHideFlags: 0

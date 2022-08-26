@@ -9,15 +9,25 @@ public class AIPlayer : AiBase
 {
 
 
-     
+
+
+   
+
 
     private void FixedUpdate()
     {
-        FindTarget();
+                                                             
 
 
     }
 
-    
+    public void Fallow()
+    {
+        FallowTarget();
+    }
+    public void StopPlayer()
+    {
+        Stop();
+    }
 
 }

@@ -29,7 +29,25 @@ public class AIDistribution : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Utility. RectangleDistribute(aiBase.ToArray(),taregt,with,offfset);
+       
+    }
+
+
+    public int getIndex(AiBase ai)
+    {
+       return aiBase.IndexOf(ai);
+    }
+    public void UpdateIndex(int lastRemoveIndex)
+    {
+        for (int i = lastRemoveIndex; i < aiBase.Count; i++)
+        {
+            aiBase[i].SetCurrentIndex(i);
+        }
+    }
+
+    public void RectangleDistribute(int i)
+    {
+         Utility. RectangleDistribute(aiBase.ToArray(),taregt,with,offfset,i);
     }
 
     private void CircleDistribute( IDistributable[] aiBases)
@@ -48,9 +66,18 @@ public class AIDistribution : MonoBehaviour
         }
     }
 
-    public void SetAi(params AiBase[] ai)
+    public void SetAi( AiBase ai)
     {
-        aiBase.AddRange(ai);
+        ai.SetCurrentIndex(aiBase.Count);
+        aiBase.Add(ai);
+
+ 
+    }
+
+    public void RemoveAi( AiBase ai)
+    {
+        aiBase.Remove(ai);
+        UpdateIndex(getIndex(ai));
     }
 
 }

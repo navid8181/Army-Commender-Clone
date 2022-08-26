@@ -33,6 +33,6 @@ public class ObjectVisulaerManager : MonoBehaviour
 
     private void Update()
     {
-        Utility.RectangleDistribute(objectRectangleVisualzers.ToArray(), transform, aiDistribution.getWith, aiDistribution.getOfffset);
+        //Utility.RectangleDistribute(objectRectangleVisualzers.ToArray(), transform, aiDistribution.getWith, aiDistribution.getOfffset);
     }
 }

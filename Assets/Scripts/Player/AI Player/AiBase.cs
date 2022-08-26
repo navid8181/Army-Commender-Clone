@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,25 +40,69 @@ public class AiBase : MonoBehaviour,IDistributable
 
 
     private AiBase currentCollisionAiBase;
+
+
+    private AIDistribution currentAIDistribution;
+
+    private AIDistribution previousAIDistribution;
+
+    private int currentAiIndex;
+
+
+    public void SetCurrentIndex(int i) => currentAiIndex = i;
+    public int getCurrentIndex() => currentAiIndex;
+
+    public void SetAIDistribution(AIDistribution aIDistribution)
+    {
+        currentAIDistribution = aIDistribution;
+    }
+
+    public AIDistribution GetAIDistribution() => currentAIDistribution;
     private void Awake()
     {
+
+        
+
         playerController = GetComponent<PlayerController>();
         navMeshPath = new NavMeshPath();
 
-      aIRadius =  brackDistance = GetComponent<CapsuleCollider>().radius;
+      aIRadius =  brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
     }
 
     private void Update()
     {
-       
+
+
+        if (currentAIDistribution != previousAIDistribution)
+        {
+            if (previousAIDistribution != null)
+            previousAIDistribution.RemoveAi(this);
+
+            currentAIDistribution.SetAi(this);
+
+
+            previousAIDistribution = currentAIDistribution;
+        }
+
+
+       if (stopFast)
+        {
+            playerController.SetBoolAnimiton("Moving", false);
+            playerController.SetFloatAnimiton("Velocity", 0);
+
+          stopFast =  Vector3.Distance(currentCollisionAiBase.getTargetPos().Value, getTargetPos().Value) >= (aIRadius * 2) + 0.1f;
+
+
+
+        }
     }
-    protected void FindTarget()
+    protected void FallowTarget()
     {
 
         Vector3 startPos = transform.position;
 
-        if (target == null ) return;
+        if (target == null ||stopFast ) return;
 
    
 
@@ -158,9 +203,18 @@ public class AiBase : MonoBehaviour,IDistributable
         if (corners.Length == 0 || stopFast)
         {
             playerController.SetBoolAnimiton("Moving", false);
+            playerController.SetFloatAnimiton("Velocity", 0);
         }
     }
 
+
+    protected void Stop()
+    {
+        playerController.SetFloatAnimiton("Velocity", 0);
+        playerController.SetBoolAnimiton("Moving", false);
+
+        target = null;
+    }
 
     private float distanceToTarget(Vector3[] corners)
     {
@@ -214,17 +268,21 @@ public class AiBase : MonoBehaviour,IDistributable
         AiBase ai = collision.collider.GetComponent<AiBase>();
 
 
-        if (ai != null)
+        if (ai != null && ! stopFast)
         {
 
 
-            if (!ai.isMove)
+            if (!ai.isMove &&  ai.currentCollisionAiBase == null)
             {
-                if (Vector3.Distance(ai.getTargetPos().Value, getTargetPos().Value) <= aIRadius)
+                if (Vector3.Distance(ai.getTargetPos().Value, getTargetPos().Value) <= (aIRadius * 2) + 0.1f)
                 {
                     stopFast = true;
                     currentCollisionAiBase = ai;
-                }else
+
+                    
+
+                }
+                else
                 {
                     stopFast = false;
                     currentCollisionAiBase = null;
@@ -233,18 +291,7 @@ public class AiBase : MonoBehaviour,IDistributable
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-
-        AiBase ai = collision.collider.GetComponent<AiBase>();
-
-        if (ai != currentCollisionAiBase) return;
-
-        stopFast = false;
-
-        currentCollisionAiBase = null;
-
-    }
+ 
 
 
     private void OnDrawGizmos()

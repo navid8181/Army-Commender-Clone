@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_LineDashShader
-  m_Shader: {fileID: -6465566751694194690, guid: 938516812e6dbc845b82ac24cb198687,
+  m_Name: Shader Graphs_Radial
+  m_Shader: {fileID: -6465566751694194690, guid: 50860e8c56fc7eb449027a65dcca77e6,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,10 +21,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Text:
-        m_Texture: {fileID: 2800000, guid: 4933340c79789a8478a2c92c4d74f5f7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,11 +37,14 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _lenghtLine: 0.58
+    - _Rotate: 0
+    - _line_with: 0.05
+    - _radius: 0.32
+    - _removeSegment: 1
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3053488624671011167
+--- !u!114 &6203605184054201938
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
