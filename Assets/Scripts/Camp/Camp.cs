@@ -49,7 +49,7 @@ public class Camp : MonoBehaviour
 
         aiBase.transform.position = transform.position;
 
-        aiBase.SetAIDistribution(aIDistribution);
+        aiBase.currentDistribution = aIDistribution;
     }
 
 }

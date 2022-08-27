@@ -40,7 +40,7 @@ Material:
     - _Rotate: 0
     - _line_with: 0.05
     - _radius: 0.32
-    - _removeSegment: 0.84
+    - _removeSegment: 1
     m_Colors:
     - _BackGroundColor: {r: 1, g: 0, b: 0, a: 0}
     - _Color: {r: 0.0527066, g: 1, b: 0, a: 1}

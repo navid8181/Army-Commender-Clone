@@ -42,23 +42,20 @@ public class AiBase : MonoBehaviour,IDistributable
     private AiBase currentCollisionAiBase;
 
 
-    private AIDistribution currentAIDistribution;
 
     private AIDistribution previousAIDistribution;
 
 
 
     public int DistributIndex { get; set; }
+    public DistributionBase currentDistribution { set;  get; }
 
-   // public void SetCurrentIndex(int i) => currentAiIndex = i;
+    // public void SetCurrentIndex(int i) => currentAiIndex = i;
     //public int getCurrentIndex() => currentAiIndex;
 
-    public void SetAIDistribution(AIDistribution aIDistribution)
-    {
-        currentAIDistribution = aIDistribution;
-    }
+  
 
-    public AIDistribution GetAIDistribution() => currentAIDistribution;
+
     private void Awake()
     {
 
@@ -75,15 +72,15 @@ public class AiBase : MonoBehaviour,IDistributable
     {
 
 
-        if (currentAIDistribution != previousAIDistribution)
+        if (currentDistribution != previousAIDistribution)
         {
             if (previousAIDistribution != null)
             previousAIDistribution.RemoveDistribut(this);
 
-            currentAIDistribution.SetDistribut(this);
+            currentDistribution.SetDistribut(this);
 
 
-            previousAIDistribution = currentAIDistribution;
+            previousAIDistribution = (AIDistribution)currentDistribution;
         }
 
 

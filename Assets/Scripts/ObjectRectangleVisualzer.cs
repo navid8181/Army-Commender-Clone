@@ -6,7 +6,8 @@ public class ObjectRectangleVisualzer : MonoBehaviour, IDistributable
 {
     public Vector3 offsset;
 
-    public int DistributIndex { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int DistributIndex { set; get; }
+    public DistributionBase currentDistribution { set; get; }
 
     public void SetTraget(Vector3? target)
     {

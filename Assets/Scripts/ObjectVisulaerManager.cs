@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ObjectVisulaerManager : MonoBehaviour
+public class ObjectVisulaerManager : DistributionBase
 {
-    public List<ObjectRectangleVisualzer> objectRectangleVisualzers;
+
 
     public AIDistribution aiDistribution;
 
-    public ObjectRectangleVisualzer prefab;
+    public Camp camp;
 
 
     private void Awake()
     {
-        objectRectangleVisualzers = new List<ObjectRectangleVisualzer>();
+
         ApplyVisualer();
     }
 
     public void ApplyVisualer()
     {
-        objectRectangleVisualzers.Clear();
-        for (int i = 0; i < aiDistribution.getLenght; i++)
-        {
-            ObjectRectangleVisualzer obV = Instantiate(prefab);
 
-            objectRectangleVisualzers.Add(obV);
+        for (int i = 0; i < camp.maxAi; i++)
+        {
+          //  ObjectRectangleVisualzer obV = MasterManager.Instance.PoolManager.requestPool(PoolManager.objectVisualer).GetComponent<>;
+
+           // id.Add(obV);
         }
 
        
@@ -34,5 +34,10 @@ public class ObjectVisulaerManager : MonoBehaviour
     private void Update()
     {
         //Utility.RectangleDistribute(objectRectangleVisualzers.ToArray(), transform, aiDistribution.getWith, aiDistribution.getOfffset);
+    }
+
+    public override void ExeCuteDistribute(int i)
+    {
+        throw new System.NotImplementedException();
     }
 }

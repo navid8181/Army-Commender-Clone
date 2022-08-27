@@ -39,6 +39,8 @@ public class PoolManager : MonoBehaviour
 
     public  const string sowrdManAI = "sword man AI";
 
+    public const string objectVisualer = "Visualer";
+
     #endregion
 
 

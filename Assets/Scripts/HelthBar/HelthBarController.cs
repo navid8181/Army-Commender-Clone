@@ -11,7 +11,7 @@ public class HelthBarController : MonoBehaviour
     [Range(0.0f, 1.0f)] public float fill = 1;
     private void Awake()
     {
-        material = GetComponent<Renderer>().material;
+        material = GetComponent<Renderer>().sharedMaterial;
         
     }
 

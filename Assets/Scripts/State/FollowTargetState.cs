@@ -25,7 +25,7 @@ public class FollowTargetState : State
     public override void OnStay()
     {
        // print(aiPlayer.getCurrentIndex());
-        aiPlayer.GetAIDistribution().ExeCuteDistribute(aiPlayer.DistributIndex);
+        aiPlayer.currentDistribution.ExeCuteDistribute(aiPlayer.DistributIndex);
         aiPlayer.Fallow();
     }
 }
