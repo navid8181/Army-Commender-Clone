@@ -20,7 +20,7 @@ public class AIDistribution : DistributionBase
 
     public override void ExeCuteDistribute(int i)
     {
-        Utility.RectangleDistribute(distributables.ToArray(), taregt, with, offfset, i);
+        Utility.RectangleDistribute(GetDistributables(), taregt, with, offfset, i);
     }
 
     private void FixedUpdate()

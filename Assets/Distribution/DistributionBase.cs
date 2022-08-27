@@ -6,14 +6,15 @@ using UnityEngine;
 public abstract class DistributionBase : MonoBehaviour
 {
 
-    protected List<IDistributable> distributables;
+    private List<IDistributable> distributables = new List<IDistributable>();
 
 
+    public IDistributable[] GetDistributables() => distributables.ToArray();
     public int getLenght { get { return distributables.Count; } }
 
     private void Awake()
     {
-        distributables = new List<IDistributable>();
+       
     }
 
     protected void UpdateIndex()
@@ -29,6 +30,7 @@ public abstract class DistributionBase : MonoBehaviour
     public void SetDistribut(IDistributable distributable)
     {
         distributable.DistributIndex = distributables.Count;
+        distributable.currentDistribution = this;
         distributables.Add(distributable);
 
 

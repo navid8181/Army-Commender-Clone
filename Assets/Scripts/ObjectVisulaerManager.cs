@@ -7,23 +7,28 @@ public class ObjectVisulaerManager : DistributionBase
 {
 
 
-    public AIDistribution aiDistribution;
+    private AIDistribution aiDistribution;
 
     public Camp camp;
 
 
     private void Awake()
     {
-
+        aiDistribution = camp.GetComponent<AIDistribution>();
         ApplyVisualer();
     }
+
 
     public void ApplyVisualer()
     {
 
-        for (int i = 0; i < camp.maxAi; i++)
+        for (int i = 0; i <= camp.maxAi; i++)
         {
-          //  ObjectRectangleVisualzer obV = MasterManager.Instance.PoolManager.requestPool(PoolManager.objectVisualer).GetComponent<>;
+            GameObject visular = MasterManager.Instance.PoolManager.requestPool(PoolManager.objectVisualer);
+
+            ObjectRectangleVisualzer orv = visular.GetComponent<ObjectRectangleVisualzer>();
+
+            SetDistribut(orv);
 
            // id.Add(obV);
         }
@@ -33,11 +38,11 @@ public class ObjectVisulaerManager : DistributionBase
 
     private void Update()
     {
-        //Utility.RectangleDistribute(objectRectangleVisualzers.ToArray(), transform, aiDistribution.getWith, aiDistribution.getOfffset);
+   
     }
 
     public override void ExeCuteDistribute(int i)
     {
-        throw new System.NotImplementedException();
+        Utility.RectangleDistribute(GetDistributables(), transform, aiDistribution.getWith, aiDistribution.getOfffset,i);
     }
 }

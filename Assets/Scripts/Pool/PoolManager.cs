@@ -58,7 +58,7 @@ public class PoolManager : MonoBehaviour
 
         for (int i = 0; i < poolObjectsData.Length; i++)
         {
-
+         
             poolObjectsIndex.Add(poolObjectsData[i].Name, i);
 
             poolObjects[i] = new PoolObjects(poolObjectsData[i].Name);
@@ -88,6 +88,12 @@ public class PoolManager : MonoBehaviour
 
     public GameObject requestPool(string name)
     {
+
+        if (name == PoolManager.objectVisualer)
+        {
+
+        }
+    
 
         int index = poolObjectsIndex.GetValueOrDefault(name,-1); 
 

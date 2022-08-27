@@ -13,4 +13,9 @@ public class ObjectRectangleVisualzer : MonoBehaviour, IDistributable
     {
         transform.position = target.GetValueOrDefault() + offsset;
     }
+
+    private void Start()
+    {
+        currentDistribution.ExeCuteDistribute(DistributIndex);
+    }
 }
