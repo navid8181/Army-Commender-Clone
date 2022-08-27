@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIDistribution : MonoBehaviour
+public class AIDistribution : DistributionBase
 {
 
     
@@ -13,18 +13,14 @@ public class AIDistribution : MonoBehaviour
     [SerializeField] private Vector3 offfset = Vector3.one;
 
 
-    private List<AiBase> aiBase;
+  
 
     public int getWith { get { return with; } }
     public Vector3 getOfffset { get { return offfset; } }
 
-    public int getLenght { get { return aiBase.Count; } }
-
-
-
-    private void Awake()
+    public override void ExeCuteDistribute(int i)
     {
-        aiBase = new List<AiBase>();
+        Utility.RectangleDistribute(distributables.ToArray(), taregt, with, offfset, i);
     }
 
     private void FixedUpdate()
@@ -33,51 +29,48 @@ public class AIDistribution : MonoBehaviour
     }
 
 
-    public int getIndex(AiBase ai)
-    {
-       return aiBase.IndexOf(ai);
-    }
-    public void UpdateIndex(int lastRemoveIndex)
-    {
-        for (int i = lastRemoveIndex; i < aiBase.Count; i++)
-        {
-            aiBase[i].SetCurrentIndex(i);
-        }
-    }
+ 
+    //public void UpdateIndex()
+    //{
+    //    for (int i = 0; i < aiBase.Count; i++)
+    //    {
+    //        aiBase[i].DistributIndex = i;
+    //    }
+    //}
 
-    public void RectangleDistribute(int i)
-    {
-         Utility. RectangleDistribute(aiBase.ToArray(),taregt,with,offfset,i);
-    }
+    //public void RectangleDistribute(int i)
+    //{
+    //     Utility. RectangleDistribute(aiBase.ToArray(),taregt,with,offfset,i);
+    //}
 
-    private void CircleDistribute( IDistributable[] aiBases)
-    {
-        for (int i = 0; i < aiBases.Length; i++)
-        {
-            float angle = (i / (float)aiBases.Length) * 360;
+    //private void CircleDistribute( IDistributable[] aiBases)
+    //{
+    //    for (int i = 0; i < aiBases.Length; i++)
+    //    {
+    //        float angle = (i / (float)aiBases.Length) * 360;
 
-            Vector3 dire = taregt.position + Utility.angleToDireXZ(angle, 2);
+    //        Vector3 dire = taregt.position + Utility.angleToDireXZ(angle, 2);
 
-            // dire.y = 0;
-            dire += Vector3.up / 2f;
+    //        // dire.y = 0;
+    //        dire += Vector3.up / 2f;
 
 
-            aiBases[i].SetTraget(dire);
-        }
-    }
+    //        aiBases[i].SetTraget(dire);
+    //    }
+    //}
 
-    public void SetAi( AiBase ai)
-    {
-        ai.SetCurrentIndex(aiBase.Count);
-        aiBase.Add(ai);
+    //public void SetAi( AiBase ai)
+    //{
+    //    ai.DistributIndex = aiBase.Count;
+    //    aiBase.Add(ai);
 
  
-    }
+    //}
 
-    public void RemoveAi( AiBase ai)
-    {
-        aiBase.Remove(ai);
-        UpdateIndex(getIndex(ai));
-    }
+    //public void RemoveAi( AiBase ai)
+    //{
+    //    aiBase.Remove(ai);
+    //    UpdateIndex();
+    //}
 
 }

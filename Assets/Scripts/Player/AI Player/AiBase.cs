@@ -46,11 +46,12 @@ public class AiBase : MonoBehaviour,IDistributable
 
     private AIDistribution previousAIDistribution;
 
-    private int currentAiIndex;
 
 
-    public void SetCurrentIndex(int i) => currentAiIndex = i;
-    public int getCurrentIndex() => currentAiIndex;
+    public int DistributIndex { get; set; }
+
+   // public void SetCurrentIndex(int i) => currentAiIndex = i;
+    //public int getCurrentIndex() => currentAiIndex;
 
     public void SetAIDistribution(AIDistribution aIDistribution)
     {
@@ -77,9 +78,9 @@ public class AiBase : MonoBehaviour,IDistributable
         if (currentAIDistribution != previousAIDistribution)
         {
             if (previousAIDistribution != null)
-            previousAIDistribution.RemoveAi(this);
+            previousAIDistribution.RemoveDistribut(this);
 
-            currentAIDistribution.SetAi(this);
+            currentAIDistribution.SetDistribut(this);
 
 
             previousAIDistribution = currentAIDistribution;
@@ -298,5 +299,7 @@ public class AiBase : MonoBehaviour,IDistributable
     {
         Gizmos.DrawSphere(target.GetValueOrDefault(), 0.1f);
     }
+
+   
 }
 
