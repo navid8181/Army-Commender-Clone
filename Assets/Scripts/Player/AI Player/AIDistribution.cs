@@ -18,6 +18,12 @@ public class AIDistribution : DistributionBase
     public int getWith { get { return with; } }
     public Vector3 getOfffset { get { return offfset; } }
 
+    public int maxSoldir = 6;
+
+    private void Awake()
+    {
+        MaxDistrubutionSize = maxSoldir;
+    }
     public override void ExeCuteDistribute(int i)
     {
         Utility.RectangleDistribute(GetDistributables(), taregt, with, offfset, i);

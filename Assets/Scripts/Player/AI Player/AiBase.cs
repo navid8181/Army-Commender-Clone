@@ -43,7 +43,7 @@ public class AiBase : MonoBehaviour,IDistributable
 
 
 
-    private AIDistribution previousAIDistribution;
+
 
 
 
@@ -72,16 +72,16 @@ public class AiBase : MonoBehaviour,IDistributable
     {
 
 
-        if (currentDistribution != previousAIDistribution)
-        {
-            if (previousAIDistribution != null)
-            previousAIDistribution.RemoveDistribut(this);
+        //if (currentDistribution != previousAIDistribution)
+        //{
+        //    if (previousAIDistribution != null)
+        //    previousAIDistribution.RemoveDistribut(this);
 
-            currentDistribution.SetDistribut(this);
+        //    currentDistribution.SetDistribut(this);
 
 
-            previousAIDistribution = (AIDistribution)currentDistribution;
-        }
+        //    previousAIDistribution = (AIDistribution)currentDistribution;
+        //}
 
 
        if (stopFast)
@@ -141,36 +141,25 @@ public class AiBase : MonoBehaviour,IDistributable
         if (corners.Length >= 2 && !stopFast)
         {
 
-
-
-
-
-
-
-
-
-
             Vector3 pos = corners[1];
 
 
             Vector3 dire = pos - transform.position;
             dire.y = 0;
 
-
-            //if (dire.magnitude <= 0.1f)
-            //{
-            //    if (corners.Length >= 3)
-            //    {
-            //        pos = corners[2];
-
-
-            //        dire = pos - transform.position;
-            //        dire.y = 0;
-            //    }
-
-            //}
+            if (corners.Length == 2)
+            {
+                float remeaningDistance = Vector3.Distance(corners[0], corners[1]);
+                if (remeaningDistance <= 0.01f)
+                {
+                    dire = Vector3.zero;
+                }
+            }
+         
 
             dire.Normalize();
+
+            Debug.DrawRay(transform.position, dire * 10,Color.red);
 
             pos.y = 0;
             Vector3 playerPos = transform.position;
@@ -180,6 +169,9 @@ public class AiBase : MonoBehaviour,IDistributable
 
 
             float t = dis / (distanceToStop + aIRadius);
+
+           // if (t >= 0.99f) t = 1;
+           // if (t <= 0.01f) t = 0;
 
             t = Mathf.Clamp01(t);
 
@@ -193,7 +185,7 @@ public class AiBase : MonoBehaviour,IDistributable
             playerController.SetFloatAnimiton("Velocity", velocity);
 
             playerController.SetBoolAnimiton("Moving", dis >= brackDistance);
-            playerController.Move(dire, moveSpeed * t, rotationSpeed );
+            playerController.Move(dire, moveSpeed * t , rotationSpeed );
         }
 
   
@@ -219,18 +211,19 @@ public class AiBase : MonoBehaviour,IDistributable
         float dis = 0;
 
 
-        for (int i = 1; i < corners.Length; i++)
-        {
-            Vector3 pos = corners[i];
+        dis = Vector3.Distance(transform.position, target.GetValueOrDefault());
+        //for (int i = 1; i < corners.Length; i++)
+        //{
+        //    Vector3 pos = corners[i];
 
-            pos.y = 0;
+        //    pos.y = 0;
 
-            Vector3 playerPos = transform.position;
+        //    Vector3 playerPos = transform.position;
 
-            playerPos.y = 0;
+        //    playerPos.y = 0;
 
-            dis += Vector3.Distance(playerPos, pos);
-        }
+        //    dis += Vector3.Distance(playerPos, pos);
+        //}
 
         return dis;
     }

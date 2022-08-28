@@ -31,6 +31,9 @@ public class Timer :IDisposable
 
     }
 
+
+    public void ResetValue() => time = counter;
+
     public float getNormalTime =>  1.0f- (time/counter);
 
     private bool disposed;

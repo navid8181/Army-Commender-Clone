@@ -12,7 +12,7 @@ public class Camp : MonoBehaviour
 
     public float timeToCreateAiBace = 4;
 
-    public float maxAi = 5;
+    public int maxAi = 5;
 
     private Timer timer;
 
@@ -20,7 +20,8 @@ public class Camp : MonoBehaviour
     {
         aIDistribution = GetComponent<AIDistribution>();
         timer = new Timer(timeToCreateAiBace);
-       
+
+        aIDistribution.maxSoldir = maxAi;
 
     }
 
@@ -29,19 +30,21 @@ public class Camp : MonoBehaviour
     private void Update()
     {
 
+        if (aIDistribution.CurrentDistribuionSize >= aIDistribution.MaxDistrubutionSize)
+        {
+            timer.ResetValue();
+        }
         timer.Init(() =>
         {
-            if (aIDistribution.getLenght <= maxAi)
+            if (aIDistribution.CurrentDistribuionSize <= aIDistribution.MaxDistrubutionSize)
             {
                 CreatePlayer();
             }
        
         });
-      
-           
 
-        
-    }
+
+        }
 
     private void CreatePlayer()
     {
@@ -50,6 +53,7 @@ public class Camp : MonoBehaviour
         aiBase.transform.position = transform.position;
 
         aiBase.currentDistribution = aIDistribution;
+        aiBase.currentDistribution.SetDistribut(aiBase);
     }
 
 }

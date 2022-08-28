@@ -8,15 +8,35 @@ public class HelthBarController : MonoBehaviour
 
     private Material material;
 
-    [Range(0.0f, 1.0f)] public float fill = 1;
+    public float fill { get; private set; }
+
+    public float speed = 1;
+
+    float tareget = 0;
+
+    public void SetFill(float value)
+    {
+        float clamp01Vlaue = Mathf.Clamp01(value);
+
+        tareget = clamp01Vlaue;
+
+
+    }
     private void Awake()
     {
         material = GetComponent<Renderer>().sharedMaterial;
-        
+
     }
 
     private void Update()
     {
-        material.SetFloat("_removeSegment",fill);
+
+
+        fill = Mathf.Lerp(fill, tareget, speed * Time.deltaTime);
+        if (tareget >= 1)
+            if (tareget - fill < 0.01f) fill = tareget;
+
+
+        material.SetFloat("_removeSegment", fill);
     }
 }

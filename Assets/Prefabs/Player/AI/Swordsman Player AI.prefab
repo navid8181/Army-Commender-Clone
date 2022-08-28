@@ -98,7 +98,7 @@ MonoBehaviour:
   brackDistance: 1
   moveSpeed: 2
   rotationSpeed: 2.5
-  distanceToStop: 4
+  distanceToStop: 2.5
 --- !u!114 &2071852401935312933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +195,10 @@ PrefabInstance:
     - target: {fileID: 400102, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
       propertyPath: m_Controller
