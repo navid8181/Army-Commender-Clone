@@ -22,7 +22,7 @@ public class ObjectVisulaerManager : DistributionBase
     public void ApplyVisualer()
     {
 
-        for (int i = 0; i <= camp.maxAi; i++)
+        for (int i = 0; i < camp.maxAi; i++)
         {
             GameObject visular = MasterManager.Instance.PoolManager.requestPool(PoolManager.objectVisualer);
 
@@ -44,5 +44,13 @@ public class ObjectVisulaerManager : DistributionBase
     public override void ExeCuteDistribute(int i)
     {
         Utility.RectangleDistribute(GetDistributables(), transform, aiDistribution.getWith, aiDistribution.getOfffset,i);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawCube(transform.position, Vector3.one);
+
     }
 }

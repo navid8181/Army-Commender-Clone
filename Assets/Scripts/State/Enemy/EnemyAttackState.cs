@@ -2,28 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State
+public class EnemyAttackState : State
 {
-
-    private AIPlayer aiPlayer;
-
-    private void Awake()
-    {
-        aiPlayer = GetComponent<AIPlayer>();
-    }
-
     public override void OnEnter()
     {
-        aiPlayer.StopPlayer();
+        throw new System.NotImplementedException();
     }
 
     public override void OnExit()
     {
-      
+        throw new System.NotImplementedException();
     }
 
     public override void OnStay()
     {
-      
+        throw new System.NotImplementedException();
     }
 }

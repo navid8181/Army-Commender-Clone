@@ -2,30 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent(typeof(IdleState))]
-[RequireComponent(typeof(FollowTargetState))]
-public class StateManager : MonoBehaviour
+public class BaseStateManager : MonoBehaviour
 {
-    public State currentState;
+
+    protected State currentState;
 
 
-    private State previousState;
-
-    private void Start()
-    {
-        previousState = currentState;
-
-        currentState.OnEnter();
-        
-    }
-
+    protected State previousState;
 
     private void FixedUpdate()
     {
         if (currentState != previousState)
         {
-            previousState.OnExit();
+            if (previousState != null)
+                previousState.OnExit();
+
             currentState.OnEnter();
 
             previousState = currentState;
@@ -39,6 +30,6 @@ public class StateManager : MonoBehaviour
 
     public void ChangeState(State stare)
     {
-        currentState = stare; 
+        currentState = stare;
     }
 }

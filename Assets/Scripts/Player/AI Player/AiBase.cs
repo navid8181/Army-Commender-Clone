@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
-public class AiBase : MonoBehaviour,IDistributable
+public abstract class AiBase : MonoBehaviour,IDistributable
 {
 
 
@@ -27,7 +27,7 @@ public class AiBase : MonoBehaviour,IDistributable
 
     public NavMeshPathStatus PathStatus;
 
-    [SerializeField] protected float brackDistance = 0.1f;
+    [SerializeField] public float brackDistance = 0.1f;
     [SerializeField] protected float moveSpeed = 2.5f;
     [SerializeField] protected float rotationSpeed = 2.5f;
 
@@ -41,7 +41,7 @@ public class AiBase : MonoBehaviour,IDistributable
 
     private AiBase currentCollisionAiBase;
 
-
+    public float getAiRadius() => aIRadius;
 
 
 
@@ -53,8 +53,8 @@ public class AiBase : MonoBehaviour,IDistributable
     // public void SetCurrentIndex(int i) => currentAiIndex = i;
     //public int getCurrentIndex() => currentAiIndex;
 
-  
 
+    public abstract void Attck();
 
     private void Awake()
     {
@@ -94,8 +94,10 @@ public class AiBase : MonoBehaviour,IDistributable
 
 
         }
+
+
     }
-    protected void FallowTarget()
+    public void FallowTarget()
     {
 
         Vector3 startPos = transform.position;
@@ -165,7 +167,7 @@ public class AiBase : MonoBehaviour,IDistributable
             Vector3 playerPos = transform.position;
             playerPos.y = 0;
 
-            float dis = distanceToTarget(corners);
+            float dis = distanceToTarget();
 
 
             float t = dis / (distanceToStop + aIRadius);
@@ -198,15 +200,19 @@ public class AiBase : MonoBehaviour,IDistributable
     }
 
 
-    protected void Stop()
+    public void Stop()
     {
-        playerController.SetFloatAnimiton("Velocity", 0);
+        velocity = Mathf.Lerp(velocity, 0, Time.deltaTime * 2);
+        
+        playerController.SetFloatAnimiton("Velocity", velocity);
+
+        if (velocity <= 0.01f)
         playerController.SetBoolAnimiton("Moving", false);
 
-        target = null;
+        //target = null;
     }
 
-    private float distanceToTarget(Vector3[] corners)
+    public float distanceToTarget()
     {
         float dis = 0;
 

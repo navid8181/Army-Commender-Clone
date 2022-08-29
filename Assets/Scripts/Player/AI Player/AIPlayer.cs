@@ -17,7 +17,7 @@ public class AIPlayer : AiBase
     private void FixedUpdate()
     {
                                                              
-
+        
 
     }
 
@@ -30,4 +30,8 @@ public class AIPlayer : AiBase
         Stop();
     }
 
+    public override void Attck()
+    {
+      
+    }
 }

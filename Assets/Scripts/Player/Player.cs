@@ -19,10 +19,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private CoinChest coinChest;
 
+    [SerializeField] private OptimizeCoinChest optimizeCoinChest;
 
     private PlayerController PlayerController;
 
     private TriggerDetection triggerDetection;
+
+    public bool isMoveing() => joyStick.getRawInput().sqrMagnitude >= 0.01f * 0.01f;
     private void Awake()
     {
         PlayerController = GetComponent<PlayerController>();
@@ -41,10 +44,17 @@ public class Player : MonoBehaviour
         if (isGoldCoin || isIronCoin)
         {
 
+            Coin coin = col.GetComponent<Coin>();
 
-            coinChest.AddCoin(col.gameObject);
+            optimizeCoinChest.SetDistribut(coin);
 
-            col.enabled = false;
+            coin.SetAvtiveCollider(false);
+
+          
+
+           // coinChest.AddCoin(col.gameObject);
+
+          //  col.enabled = false;
 
 
         }

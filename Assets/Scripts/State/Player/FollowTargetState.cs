@@ -5,11 +5,13 @@ using UnityEngine;
 public class FollowTargetState : State
 {
 
-    private AIPlayer aiPlayer;
+    private AiBase aiPlayer;
 
+    private StateManager stateManager;
     private void Awake()
     {
-        aiPlayer = GetComponent<AIPlayer>();
+        aiPlayer = GetComponent<AiBase>();
+        stateManager = GetComponent<StateManager>();
     }
 
     public override void OnEnter()
@@ -26,6 +28,8 @@ public class FollowTargetState : State
     {
        // print(aiPlayer.getCurrentIndex());
         aiPlayer.currentDistribution.ExeCuteDistribute(aiPlayer.DistributIndex);
-        aiPlayer.Fallow();
+        aiPlayer.FallowTarget();
+
+      
     }
 }

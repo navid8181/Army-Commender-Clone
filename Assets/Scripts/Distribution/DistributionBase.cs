@@ -59,6 +59,8 @@ public abstract class DistributionBase : MonoBehaviour
 
             distributionBase.SetDistribut(distributable);
 
+           
+
         }
     }
 }

@@ -29,7 +29,13 @@ public class ChangeDistribution : MonoBehaviour
         if (to == null)
          to = other.GetComponent<AIDistribution>();
 
-        if (to == null) return; 
+        if (to == null ) return; 
+
+        Player player = other.GetComponent<Player>();
+
+        if (player == null) return;
+
+        if (player.isMoveing()) return;
 
         helthBarController.SetFill(1.0f);
 
