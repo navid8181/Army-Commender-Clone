@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 7037469739677060337}
   - component: {fileID: 7037469739677060342}
   - component: {fileID: 7037469739677060343}
+  - component: {fileID: 2441061959025412381}
   m_Layer: 0
   m_Name: mesh Visualer
   m_TagString: Untagged
@@ -370,11 +371,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bf8548d6506524ea0a630b1b3e0b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resoultion: 29
-  radius: 5
+  resoultion: 15
+  radius: 2.13
   changeVertext: []
   listGroup:
-    groupes: []
+    groupes:
+    - objects:
+      - {fileID: 0}
+      - {fileID: 0}
+    - objects:
+      - {fileID: 0}
+      - {fileID: 0}
   angleTrasholdSelect: 50
   offsetPointTrashold: 1.11
   bgCurve: {fileID: 1598682717}
+--- !u!114 &2441061959025412381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037469739677060298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7f7a53355fe0c4b8ee63d6989c0640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshCreator: {fileID: 7037469739677060343}

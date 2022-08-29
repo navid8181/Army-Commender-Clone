@@ -48,8 +48,11 @@ public class Camp : MonoBehaviour
 
     private void CreatePlayer()
     {
-        AiBase aiBase = MasterManager.Instance.PoolManager.requestPool(PoolManager.sowrdManAI).GetComponent<AiBase>();
-
+        GameObject pol = MasterManager.Instance.PoolManager.requestPool(PoolManager.sowrdManAI);
+        if (pol == null) return;
+        AiBase aiBase =pol.GetComponent<AiBase>();
+      
+        aiBase.Initilize();
         aiBase.transform.position = transform.position;
 
         aiBase.currentDistribution = aIDistribution;

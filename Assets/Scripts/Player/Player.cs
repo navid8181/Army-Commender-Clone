@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 
 [RequireComponent(typeof(TriggerDetection))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
     [SerializeField] private JoyStick joyStick;
     [SerializeField] private float moveSpeed = 2.5f;
@@ -28,7 +28,19 @@ public class Player : MonoBehaviour
 
     private AIDistribution aIDistribution;
 
+    public float Health { get; set; }
+
     public bool isMoveing() => joyStick.getRawInput().sqrMagnitude >= 0.01f * 0.01f;
+
+
+    private EnemyBase targetToAttack;
+    public LayerMask enemyLayermask;
+    public float radiusEnemyFinder = 5;
+
+    public float timeToAttack = 2;
+
+    private Timer timer;
+
     private void Awake()
     {
         PlayerController = GetComponent<PlayerController>();
@@ -37,6 +49,9 @@ public class Player : MonoBehaviour
 
         triggerDetection.OnTriggerEnterDetection.AddListener(OntriggerEnter);
         aIDistribution = GetComponent<AIDistribution>();
+
+        Health = 100;
+        timer = new Timer(timeToAttack);
     }
 
     private void OntriggerEnter(Collider col)
@@ -71,10 +86,28 @@ public class Player : MonoBehaviour
             AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
             ai.FindEnemy();
         }
+
+        FindEnemy();
+
+        if (targetToAttack != null)
+        {
+            timer.Init(() =>
+            {
+                targetToAttack.ApplyDamage(55);
+                PlayerController.SetBoolAnimiton("Attack", true);
+            });
+  
+
+        }
+        else{
+            timer.ResetValue();
+        }
     }
 
     private void FixedUpdate()
     {
+       
+
         Vector2 joysStickPos = joyStick.getInput();
 
         Vector3 direMove = new Vector3(joysStickPos.x, 0, joysStickPos.y);
@@ -105,6 +138,56 @@ public class Player : MonoBehaviour
 
         PlayerController.Move(dire, moveSpeed * (velocity), rotationSpeed);
     }
+    public void FindEnemy()
+    {
+
+        //if (targetToAttack != null) return;
+
+        Collider[] col = Physics.OverlapSphere(transform.position, radiusEnemyFinder, enemyLayermask);
+
+        if (col.Length == 0)
+        {
+            targetToAttack = null;
+
+        }
+
+        for (int i = 0; i < col.Length; i++)
+        {
+            if (Health <= 0) return;
+            EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
+
+            targetToAttack = enemyBase;
+            if (enemyBase.targets.Count <= 0)
+            {
+                enemyBase.AddTarget(transform);
+                break;
+            }
+            else
+            {
+                break;
+            }
+
+            //if (enemyBase.targets.Count > 0 && i +1 >=col.Length)
+            //{
+            //    SetAttackTarget(enemyBase);
+            //}
+        }
+        if (col.Length > 0)
+        {
 
 
+        }
+    }
+    public void ApplyDamage(float damage)
+    {
+        Health -= damage/4;
+    }
+
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.DrawWireSphere(transform.position, radiusEnemyFinder);
+
+ 
+    }
 }

@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117d7e14d5a0c3458885156dfa45dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBackPool: 2
+  timeBackPool: 5
 --- !u!1001 &2634554899656319686
 PrefabInstance:
   m_ObjectHideFlags: 0

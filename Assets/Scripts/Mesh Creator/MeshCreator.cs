@@ -19,13 +19,16 @@ public class ListGroup
         public Vector3 GetCenter()
         {
             Vector3 sum = Vector3.zero;
-
+                int nullObject = 0;
             for (int i = 0; i < objects.Length; i++)
             {
+                if (objects[i] != null)
                 sum += objects[i].transform.position;
+                else
+                    nullObject++;
             }
 
-            return sum / objects.Length;
+            return sum / (objects.Length - nullObject);
         }
     }
 
@@ -354,11 +357,13 @@ public class MeshCreator : MonoBehaviour
 
             var clossestGroup = (from g in validGroups orderby Vector3.Distance(transform.position, g.GetCenter()) descending select g).FirstOrDefault();
 
-            var clossestObjToGroup = (from o in clossestGroup.objects
+         
+
+            var clossestObjToGroup = (from o in clossestGroup.objects where o != null
                                       orderby Vector3.Distance(transform.position, o.position) descending select o).FirstOrDefault();
+            
 
-
-            if (clossestGroup != null)
+            if (clossestGroup != null && clossestObjToGroup != null)
                 changeVertext[i] = Vector3.Distance(transform.position, clossestObjToGroup.position) / offsetPointTrashold;
             else
             {

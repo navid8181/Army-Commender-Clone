@@ -70,7 +70,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     }
     public void SetAttackTarget(EnemyBase target)
     {
-        target.AddTarget(this);
+        target.AddTarget(this.transform);
 
 
         targetToAttack = target;
@@ -87,7 +87,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
-        Health = 100;
+    
     }
 
     public void SetBoolAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
@@ -343,6 +343,17 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         Health -= damage;
     }
 
+    public void Initilize()
+    {
+        EnableAvatar();
+        Health = 150;
+        setDieAnimiton(false);
+
+    }
+    public void setDieAnimiton(bool value)
+    {
+        playerController.SetBoolAnimiton("isdie", value);
+    }
     public void FindEnemy()
     {
 

@@ -21,6 +21,7 @@ public class DieState : State
         timer.ResetValue();
         aiPlayer.targetToAttack.targets.Clear();
         aiPlayer.targetToAttack = null;
+        aiPlayer.setDieAnimiton(true);
      aiPlayer.DisableAvatar();  
      
     }

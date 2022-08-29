@@ -36,8 +36,8 @@ public class EnemyAttackState : State
 
     
         if (enemyBase.Health <= 0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
-
-        if (enemyBase.targets[0].Health <= 0) enemyBase.targets.Clear();
+        if (enemyBase.targets.Count >0)
+        if (enemyBase.targets[0].GetComponent<IDamageable>().Health <= 0) enemyBase.targets.Clear();
 
         if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f)
         {

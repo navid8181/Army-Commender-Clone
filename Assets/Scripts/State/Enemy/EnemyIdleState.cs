@@ -25,6 +25,8 @@ public class EnemyIdleState : State
     public override void OnStay()
     {
 
+        if (enemyBase.Health<=0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
+
         if (enemyBase.targets.Count > 0)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;

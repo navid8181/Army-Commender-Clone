@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
 
-    public List<AiBase> targets = new List<AiBase>();
+    public List<Transform> targets = new List<Transform>();
 
     public float distanceStopToAttack = 1;
 
@@ -38,12 +38,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     public EnemyStateManager GetEnemyStateManager() => enemyStateManager;
 
+   
     public virtual void Attack() {
 
 
         playerController.SetBoolAnimiton("Attack", true);
 
-        targets[0].ApplyDamage(50);
+        targets[0].GetComponent<IDamageable>().ApplyDamage(50);
     
     }
 
@@ -67,6 +68,10 @@ public class EnemyBase : MonoBehaviour, IDamageable
         return Vector3.Distance(targetPos, enemyPos);
     }
 
+    public void setDieAnimiton(bool value)
+    {
+        playerController.SetBoolAnimiton("isdie", value);
+    }
     public void Move()
     {
         if (targets.Count <= 0) return;
@@ -118,14 +123,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
 
 
-    public void AddTarget(AiBase aiBase) {
+    public void AddTarget(Transform aiBase) {
     
         if (targets.Contains(aiBase)) return;
 
         targets.Add(aiBase);
     
     }
-    public void RemoveTarget(AiBase aiBase) => targets.Remove(aiBase);
+    public void RemoveTarget(Transform aiBase) => targets.Remove(aiBase);
 
 
 
