@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordEnemy : MonoBehaviour
+public class SwordEnemy : EnemyBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Attack()
     {
-        
-    }
+        base.Attack();
 
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }

@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class EnemyIdleState : State
 {
+
+    private EnemyBase enemyBase;
+
+    private void Start()
+    {
+        enemyBase = GetComponent<EnemyBase>();
+    }
+
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+ 
     }
 
     public override void OnExit()
     {
-        throw new System.NotImplementedException();
+      
     }
 
     public override void OnStay()
     {
-        throw new System.NotImplementedException();
+
+        if (enemyBase.targets.Count > 0)
+        {
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
+        }
+
+        enemyBase.setVelocity(0);
+
+        if (enemyBase.getVelocity() <= 0.1f) enemyBase.SetMoveAnim(false);
+       
     }
 }

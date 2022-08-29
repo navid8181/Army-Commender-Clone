@@ -1,21 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyFolowState : State
 {
+
+    private EnemyBase enemyBase;
+
+    private void Start()
+    {
+        enemyBase = GetComponent<EnemyBase>();
+    }
+
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnExit()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnStay()
     {
-        throw new System.NotImplementedException();
+        if (enemyBase.targets.Count <= 0)
+        {
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+        
+        }
+        enemyBase.averageOfTargets();
+        if (enemyBase.disTotarget() <= enemyBase.maxDistanceToStop )
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
+        else
+        enemyBase.Move();
+
+
     }
 }

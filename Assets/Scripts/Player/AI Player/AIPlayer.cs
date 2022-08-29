@@ -21,17 +21,11 @@ public class AIPlayer : AiBase
 
     }
 
-    public void Fallow()
-    {
-        FallowTarget();
-    }
-    public void StopPlayer()
-    {
-        Stop();
-    }
 
-    public override void Attck()
+    public override void Attack()
     {
-      
+        base.Attack();
+ 
+
     }
 }

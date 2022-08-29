@@ -10,10 +10,18 @@ using UnityEngine;
 public class EnemyStateManager : BaseStateManager
 {
 
-    public currentStateType currentStateType;
+    public currentStateType currentStateType = currentStateType.IdleState;
 
-    private currentStateType previousStateType;
+    private currentStateType previousStateType = currentStateType.FollowTargetState;
 
+
+    private void Start()
+    {
+        currentState = GetComponent<EnemyIdleState>();
+   
+
+       
+    }
 
     private void Update()
     {

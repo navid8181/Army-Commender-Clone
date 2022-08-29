@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
-public abstract class AiBase : MonoBehaviour,IDistributable
+[RequireComponent(typeof(StateManager))]
+public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
 {
 
 
@@ -34,6 +35,8 @@ public abstract class AiBase : MonoBehaviour,IDistributable
     [SerializeField] protected float distanceToStop = 2;
     float velocity;
 
+    public float maxDistanceToAttack = 1;
+
     private float aIRadius;
 
     private bool stopFast = false;
@@ -44,29 +47,45 @@ public abstract class AiBase : MonoBehaviour,IDistributable
     public float getAiRadius() => aIRadius;
 
 
+    public EnemyBase targetToAttack;
 
-
-
+    private StateManager stateManager;
     public int DistributIndex { get; set; }
     public DistributionBase currentDistribution { set;  get; }
 
+
     // public void SetCurrentIndex(int i) => currentAiIndex = i;
     //public int getCurrentIndex() => currentAiIndex;
+    public float Health { get; set; }
+
+    public virtual void Attack() {
+
+        playerController.SetBoolAnimiton("Attack", true);
+    
+    }
+    public  void SetAttackTarget(EnemyBase target)
+    {
+        target.AddTarget(this);
 
 
-    public abstract void Attck();
+        targetToAttack = target;
+    }
 
     private void Awake()
     {
 
-        
+
+        stateManager = GetComponent<StateManager>();
 
         playerController = GetComponent<PlayerController>();
         navMeshPath = new NavMeshPath();
 
       aIRadius =  brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
+        Health = 100;
     }
+
+    public void SetBoolAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
 
     private void Update()
     {
@@ -81,6 +100,11 @@ public abstract class AiBase : MonoBehaviour,IDistributable
 
 
         //    previousAIDistribution = (AIDistribution)currentDistribution;
+        //}
+
+        //if (targetToAttack != null)
+        //{
+        //    stateManager.currentStateType = currentStateType.Attack;
         //}
 
 
@@ -200,6 +224,8 @@ public abstract class AiBase : MonoBehaviour,IDistributable
     }
 
 
+    public StateManager GetStateManager() => stateManager;
+
     public void Stop()
     {
         velocity = Mathf.Lerp(velocity, 0, Time.deltaTime * 2);
@@ -296,6 +322,9 @@ public abstract class AiBase : MonoBehaviour,IDistributable
         Gizmos.DrawSphere(target.GetValueOrDefault(), 0.1f);
     }
 
-   
+    public void ApplyDamage(float damage)
+    {
+        Health -= damage;
+    }
 }
 

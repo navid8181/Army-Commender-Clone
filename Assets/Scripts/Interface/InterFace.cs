@@ -9,7 +9,12 @@ public interface I_Ai_Base
 }
 
 
+public interface IDamageable
+{
+    public float Health { get; set; }
 
+    public void ApplyDamage(float damage);
+}
 public interface IDistributable
 {
     public int DistributIndex { get; set; }
