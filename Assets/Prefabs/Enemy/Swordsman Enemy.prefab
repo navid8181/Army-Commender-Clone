@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 9190771441945686607}
   - component: {fileID: 711406508768386527}
   - component: {fileID: 1190970701548332965}
+  - component: {fileID: 8504289111916954494}
   m_Layer: 7
   m_Name: Swordsman Enemy
   m_TagString: Player
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19997bbf96fd5d4ebfdea9e1b12c693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAttack: 2
 --- !u!114 &711406508768386527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,11 +146,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  distanceStopToAttack: 1
+  distanceStopToAttack: 1.5
   speed: 3
   rotationSpeed: 2
-  maxDistanceToStop: 2
+  maxDistanceToStop: 1.6
   brackDistance: 1
+--- !u!114 &8504289111916954494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190057604089478822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87db4ab6babf3a84c9bd336002e0b7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2634554899656319686
 PrefabInstance:
   m_ObjectHideFlags: 0

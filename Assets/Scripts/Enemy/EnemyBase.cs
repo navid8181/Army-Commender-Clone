@@ -42,6 +42,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
 
         playerController.SetBoolAnimiton("Attack", true);
+
+        targets[0].ApplyDamage(50);
     
     }
 
@@ -53,13 +55,25 @@ public class EnemyBase : MonoBehaviour, IDamageable
         playerController.SetBoolAnimiton("Moving",value);
     }
 
+    public float disTotarget()
+    {
+        Vector3 targetPos = averageOfTargets();
 
+        targetPos.y = 0;
+
+        Vector3 enemyPos = transform.position;
+        enemyPos.y = 0;
+
+        return Vector3.Distance(targetPos, enemyPos);
+    }
 
     public void Move()
     {
         if (targets.Count <= 0) return;
-
         Vector3 targetPos = averageOfTargets();
+
+
+        distance = disTotarget();
 
         velocity = distance / maxDistanceToStop;
 
@@ -82,7 +96,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public Vector3 averageOfTargets()
     {
         Vector3 sum = Vector3.zero;
-        distance = 0;
+
         if (targets.Count == 0) return sum;
 
         //for (int i = 0; i < targets.Count; i++)
@@ -91,27 +105,42 @@ public class EnemyBase : MonoBehaviour, IDamageable
         //}
 
         Vector3 avverage = targets[0].transform.position;
-
-        avverage.y = 0;
-
-        Vector3 enemyPos = transform.position;
-        enemyPos.y = 0;
-
-
-        distance = Vector3.Distance(avverage, enemyPos);
-
         return avverage;
+        //avverage.y = 0;
+
+        //Vector3 enemyPos = transform.position;
+        //enemyPos.y = 0;
+
+
+        //distance = Vector3.Distance(avverage, enemyPos);
+
+  
     }
 
 
-    public void AddTarget(AiBase aiBase) => targets.Add(aiBase);
+    public void AddTarget(AiBase aiBase) {
+    
+        if (targets.Contains(aiBase)) return;
+
+        targets.Add(aiBase);
+    
+    }
     public void RemoveTarget(AiBase aiBase) => targets.Remove(aiBase);
 
 
-    public float disTotarget() => distance;
+
 
     public void ApplyDamage(float damage)
     {
        Health -= damage;
+    }
+
+
+    public void DisableAvatar()
+    {
+        targets.Clear();
+        playerController.Disable();
+        GetComponent<Collider>().enabled = false;
+        
     }
 }

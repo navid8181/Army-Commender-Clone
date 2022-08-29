@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyIdleState))]
 [RequireComponent(typeof(EnemyFolowState))]
 [RequireComponent(typeof(EnemyAttackState))]
+[RequireComponent(typeof(EnemyDieState))]
 
 
 public class EnemyStateManager : BaseStateManager
@@ -37,6 +38,10 @@ public class EnemyStateManager : BaseStateManager
                     break;
                 case currentStateType.Attack:
                     ChangeState(GetComponent<EnemyAttackState>());
+                    break;
+
+                    case currentStateType.Die:
+                    ChangeState(GetComponent<EnemyDieState>());
                     break;
                 default:
                     break;

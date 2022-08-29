@@ -28,13 +28,17 @@ public class EnemyFolowState : State
         if (enemyBase.targets.Count <= 0)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
-        
+
         }
-        enemyBase.averageOfTargets();
-        if (enemyBase.disTotarget() <= enemyBase.maxDistanceToStop )
-            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
         else
-        enemyBase.Move();
+        {
+            enemyBase.averageOfTargets();
+            if (enemyBase.disTotarget() <= enemyBase.maxDistanceToStop)
+                enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
+            else
+                enemyBase.Move();
+        }
+
 
 
     }

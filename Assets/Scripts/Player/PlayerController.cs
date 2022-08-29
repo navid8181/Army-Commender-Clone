@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private new Rigidbody rigidbody;
     private Animator anim;
 
+    private bool move = true;
 
     private void Awake()
     {
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector3 dire,float speed,float rotationSpeed)
     {
+        if (!move) return;
+
         rigidbody.MovePosition(transform.position + dire * speed * Time.fixedDeltaTime);
         Quaternion quat = transform.localRotation;
         if (dire.magnitude != 0)
@@ -45,6 +48,16 @@ public class PlayerController : MonoBehaviour
         rigidbody.MoveRotation(quat);
     }
 
+    public void Disable()
+    {
+        rigidbody.isKinematic = true;
+        move = false;
+    }
 
+    public void Enable()
+    {
+        rigidbody.isKinematic = false;
+        move = true;
+    }
 
 }

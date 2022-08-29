@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(StateManager))]
-public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
+public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 {
 
 
@@ -51,19 +51,24 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
 
     private StateManager stateManager;
     public int DistributIndex { get; set; }
-    public DistributionBase currentDistribution { set;  get; }
+    public DistributionBase currentDistribution { set; get; }
 
-
+    public float radiusEnemyFinder = 5;
     // public void SetCurrentIndex(int i) => currentAiIndex = i;
     //public int getCurrentIndex() => currentAiIndex;
+
     public float Health { get; set; }
 
-    public virtual void Attack() {
+    public LayerMask enemyLayermask;
+    public virtual void Attack()
+    {
 
         playerController.SetBoolAnimiton("Attack", true);
-    
+
+        targetToAttack.ApplyDamage(50);
+
     }
-    public  void SetAttackTarget(EnemyBase target)
+    public void SetAttackTarget(EnemyBase target)
     {
         target.AddTarget(this);
 
@@ -80,7 +85,7 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
         playerController = GetComponent<PlayerController>();
         navMeshPath = new NavMeshPath();
 
-      aIRadius =  brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
+        aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
         Health = 100;
     }
@@ -108,12 +113,12 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
         //}
 
 
-       if (stopFast)
+        if (stopFast)
         {
             playerController.SetBoolAnimiton("Moving", false);
             playerController.SetFloatAnimiton("Velocity", 0);
 
-          stopFast =  Vector3.Distance(currentCollisionAiBase.getTargetPos().Value, getTargetPos().Value) >= (aIRadius * 2) + 0.1f;
+            stopFast = Vector3.Distance(currentCollisionAiBase.getTargetPos().Value, getTargetPos().Value) >= (aIRadius * 2) + 0.1f;
 
 
 
@@ -126,9 +131,9 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
 
         Vector3 startPos = transform.position;
 
-        if (target == null ||stopFast ) return;
+        if (target == null || stopFast) return;
 
-   
+
 
 
         bool canMove = NavMesh.CalculatePath(startPos + Vector3.up, target.GetValueOrDefault(Vector3.zero), NavMesh.AllAreas, navMeshPath);
@@ -159,7 +164,7 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
 
 
         PathStatus = navMeshPath.status;
-     
+
 
         corners = navMeshPath.corners;
 
@@ -181,11 +186,11 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
                     dire = Vector3.zero;
                 }
             }
-         
+
 
             dire.Normalize();
 
-            Debug.DrawRay(transform.position, dire * 10,Color.red);
+            Debug.DrawRay(transform.position, dire * 10, Color.red);
 
             pos.y = 0;
             Vector3 playerPos = transform.position;
@@ -196,8 +201,8 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
 
             float t = dis / (distanceToStop + aIRadius);
 
-           // if (t >= 0.99f) t = 1;
-           // if (t <= 0.01f) t = 0;
+            // if (t >= 0.99f) t = 1;
+            // if (t <= 0.01f) t = 0;
 
             t = Mathf.Clamp01(t);
 
@@ -211,10 +216,10 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
             playerController.SetFloatAnimiton("Velocity", velocity);
 
             playerController.SetBoolAnimiton("Moving", dis >= brackDistance);
-            playerController.Move(dire, moveSpeed * t , rotationSpeed );
+            playerController.Move(dire, moveSpeed * t, rotationSpeed);
         }
 
-  
+
 
         if (corners.Length == 0 || stopFast)
         {
@@ -229,11 +234,11 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
     public void Stop()
     {
         velocity = Mathf.Lerp(velocity, 0, Time.deltaTime * 2);
-        
+
         playerController.SetFloatAnimiton("Velocity", velocity);
 
         if (velocity <= 0.01f)
-        playerController.SetBoolAnimiton("Moving", false);
+            playerController.SetBoolAnimiton("Moving", false);
 
         //target = null;
     }
@@ -269,7 +274,7 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
             target = navMeshHit1.position;
 
 
-          
+
         }
 
 
@@ -291,18 +296,18 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
         AiBase ai = collision.collider.GetComponent<AiBase>();
 
 
-        if (ai != null && ! stopFast)
+        if (ai != null && !stopFast)
         {
 
 
-            if (!ai.isMove &&  ai.currentCollisionAiBase == null)
+            if (!ai.isMove && ai.currentCollisionAiBase == null)
             {
                 if (Vector3.Distance(ai.getTargetPos().Value, getTargetPos().Value) <= (aIRadius * 2) + 0.1f)
                 {
                     stopFast = true;
                     currentCollisionAiBase = ai;
 
-                    
+
 
                 }
                 else
@@ -314,17 +319,64 @@ public abstract class AiBase : MonoBehaviour,IDistributable,IDamageable
         }
     }
 
- 
 
 
-    private void OnDrawGizmos()
+
+
+    public void DisableAvatar()
     {
-        Gizmos.DrawSphere(target.GetValueOrDefault(), 0.1f);
+        targetToAttack = null;
+        playerController.Disable();
+        GetComponent<Collider>().enabled = false;
+
     }
 
+    public void EnableAvatar()
+    {
+
+        playerController.Enable();
+        GetComponent<Collider>().enabled = true;
+
+    }
     public void ApplyDamage(float damage)
     {
         Health -= damage;
+    }
+
+    public void FindEnemy()
+    {
+
+        if (targetToAttack != null) return;
+
+        Collider[] col = Physics.OverlapSphere(transform.position, radiusEnemyFinder, enemyLayermask);
+
+        for (int i = 0; i < col.Length; i++)
+        {
+            if (Health <= 0) return;
+            EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
+
+            if (enemyBase.targets.Count <= 0)
+            {
+                SetAttackTarget(enemyBase);
+            }
+
+            //if (enemyBase.targets.Count > 0 && i +1 >=col.Length)
+            //{
+            //    SetAttackTarget(enemyBase);
+            //}
+        }
+        if (col.Length > 0)
+        {
+
+
+        }
+    }
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.DrawWireSphere(transform.position, radiusEnemyFinder);
+
+        Gizmos.DrawSphere(target.GetValueOrDefault(), 0.1f);
     }
 }
 

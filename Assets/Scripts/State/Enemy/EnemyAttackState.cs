@@ -22,7 +22,7 @@ public class EnemyAttackState : State
 
     public override void OnEnter()
     {
-      
+
     }
 
     public override void OnExit()
@@ -34,15 +34,19 @@ public class EnemyAttackState : State
     {
         enemyBase.averageOfTargets();
 
-        timer.Init(() =>
-        {
-            enemyBase.Attack();
-        });
+    
+        if (enemyBase.Health <= 0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
 
+        if (enemyBase.targets[0].Health <= 0) enemyBase.targets.Clear();
 
-        if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack)
+        if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
         }
+        timer.Init(() =>
+        {
+            enemyBase.Attack();
+
+        });
     }
 }

@@ -5,11 +5,12 @@ using UnityEngine;
 
 
 
-public enum currentStateType { IdleState,FollowTargetState,Attack}
+public enum currentStateType { IdleState,FollowTargetState,Attack,Die}
 
 [RequireComponent(typeof(IdleState))]
 [RequireComponent(typeof(FollowTargetState))]
 [RequireComponent(typeof(AttackState))]
+[RequireComponent(typeof(DieState))]
 public class StateManager : BaseStateManager
 {
 
@@ -41,6 +42,9 @@ public class StateManager : BaseStateManager
                     break;
                 case currentStateType.Attack:
                     ChangeState(GetComponent<AttackState>());
+                    break;
+                case currentStateType.Die:
+                    ChangeState(GetComponent<DieState>());
                     break;
                 default:
                     break;

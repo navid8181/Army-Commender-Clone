@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7520926224585125712}
   - component: {fileID: 6392480857375197696}
   - component: {fileID: 4914331910657513340}
+  - component: {fileID: 6933410653533957714}
   m_Layer: 6
   m_Name: Swordsman Player AI
   m_TagString: Player
@@ -100,6 +101,12 @@ MonoBehaviour:
   moveSpeed: 2
   rotationSpeed: 2.5
   distanceToStop: 2.5
+  maxDistanceToAttack: 1.6
+  targetToAttack: {fileID: 0}
+  radiusEnemyFinder: 15
+  enemyLayermask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &2071852401935312933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2a1459fecacff4cb4ec2f44e3a9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToAttack: 2
 --- !u!114 &4914331910657513340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +157,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStateType: 1
+--- !u!114 &6933410653533957714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190057604089478822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9117d7e14d5a0c3458885156dfa45dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBackPool: 2
 --- !u!1001 &2634554899656319686
 PrefabInstance:
   m_ObjectHideFlags: 0

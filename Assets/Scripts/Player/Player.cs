@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
 
     private TriggerDetection triggerDetection;
 
+
+    private AIDistribution aIDistribution;
+
     public bool isMoveing() => joyStick.getRawInput().sqrMagnitude >= 0.01f * 0.01f;
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
         triggerDetection = GetComponent<TriggerDetection>();
 
         triggerDetection.OnTriggerEnterDetection.AddListener(OntriggerEnter);
+        aIDistribution = GetComponent<AIDistribution>();
     }
 
     private void OntriggerEnter(Collider col)
@@ -57,6 +61,15 @@ public class Player : MonoBehaviour
           //  col.enabled = false;
 
 
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < aIDistribution.CurrentDistribuionSize; i++)
+        {
+            AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
+            ai.FindEnemy();
         }
     }
 
