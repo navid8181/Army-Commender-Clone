@@ -20,6 +20,7 @@ public class OptimizeCoinChest : DistributionBase
 
     public override void ExeCuteDistribute(int i)
     {
+        if (IsUpdatingIndex) return;
         CoinDistribut(GetDistributables(), i);
     }
 

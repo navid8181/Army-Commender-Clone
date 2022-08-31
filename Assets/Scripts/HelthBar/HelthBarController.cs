@@ -24,7 +24,7 @@ public class HelthBarController : MonoBehaviour
     }
     private void Awake()
     {
-        material = GetComponent<Renderer>().sharedMaterial;
+        material = GetComponent<Renderer>().materials[0];
 
     }
 

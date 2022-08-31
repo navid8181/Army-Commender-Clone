@@ -26,10 +26,16 @@ public class FollowTargetState : State
 
     public override void OnStay()
     {
-        // print(aiPlayer.getCurrentIndex());
+        if (aiPlayer.Health <= 0)
+        {
+            aiPlayer.GetStateManager().currentStateType = currentStateType.Die;
+        }
+      
         if (aiPlayer.targetToAttack == null)
         {
-            aiPlayer.currentDistribution.ExeCuteDistribute(aiPlayer.DistributIndex);
+  
+            if (aiPlayer.currentDistribution != null)
+                aiPlayer.currentDistribution.ExeCuteDistribute(aiPlayer.DistributIndex);
         }
         else
         {

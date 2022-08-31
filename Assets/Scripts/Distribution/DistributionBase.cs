@@ -13,6 +13,8 @@ public abstract class DistributionBase : MonoBehaviour
     public int CurrentDistribuionSize { get { return distributables.Count; } }
 
     public int MaxDistrubutionSize { get; set; }
+
+    protected bool IsUpdatingIndex;
     private void Awake()
     {
        
@@ -22,11 +24,17 @@ public abstract class DistributionBase : MonoBehaviour
     {
         for (int i = index; i < distributables.Count; i++)
         {
+            IsUpdatingIndex = true;
             distributables[i].DistributIndex = i;
         }
+
+        IsUpdatingIndex = false;
     }
 
     public abstract void ExeCuteDistribute(int i);
+    
+     
+    
 
     public void SetDistribut(IDistributable distributable)
     {
@@ -40,8 +48,19 @@ public abstract class DistributionBase : MonoBehaviour
 
     public void RemoveDistribut(IDistributable distributable)
     {
+        bool isUpdate = true;
+
+        if (distributable.DistributIndex == GetDistributables().Length - 1)
+            isUpdate = false;
+
         distributables.RemoveAt(distributable.DistributIndex);
+
+
+
+        if (isUpdate)
         UpdateIndex(distributable.DistributIndex);
+
+        distributable.DistributIndex = -1;
     }
 
     public void ChangeDistribution(DistributionBase distributionBase)

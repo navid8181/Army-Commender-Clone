@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
 
-    public List<Transform> targets = new List<Transform>();
+    public Transform target;
 
     public float distanceStopToAttack = 1;
 
@@ -33,7 +33,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         playerController = GetComponent<PlayerController>();
         enemyStateManager = GetComponent<EnemyStateManager>();
 
-        Health = 100;
+        Health = 150;
     }
 
     public EnemyStateManager GetEnemyStateManager() => enemyStateManager;
@@ -41,10 +41,15 @@ public class EnemyBase : MonoBehaviour, IDamageable
    
     public virtual void Attack() {
 
+       if (target == null)return;
 
         playerController.SetBoolAnimiton("Attack", true);
 
-        targets[0].GetComponent<IDamageable>().ApplyDamage(50);
+        IDamageable idamges = target.GetComponent<IDamageable>();
+      
+        if(idamges != null)
+            idamges.ApplyDamage(50);
+     
     
     }
 
@@ -72,13 +77,16 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         playerController.SetBoolAnimiton("isdie", value);
     }
-    public void Move()
+    public void Move(Vector3 targetPos)
     {
-        if (targets.Count <= 0) return;
-        Vector3 targetPos = averageOfTargets();
+        //if (target == null) return;
 
+        Vector3 tempTargetPos = targetPos;
+        tempTargetPos.y = 0;
+        Vector3 playerPos = transform.position;
+        playerPos.y = 0;
 
-        distance = disTotarget();
+        distance = Vector3.Distance(playerPos, tempTargetPos);  
 
         velocity = distance / maxDistanceToStop;
 
@@ -102,14 +110,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         Vector3 sum = Vector3.zero;
 
-        if (targets.Count == 0) return sum;
+        if (target == null) return sum;
 
         //for (int i = 0; i < targets.Count; i++)
         //{
         //    sum += targets[i].transform.position;
         //}
 
-        Vector3 avverage = targets[0].transform.position;
+        Vector3 avverage = target.transform.position;
         return avverage;
         //avverage.y = 0;
 
@@ -124,13 +132,10 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
 
     public void AddTarget(Transform aiBase) {
-    
-        if (targets.Contains(aiBase)) return;
 
-        targets.Add(aiBase);
-    
+        target = aiBase;
     }
-    public void RemoveTarget(Transform aiBase) => targets.Remove(aiBase);
+
 
 
 
@@ -143,7 +148,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     public void DisableAvatar()
     {
-        targets.Clear();
+        target = null;
         playerController.Disable();
         GetComponent<Collider>().enabled = false;
         

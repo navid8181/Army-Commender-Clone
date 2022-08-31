@@ -9,13 +9,7 @@ using UnityEngine.AI;
 public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 {
 
-
-
     private PlayerController playerController;
-
-
-    //public Transform t3;
-
 
     public Vector3? target = null;
 
@@ -34,6 +28,13 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     [SerializeField] protected float distanceToStop = 2;
     float velocity;
+
+
+    public Weapone[] weapones;
+    public Transform[] weaponesModel;
+    public int indexOfWeapone = 0;
+
+    private int previousIndexOfWeapone = -1;
 
     public float maxDistanceToAttack = 1;
 
@@ -54,18 +55,20 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     public DistributionBase currentDistribution { set; get; }
 
     public float radiusEnemyFinder = 5;
-    // public void SetCurrentIndex(int i) => currentAiIndex = i;
-    //public int getCurrentIndex() => currentAiIndex;
 
     public float Health { get; set; }
 
     public LayerMask enemyLayermask;
+
+    [HideInInspector]
+    public float timeToAttack = 0;
+    public float damge = 0;
     public virtual void Attack()
     {
 
         playerController.SetBoolAnimiton("Attack", true);
 
-        targetToAttack.ApplyDamage(50);
+        targetToAttack.ApplyDamage(damge);
 
     }
     public void SetAttackTarget(EnemyBase target)
@@ -87,30 +90,41 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
-    
+        InitializeWapone();
+
+
     }
 
     public void SetBoolAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
 
+    public void InitializeWapone()
+    {
+        if (previousIndexOfWeapone == indexOfWeapone) return;
+
+
+
+        Weapone weapone = weapones[indexOfWeapone];
+
+        maxDistanceToAttack = weapone.maxDistanceToAttack;
+
+        timeToAttack = weapone.timeToAttack;
+
+        damge = weapone.damge;
+
+        for (int i = 0; i < weaponesModel.Length; i++)
+        {
+            weaponesModel[i].gameObject.SetActive(i == indexOfWeapone);
+        }
+
+        previousIndexOfWeapone = indexOfWeapone;
+
+    }
+
     private void Update()
     {
+        InitializeWapone();
+      //  FindEnemy();
 
-
-        //if (currentDistribution != previousAIDistribution)
-        //{
-        //    if (previousAIDistribution != null)
-        //    previousAIDistribution.RemoveDistribut(this);
-
-        //    currentDistribution.SetDistribut(this);
-
-
-        //    previousAIDistribution = (AIDistribution)currentDistribution;
-        //}
-
-        //if (targetToAttack != null)
-        //{
-        //    stateManager.currentStateType = currentStateType.Attack;
-        //}
 
 
         if (stopFast)
@@ -240,7 +254,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         if (velocity <= 0.01f)
             playerController.SetBoolAnimiton("Moving", false);
 
-        //target = null;
+      
     }
 
     public float distanceToTarget()
@@ -285,13 +299,15 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     public Vector3? getTargetPos() => target;
 
 
-    private void OnTriggerStay(Collider other)
-    {
-
-    }
+ 
 
 
     private void OnCollisionStay(Collision collision)
+    {
+        StopFastChecker(collision);
+    }
+
+    private void StopFastChecker(Collision collision)
     {
         AiBase ai = collision.collider.GetComponent<AiBase>();
 
@@ -319,10 +335,6 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         }
     }
 
-
-
-
-
     public void DisableAvatar()
     {
         targetToAttack = null;
@@ -343,7 +355,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         Health -= damage;
     }
 
-    public void Initilize()
+    public void InitilizeOnStatup()
     {
         EnableAvatar();
         Health = 150;
@@ -366,10 +378,10 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
             if (Health <= 0) return;
             EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
 
-            if (enemyBase.targets.Count <= 0)
-            {
+           // if (enemyBase.targets.Count <= 0)
+           // {
                 SetAttackTarget(enemyBase);
-            }
+            //}
 
             //if (enemyBase.targets.Count > 0 && i +1 >=col.Length)
             //{

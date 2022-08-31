@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DieState : State
@@ -14,12 +15,23 @@ public class DieState : State
     {
         aiPlayer = GetComponent<AiBase>();
         timer = new Timer(timeBackPool);
-
     }
     public override void OnEnter()
     {
+
+      
+      
+
         timer.ResetValue();
-        aiPlayer.targetToAttack.targets.Clear();
+        if (aiPlayer.targetToAttack != null)
+        {
+          if (aiPlayer.targetToAttack.target != null)
+            {
+                aiPlayer.targetToAttack.target = null;
+            }
+        }
+
+
         aiPlayer.targetToAttack = null;
         aiPlayer.setDieAnimiton(true);
      aiPlayer.DisableAvatar();  
@@ -42,8 +54,13 @@ public class DieState : State
         {
             timer.Init(() =>
             {
-                aiPlayer.currentDistribution.RemoveDistribut(aiPlayer);
-                aiPlayer.currentDistribution = null;
+                AiBase[] aiBases = GetComponents<AiBase> ();    
+                for (int i = 0; i < aiBases.Length; i++)
+                {
+                    aiPlayer.currentDistribution.RemoveDistribut(aiBases[i]);
+                    aiBases[i].currentDistribution = null;
+                   
+                }
                 MasterManager.Instance.PoolManager.BackToPool(aiPlayer.gameObject);
             });
         }

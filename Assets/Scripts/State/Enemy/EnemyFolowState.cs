@@ -15,7 +15,8 @@ public class EnemyFolowState : State
 
     public override void OnEnter()
     {
-
+        if (enemyBase.disTotarget() <= enemyBase.distanceStopToAttack)
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
     }
 
     public override void OnExit()
@@ -25,7 +26,10 @@ public class EnemyFolowState : State
 
     public override void OnStay()
     {
-        if (enemyBase.targets.Count <= 0)
+
+        if (enemyBase.Health <= 0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
+
+        if (enemyBase.target == null)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
 
@@ -33,10 +37,10 @@ public class EnemyFolowState : State
         else
         {
             enemyBase.averageOfTargets();
-            if (enemyBase.disTotarget() <= enemyBase.maxDistanceToStop)
+            if (enemyBase.disTotarget() <= enemyBase.distanceStopToAttack)
                 enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
             else
-                enemyBase.Move();
+                enemyBase.Move(enemyBase.averageOfTargets());
         }
 
 

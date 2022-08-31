@@ -36,12 +36,26 @@ public class EnemyAttackState : State
 
     
         if (enemyBase.Health <= 0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
-        if (enemyBase.targets.Count >0)
-        if (enemyBase.targets[0].GetComponent<IDamageable>().Health <= 0) enemyBase.targets.Clear();
-
-        if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f)
+        if (enemyBase.target != null)
         {
-            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
+            IDamageable aiBase = enemyBase.target.GetComponent<IDamageable>();
+            if (aiBase != null)
+                if (aiBase.Health <= 0) enemyBase.target = null;
+            
+        }
+        if ( enemyBase.target == null)
+        {
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+        }
+
+        if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f )
+        {
+            if (enemyBase.target != null)
+            enemyBase.Move(enemyBase.target.position);
+            else
+            {
+                enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+            }
         }
         timer.Init(() =>
         {

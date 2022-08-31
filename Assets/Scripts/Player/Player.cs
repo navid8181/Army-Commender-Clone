@@ -81,11 +81,11 @@ public class Player : MonoBehaviour,IDamageable
 
     private void Update()
     {
-        for (int i = 0; i < aIDistribution.CurrentDistribuionSize; i++)
-        {
-            AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
-            ai.FindEnemy();
-        }
+       // for (int i = 0; i < aIDistribution.CurrentDistribuionSize; i++)
+       // {
+           // AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
+            //ai.FindEnemy();
+        //}
 
         FindEnemy();
 
@@ -140,12 +140,16 @@ public class Player : MonoBehaviour,IDamageable
     }
     public void FindEnemy()
     {
-
+        if (Health <= 0)
+        {
+            targetToAttack = null;
+            return;
+        }
         //if (targetToAttack != null) return;
 
         Collider[] col = Physics.OverlapSphere(transform.position, radiusEnemyFinder, enemyLayermask);
 
-        if (col.Length == 0)
+        if (col.Length == 0 )
         {
             targetToAttack = null;
 
@@ -155,18 +159,20 @@ public class Player : MonoBehaviour,IDamageable
         {
             if (Health <= 0) return;
             EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
-
-            targetToAttack = enemyBase;
-            if (enemyBase.targets.Count <= 0)
+            if (enemyBase != null)
             {
-                enemyBase.AddTarget(transform);
-                break;
+                targetToAttack = enemyBase;
+
+              //  enemyBase.AddTarget(transform);
             }
             else
             {
                 break;
             }
-
+       
+                
+            
+           
             //if (enemyBase.targets.Count > 0 && i +1 >=col.Length)
             //{
             //    SetAttackTarget(enemyBase);

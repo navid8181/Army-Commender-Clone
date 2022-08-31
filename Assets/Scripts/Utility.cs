@@ -51,4 +51,43 @@ public class Utility : MonoBehaviour
     }
 
 
+
+    public static void CubicDistribute(IDistributable[] objectDistribut, Transform target, int with,int height, Vector3 offset, int i)
+    {
+        int rowCount = ((i / with) )% height;
+
+        int heightCount = (i / (with * height)) ;
+
+   
+
+        int index = i % (with);
+
+
+
+        Vector3 flatfwd = target.transform.forward;
+        flatfwd.y = 0;
+
+
+        Vector3 flatrgh = target.transform.right;
+        flatrgh.y = 0;
+
+
+        Vector3 center = target.position - flatfwd * offset.z * rowCount + target.transform.up * heightCount * offset.y;
+
+
+        Vector3 leftStartPos = center - flatrgh * with * offset.x;
+
+        Vector3 rightStartPos = center + flatrgh * with * offset.x;
+
+        Vector3 finalPos = Vector3.Lerp(leftStartPos, rightStartPos, index / (float)with);
+
+        objectDistribut[i].SetTraget(finalPos);
+
+
+
+
+
+
+
+    }
 }

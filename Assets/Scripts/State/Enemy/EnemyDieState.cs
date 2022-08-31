@@ -12,10 +12,7 @@ public class EnemyDieState : State
     }
     public override void OnEnter()
     {
-        for (int i = 0; i < enemyBase.targets.Count; i++)
-        {
-            enemyBase.RemoveTarget(enemyBase.targets[i]);
-        }
+        enemyBase.target = null;
       
         enemyBase.DisableAvatar();
         enemyBase.setDieAnimiton(true);

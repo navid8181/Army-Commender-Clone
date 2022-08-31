@@ -30,6 +30,14 @@ public class Camp : MonoBehaviour
     private void Update()
     {
 
+        if (timer.getCounter() != timeToCreateAiBace)
+        {
+            timer.SetCounter(timeToCreateAiBace);
+        }
+
+        if (maxAi != aIDistribution.maxSoldir)
+            aIDistribution.maxSoldir = maxAi;
+
         if (aIDistribution.CurrentDistribuionSize >= aIDistribution.MaxDistrubutionSize)
         {
             timer.ResetValue();
@@ -52,7 +60,7 @@ public class Camp : MonoBehaviour
         if (pol == null) return;
         AiBase aiBase =pol.GetComponent<AiBase>();
       
-        aiBase.Initilize();
+        aiBase.InitilizeOnStatup();
         aiBase.transform.position = transform.position;
 
         aiBase.currentDistribution = aIDistribution;

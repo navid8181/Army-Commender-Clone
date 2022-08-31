@@ -8,15 +8,13 @@ public class AttackState : State
     private AiBase aiPlayer;
 
 
-    public float timeToAttack = 2;
-
 
     private Timer timer;
     private void Start()
     {
         aiPlayer = GetComponent<AiBase>();
 
-        timer = new Timer(timeToAttack);
+        timer = new Timer(aiPlayer.timeToAttack);
 
     }
 
@@ -28,6 +26,9 @@ public class AttackState : State
 
     public override void OnExit()
     {
+
+      
+
         timer.ResetValue();
         if (aiPlayer.targetToAttack == null)
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
@@ -36,12 +37,20 @@ public class AttackState : State
 
     public override void OnStay()
     {
+        timer.SetCounter(aiPlayer.timeToAttack);
 
         if (aiPlayer.targetToAttack  != null && aiPlayer.targetToAttack.Health <= 0)
             aiPlayer.targetToAttack = null;
 
         if (aiPlayer.targetToAttack == null)
-            aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+        {
+
+          //  aiPlayer.FindEnemy();
+
+            if (aiPlayer.targetToAttack == null)
+                aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+        }
+          
 
 
 
@@ -53,6 +62,10 @@ public class AttackState : State
             targetAttack = aiPlayer.targetToAttack.transform.position;
         else
         {
+            //aiPlayer.FindEnemy();
+            if (aiPlayer.targetToAttack != null)
+                targetAttack = aiPlayer.targetToAttack.transform.position;
+            else
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
         }
         targetAttack.y = 0;

@@ -176,7 +176,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.025, y: 0.02, z: 0.008}
+  m_Extents: {x: 0.01, y: 0.015, z: 0.008}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e1e4d450892a84da508a9fc7097831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCreateAiBace: 1
+  timeToCreateAiBace: 3
   maxAi: 5
 --- !u!114 &6464853325621577375
 MonoBehaviour:
@@ -211,6 +211,7 @@ MonoBehaviour:
   taregt: {fileID: 1466561796}
   with: 5
   offfset: {x: 1, y: 1, z: 1.46}
+  maxSoldir: 5
 --- !u!1 &3983852684968234538
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +392,11 @@ PrefabInstance:
       propertyPath: fill
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7601630381676521427, guid: 9b45093ca355c0f48be4176222f4568b,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6984005712426533416, guid: 9b45093ca355c0f48be4176222f4568b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9b45093ca355c0f48be4176222f4568b, type: 3}
@@ -419,3 +425,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999976, z: 0.82}
   m_Center: {x: 0, y: 0.00000046391202, z: 0.000000014901168}
+--- !u!54 &6984005712177949554
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905436170359333224}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6984005712177949553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905436170359333224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26f143ec265ecf45a0efe7dd882f4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  from: {fileID: 6464853325621577375}

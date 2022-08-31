@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19997bbf96fd5d4ebfdea9e1b12c693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToAttack: 2
+  timeToAttack: 1.2
 --- !u!114 &711406508768386527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d10a0ba124525459b16ef5f8459340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
+  target: {fileID: 0}
   distanceStopToAttack: 1.5
-  speed: 3
+  speed: 2
   rotationSpeed: 2
   maxDistanceToStop: 1.6
   brackDistance: 1

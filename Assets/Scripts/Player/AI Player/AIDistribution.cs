@@ -31,7 +31,10 @@ public class AIDistribution : DistributionBase
 
     private void FixedUpdate()
     {
-       
+       if (MaxDistrubutionSize != maxSoldir)
+        {
+            MaxDistrubutionSize = maxSoldir;
+        }
     }
 
 

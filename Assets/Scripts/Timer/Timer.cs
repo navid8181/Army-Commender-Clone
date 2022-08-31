@@ -9,6 +9,10 @@ public class Timer :IDisposable
 
     private float time = 0;
 
+
+    public float getCounter() => counter;
+    public void SetCounter(float value) => counter = value;
+
     public Timer(float counter)
     {
         this.counter= counter;

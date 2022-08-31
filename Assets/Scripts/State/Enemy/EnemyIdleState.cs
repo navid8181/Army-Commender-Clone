@@ -7,9 +7,11 @@ public class EnemyIdleState : State
 
     private EnemyBase enemyBase;
 
+    private Vector3 firstPose = Vector3.zero;
     private void Start()
     {
         enemyBase = GetComponent<EnemyBase>();
+        firstPose =transform.position;
     }
 
     public override void OnEnter()
@@ -27,12 +29,12 @@ public class EnemyIdleState : State
 
         if (enemyBase.Health<=0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
 
-        if (enemyBase.targets.Count > 0)
+        if (enemyBase.target != null)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
         }
 
-        enemyBase.setVelocity(0);
+        enemyBase.Move(firstPose);
 
         if (enemyBase.getVelocity() <= 0.1f) enemyBase.SetMoveAnim(false);
        
