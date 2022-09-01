@@ -68,6 +68,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         playerController.SetBoolAnimiton("Attack", true);
 
+        if(targetToAttack != null)
+
         targetToAttack.ApplyDamage(damge);
 
     }

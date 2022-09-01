@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(HelthBarController))]
+[RequireComponent(typeof(StatusBar))]
 public class ChangeDistribution : MonoBehaviour
 {
 
     private Rigidbody _rigidbody;
 
-    private HelthBarController helthBarController;
+    private StatusBar helthBarController;
 
     public DistributionBase from;
 
@@ -19,7 +19,7 @@ public class ChangeDistribution : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
 
-        helthBarController = GetComponent<HelthBarController>();
+        helthBarController = GetComponent<StatusBar>();
     }
 
 
@@ -39,11 +39,13 @@ public class ChangeDistribution : MonoBehaviour
 
         helthBarController.SetFill(1.0f);
 
-        if (helthBarController.fill  >= 1)
+        helthBarController.OnStatusBarCompleate.AddListener(() =>
         {
-            Debug.Log(to.CurrentDistribuionSize + " player max Size");
+            //Debug.Log(to.CurrentDistribuionSize + " player max Size");
             from.ChangeDistribution(to);
-        }
+        });
+         
+        
     }
 
     private void OnTriggerExit(Collider other)

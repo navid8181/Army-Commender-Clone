@@ -11,18 +11,21 @@ public class ObjectVisulaerManager : DistributionBase
 
     public Camp camp;
 
+    private int visulaerCount = 0;
 
     private void Awake()
     {
         aiDistribution = camp.GetComponent<AIDistribution>();
-        ApplyVisualer();
+        //CreateVisualer();
     }
 
 
-    public void ApplyVisualer()
+    public void CreateVisualer()
     {
 
-        for (int i = 0; i < camp.maxAi; i++)
+        if (camp.maxAi == visulaerCount) return;
+
+        for (int i = 0; i < camp.maxAi - visulaerCount; i++)
         {
             GameObject visular = MasterManager.Instance.PoolManager.requestPool(PoolManager.objectVisualer);
 
@@ -33,12 +36,13 @@ public class ObjectVisulaerManager : DistributionBase
            // id.Add(obV);
         }
 
+        visulaerCount = camp.maxAi;
        
     }
 
     private void Update()
     {
-   
+        CreateVisualer();
     }
 
     public override void ExeCuteDistribute(int i)

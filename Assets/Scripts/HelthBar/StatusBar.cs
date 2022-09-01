@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
-public class HelthBarController : MonoBehaviour
+public class StatusBar : MonoBehaviour
 {
 
     private Material material;
 
-    public float fill { get; private set; }
+    private float fill {  get;  set; }
 
     public float speed = 1;
 
     float tareget = 0;
 
+    public UnityEvent OnStatusBarCompleate;
     public void SetFill(float value)
     {
         float clamp01Vlaue = Mathf.Clamp01(value);
@@ -24,8 +26,13 @@ public class HelthBarController : MonoBehaviour
     }
     private void Awake()
     {
-        material = GetComponent<Renderer>().materials[0];
+       
 
+#if UNITY_EDITOR
+        material = GetComponent<Renderer>().sharedMaterial;
+#else
+        material = GetComponent<Renderer>().materials[0];
+#endif
     }
 
     private void Update()
@@ -38,5 +45,11 @@ public class HelthBarController : MonoBehaviour
 
 
         material.SetFloat("_removeSegment", fill);
+
+
+        if (tareget == fill)
+        {
+            OnStatusBarCompleate?.Invoke();
+        }
     }
 }

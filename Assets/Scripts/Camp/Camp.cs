@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(AIDistribution))]
-public class Camp : MonoBehaviour
+public class Camp : Updater
 {
 
     private AIDistribution aIDistribution;
@@ -67,4 +67,8 @@ public class Camp : MonoBehaviour
         aiBase.currentDistribution.SetDistribut(aiBase);
     }
 
+    public override void ExecuteUpdater()
+    {
+        base.ExecuteUpdater();
+    }
 }
