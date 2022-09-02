@@ -60,7 +60,21 @@ public abstract class DistributionBase : MonoBehaviour
         if (isUpdate)
         UpdateIndex(distributable.DistributIndex);
 
+
+        distributable.currentDistribution = null;
+
         distributable.DistributIndex = -1;
+    }
+
+    public IDistributable RemoveDistributAtLast()
+    {
+        if (distributables.Count <= 0) return null;
+
+        IDistributable distributable = distributables[distributables.Count - 1];
+
+        RemoveDistribut(distributable);
+
+        return distributable;
     }
 
     public void ChangeDistribution(DistributionBase distributionBase)

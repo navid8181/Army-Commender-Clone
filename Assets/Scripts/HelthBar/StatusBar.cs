@@ -16,6 +16,8 @@ public class StatusBar : MonoBehaviour
     float tareget = 0;
 
     public UnityEvent OnStatusBarCompleate;
+
+
     public void SetFill(float value)
     {
         float clamp01Vlaue = Mathf.Clamp01(value);
@@ -26,13 +28,14 @@ public class StatusBar : MonoBehaviour
     }
     private void Awake()
     {
-       
 
-#if UNITY_EDITOR
-        material = GetComponent<Renderer>().sharedMaterial;
-#else
+
+       // material = GetComponent<Renderer>().sharedMaterial;
+
         material = GetComponent<Renderer>().materials[0];
-#endif
+
+        tareget = 0;
+        material.SetFloat("_removeSegment", fill);
     }
 
     private void Update()
@@ -47,7 +50,7 @@ public class StatusBar : MonoBehaviour
         material.SetFloat("_removeSegment", fill);
 
 
-        if (tareget == fill)
+        if ( fill == 1)
         {
             OnStatusBarCompleate?.Invoke();
         }

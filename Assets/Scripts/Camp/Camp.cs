@@ -27,9 +27,9 @@ public class Camp : Updater
 
 
 
-    private void Update()
+    public override void Update()
     {
-
+        base.Update();
         if (timer.getCounter() != timeToCreateAiBace)
         {
             timer.SetCounter(timeToCreateAiBace);
@@ -69,6 +69,6 @@ public class Camp : Updater
 
     public override void ExecuteUpdater()
     {
-        base.ExecuteUpdater();
+        Debug.Log("Camp Updated");
     }
 }

@@ -26,6 +26,8 @@ public class CoinZone : MonoBehaviour
         {
             coinInstancer.Clone(transform.position);
         }
+
+        coinInstancer.Dispose();
     }
 
 

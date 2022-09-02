@@ -57,23 +57,19 @@ public class Player : MonoBehaviour,IDamageable
     private void OntriggerEnter(Collider col)
     {
 
-        bool isGoldCoin = col.name.Equals(PoolManager.goldCoin);
-        bool isIronCoin = col.name.Equals(PoolManager.ironCoin);
+        Coin coin = col.GetComponent<Coin>();
 
-        if (isGoldCoin || isIronCoin)
+        if (coin != null)
         {
 
-            Coin coin = col.GetComponent<Coin>();
+            
 
             optimizeCoinChest.SetDistribut(coin);
 
+            optimizeCoinChest.SetIndexes(coin);
             coin.SetAvtiveCollider(false);
 
           
-
-           // coinChest.AddCoin(col.gameObject);
-
-          //  col.enabled = false;
 
 
         }

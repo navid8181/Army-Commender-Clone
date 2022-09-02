@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 7144279157682284540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4, y: -0.9045601, z: -25.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8811289866618116411}
@@ -269,13 +269,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7144279157682284540}
   serializedVersion: 2
-  m_Mass: 80
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &6741883176687391436
 CapsuleCollider:
@@ -287,7 +287,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 4d20c62a46f4d9b48ae8bc125f9b550f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75
+  m_Radius: 0.36
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
@@ -331,10 +331,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joyStick: {fileID: 0}
-  moveSpeed: 2.5
-  rotationSpeed: 2.5
+  moveSpeed: 2.3
+  rotationSpeed: 3
   camera: {fileID: 0}
   coinChest: {fileID: 8134333327866684726}
+  optimizeCoinChest: {fileID: 677509491}
+  enemyLayermask:
+    serializedVersion: 2
+    m_Bits: 128
+  radiusEnemyFinder: 1.54
+  timeToAttack: 2
 --- !u!114 &1425214574357191023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taregt: {fileID: 7144279157682650076}
   with: 4
-  offfset: {x: 1, y: 1, z: 1}
+  offfset: {x: 1, y: 1, z: 1.9}
+  maxSoldir: 5
 --- !u!1 &8134333327866684724
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8134333327866684727}
   - component: {fileID: 8134333327866684726}
+  - component: {fileID: 677509491}
   m_Layer: 0
   m_Name: coin chest
   m_TagString: Untagged
@@ -389,7 +397,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8134333327866684724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07d566c5537172b44a669222c693d108, type: 3}
   m_Name: 
@@ -454,6 +462,57 @@ MonoBehaviour:
   minSpeed: 10
   lenghtSlips: 0.7
   jj: {fileID: 0}
+--- !u!114 &677509491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134333327866684724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed5bade024a166419a48a2e77daf4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 0.07
+  moveSpeed: 6
+  minSpeed: 15
+  maxSpeed: 2
+  coineLenght: 1.02
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.27282894
+      value: -0.04000806
+      inSlope: -0.16196749
+      outSlope: -0.16196749
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28050512
+    - serializedVersion: 3
+      time: 1
+      value: -1
+      inSlope: -2.7630138
+      outSlope: -2.7630138
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.046391726
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  joyStick: {fileID: 0}
 --- !u!1 &8491933916346571123
 GameObject:
   m_ObjectHideFlags: 0

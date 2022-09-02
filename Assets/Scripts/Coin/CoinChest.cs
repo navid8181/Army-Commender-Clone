@@ -7,7 +7,7 @@ public class CoinChest : MonoBehaviour
 {
     [SerializeField] private float yOffset = 1;
 
-    public List<GameObject> coins;
+    public List<Coin> coins;
 
 
     public AnimationCurve coinMove;
@@ -45,14 +45,14 @@ public class CoinChest : MonoBehaviour
 
     private void Awake()
     {
-        coins = new List<GameObject>();
+        coins = new List<Coin>();
 
     }
 
 
     public JoyStick jj;
 
-    public void AddCoin(GameObject instanceCoin)
+    public void AddCoin(Coin instanceCoin)
     {
 
 
@@ -116,7 +116,7 @@ public class CoinChest : MonoBehaviour
         for (int i = coins.Count - 1; i >= 0; i--)
         {
 
-            GameObject coin = coins[i];
+            Coin coin = coins[i];
 
             Vector3 currentCoinPos = coin.transform.position;
             currentCoinPos.y = transform.position.y + yOffset * i;

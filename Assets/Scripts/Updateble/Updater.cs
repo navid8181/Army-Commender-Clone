@@ -15,14 +15,16 @@ public abstract class Updater : MonoBehaviour
 
 
     private int currentUpdateIndex = 0;
+
+
     public virtual void ExecuteUpdater()
     {
 
     }
 
-    private void Update()
+    public virtual void Update()
     {
-        
+        CheckForUpdate();
     }
 
     private void CheckForUpdate()
@@ -39,4 +41,12 @@ public abstract class Updater : MonoBehaviour
     }
 
     public void AddMoney(int value) => currentMoney += value;
+
+    public string GetNextMoneyUpdater()
+    {
+        if (currentUpdateIndex >= maxUpdateIndex) return "Max";
+
+        else
+            return currentMoney.ToString() + " / " + graphMoneyPyment.Evaluate(currentUpdateIndex + 1).ToString();
+    }
 }

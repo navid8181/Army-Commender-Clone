@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(StatusBar))]
+[RequireComponent(typeof(BoxCollider))]
 public class ChangeDistribution : MonoBehaviour
 {
 
@@ -20,6 +21,13 @@ public class ChangeDistribution : MonoBehaviour
         _rigidbody.isKinematic = true;
 
         helthBarController = GetComponent<StatusBar>();
+
+        helthBarController.OnStatusBarCompleate.AddListener(() =>
+        {
+            //Debug.Log(to.CurrentDistribuionSize + " player max Size");
+            if (to != null)
+            from.ChangeDistribution(to);
+        });
     }
 
 
@@ -39,11 +47,7 @@ public class ChangeDistribution : MonoBehaviour
 
         helthBarController.SetFill(1.0f);
 
-        helthBarController.OnStatusBarCompleate.AddListener(() =>
-        {
-            //Debug.Log(to.CurrentDistribuionSize + " player max Size");
-            from.ChangeDistribution(to);
-        });
+     
          
         
     }

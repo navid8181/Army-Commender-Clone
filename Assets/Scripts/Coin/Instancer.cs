@@ -40,24 +40,8 @@ public abstract class CircularInstancer : Instancer
     public float minAngle { get; private set; }
     public float maxAngle { get; private set; }
 
-    public override void Clone(Vector3 pos)
-    {
+ //   public abstract void Clone(Vector3 pos);
 
-        float angle = Random.Range(minAngle, maxAngle);
-
-        float radius = Random.Range(minRadius, maxRadius);
-
-
-        Vector3 clonePos =  pos + Utility.angleToDireXZ(angle, radius);
-
-        string objectInstanceName = instancerType();
-
-       GameObject pool =  MasterManager.Instance.PoolManager.requestPool(objectInstanceName);
-
-
-        pool.transform.position = clonePos;
-
-    }
 
 
 }
