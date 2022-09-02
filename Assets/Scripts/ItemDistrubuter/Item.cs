@@ -18,20 +18,12 @@ public class Item : MonoBehaviour,IDistributable
 
     private void Update()
     {
-        if (DistributIndex >=0)
+        if (currentDistribution != null)
         currentDistribution.ExeCuteDistribute(DistributIndex);
 
        
     }
 
-    private void LateUpdate()
-    {
-        if (isRemove)
-        {
-            isRemove = false;
-
-            currentDistribution.RemoveDistribut(this);
-        }
-    }
+    
 
 }

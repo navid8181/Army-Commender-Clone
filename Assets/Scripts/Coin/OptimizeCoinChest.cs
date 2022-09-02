@@ -17,14 +17,19 @@ public class OptimizeCoinChest : DistributionBase
 
     public JoyStick joyStick;
 
-    private List<int> goldCoinIndexes, ironCoinIndexes;
+
 
 
     private void Awake()
     {
-        goldCoinIndexes = new List<int>();
-        ironCoinIndexes = new List<int>();
+
+
+
     }
+
+
+
+
     public override void ExeCuteDistribute(int i)
     {
         if (IsUpdatingIndex) return;
@@ -32,41 +37,46 @@ public class OptimizeCoinChest : DistributionBase
     }
 
 
-    public void SetIndexes(Coin coin)
-    {
-        CoinType coinType = coin.coinType;
 
-        if (coinType == CoinType.goldCoin)
-            goldCoinIndexes.Add(coin.DistributIndex);
-        else
-            ironCoinIndexes.Add(coin.DistributIndex);
-    }
 
 
     public IDistributable RemoveGoldCoin()
     {
-        if (goldCoinIndexes.Count <= 0) return null;
+        IDistributable distributable = null;
+        for (int i = 0; i < GetDistributables().Length; i++)
+        {
 
-        int goldIndex = goldCoinIndexes[goldCoinIndexes.Count - 1];
+            if (((Coin)GetDistributables()[i]).coinType == CoinType.goldCoin)
+            {
+                distributable = GetDistributables()[i];
+                RemoveDistribut(distributable);
+                break;
+            }
 
-        goldCoinIndexes.RemoveAt(goldCoinIndexes.Count - 1);
 
-        IDistributable distributable = GetDistributables()[goldIndex];
-        RemoveDistribut(distributable);
+        }
 
         return distributable;
     }
 
     public IDistributable RemoveIronCoin()
     {
-        if (ironCoinIndexes.Count <= 0) return null;
 
-        int ironIndex = ironCoinIndexes[ironCoinIndexes.Count - 1];
+        IDistributable distributable = null;
+        for (int i = 0; i < GetDistributables().Length; i++)
+        {
 
-        ironCoinIndexes.RemoveAt(ironCoinIndexes.Count - 1);
+            if (((Coin)GetDistributables()[i]).coinType == CoinType.ironCoin)
+            {
+                distributable = GetDistributables()[i];
+                RemoveDistribut(distributable);
+                break;
+            }
 
-        IDistributable distributable = GetDistributables()[ironIndex];
-        RemoveDistribut(distributable);
+         
+        }
+
+
 
         return distributable;
     }
@@ -76,16 +86,20 @@ public class OptimizeCoinChest : DistributionBase
 
 
 
-        coineLenght = (objectDistribut.Length / 20.0f) + 0.1f;
-        coineLenght = Mathf.Clamp01(coineLenght);
+        //coineLenght = (objectDistribut.Length / 20.0f) + 0.1f;
+        // coineLenght = Mathf.Clamp01(coineLenght);
+
+
 
         // coineLenght *= 0.5f;
 
-        float velocity = joyStick.getInput().magnitude;
+        float velocity = joyStick.getRawInput().magnitude;
 
         if (velocity >= 1) velocity = 1;
 
-        moveSpeed = Mathf.Lerp(maxSpeed, minSpeed, velocity);
+        //  moveSpeed = maxSpeed * velocity;
+
+        //  moveSpeed = Mathf.Lerp(maxSpeed, minSpeed, velocity);
 
 
         Vector3 dire = joyStick.getInput();
@@ -105,8 +119,8 @@ public class OptimizeCoinChest : DistributionBase
 
 
 
-        currentCoinPos.x = Mathf.Lerp(currentCoinPos.x, transform.position.x + dire.x * coineLenght * animationCurve.Evaluate(rad), Time.deltaTime * moveSpeed);
-        currentCoinPos.z = Mathf.Lerp(currentCoinPos.z, transform.position.z + dire.y * coineLenght * animationCurve.Evaluate(rad), Time.deltaTime * moveSpeed);
+        currentCoinPos.x = transform.position.x + joyStick.getInput().x * coineLenght * animationCurve.Evaluate(rad) * Time.fixedDeltaTime * maxSpeed;
+        currentCoinPos.z = transform.position.z + joyStick.getInput().y * coineLenght * animationCurve.Evaluate(rad) * Time.fixedDeltaTime * maxSpeed;
 
         objectDistribut[index].SetTraget(currentCoinPos);
 

@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a91333f4c8214498f93dab2467183b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinType: 0
+  coinDistributeSpeed: 5
   moveNoneDistribute:
     serializedVersion: 2
     m_Curve:

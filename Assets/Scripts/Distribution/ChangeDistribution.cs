@@ -14,7 +14,7 @@ public class ChangeDistribution : MonoBehaviour
 
     public DistributionBase from;
 
-    private DistributionBase to;
+    public DistributionBase to;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -54,7 +54,7 @@ public class ChangeDistribution : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        to = null;
+       // to = null;
         helthBarController.SetFill(0.0f);
     }
 

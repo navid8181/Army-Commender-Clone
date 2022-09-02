@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinType: 1
+  coinDistributeSpeed: 5
   moveNoneDistribute:
     serializedVersion: 2
     m_Curve:

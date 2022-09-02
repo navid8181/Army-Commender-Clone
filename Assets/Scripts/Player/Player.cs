@@ -66,7 +66,7 @@ public class Player : MonoBehaviour,IDamageable
 
             optimizeCoinChest.SetDistribut(coin);
 
-            optimizeCoinChest.SetIndexes(coin);
+
             coin.SetAvtiveCollider(false);
 
           

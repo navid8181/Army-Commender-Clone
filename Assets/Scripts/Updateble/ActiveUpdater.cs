@@ -58,6 +58,13 @@ public class ActiveUpdater : MonoBehaviour
             Debug.Log("Update stus bal");
             timeGiveMoney.Init(() =>
             {
+
+                if (updater.isMax())
+                {
+                    UpdateTextPayment();
+                    return;
+                }
+
                 IDistributable distributable = coinType == CoinType.ironCoin ? coinChest.RemoveIronCoin() : coinChest.RemoveGoldCoin();
 
                 if (distributable != null)

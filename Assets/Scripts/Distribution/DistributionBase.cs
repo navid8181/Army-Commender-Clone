@@ -77,11 +77,11 @@ public abstract class DistributionBase : MonoBehaviour
         return distributable;
     }
 
-    public void ChangeDistribution(DistributionBase distributionBase)
+    public  void ChangeDistribution(DistributionBase distributionBase)
     {
         for (int i = CurrentDistribuionSize - 1; i >=0; i--)
         {
-
+            if (!distributionBase.Validition(distributables[i])) continue;
             if (distributionBase.MaxDistrubutionSize <= distributionBase.CurrentDistribuionSize)
             {
                 break;
@@ -96,4 +96,6 @@ public abstract class DistributionBase : MonoBehaviour
 
         }
     }
+
+    public virtual bool Validition(IDistributable distributable) => true;
 }

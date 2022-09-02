@@ -42,6 +42,8 @@ public abstract class Updater : MonoBehaviour
 
     public void AddMoney(int value) => currentMoney += value;
 
+    public bool isMax() => currentUpdateIndex >= maxUpdateIndex;
+
     public string GetNextMoneyUpdater()
     {
         if (currentUpdateIndex >= maxUpdateIndex) return "Max";

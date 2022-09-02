@@ -37,6 +37,8 @@ public class CoinInstancer : CircularInstancer ,IDisposable
 
         Coin coin = pool.GetComponent<Coin>();
 
+        coin.SetAvtiveCollider(true);
+
         coin.transform.position = clonePos;
         coin.NoneDistributeTarget = clonePos;
     }

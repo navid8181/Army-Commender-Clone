@@ -8,6 +8,7 @@ public class Coin : MonoBehaviour, IDistributable
 
     public CoinType coinType;
 
+    public float coinDistributeSpeed = 40;
     private Collider _collider;
 
     public Vector3 NoneDistributeTarget { get; set; }
@@ -28,7 +29,7 @@ public class Coin : MonoBehaviour, IDistributable
 
     public void SetTraget(Vector3? target)
     {
-        transform.position = target.GetValueOrDefault();
+        transform.position = Vector3.Lerp(transform.position, target.GetValueOrDefault(), coinDistributeSpeed * Time.deltaTime);
 
   
     }

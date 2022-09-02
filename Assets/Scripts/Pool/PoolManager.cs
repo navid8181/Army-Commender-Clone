@@ -41,6 +41,7 @@ public class PoolManager : MonoBehaviour
 
     public const string objectVisualer = "Visualer";
 
+    public const string weaponAmmo = "Weapon Ammo";
     #endregion
 
 
