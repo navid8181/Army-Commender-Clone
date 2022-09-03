@@ -29,6 +29,7 @@ public class FollowTargetState : State
         if (aiPlayer.Health <= 0)
         {
             aiPlayer.GetStateManager().currentStateType = currentStateType.Die;
+            return;
         }
       
         if (aiPlayer.targetToAttack == null)
@@ -54,6 +55,7 @@ public class FollowTargetState : State
             if (dis <= aiPlayer.maxDistanceToAttack)
             {
                 aiPlayer.GetStateManager().currentStateType = currentStateType.Attack;
+                return;
             }
 
         }

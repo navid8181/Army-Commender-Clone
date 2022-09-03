@@ -34,8 +34,8 @@ public class EnemyAttackState : State
     {
         enemyBase.averageOfTargets();
 
-    
-        if (enemyBase.Health <= 0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
+
+        if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
         if (enemyBase.target != null)
         {
             IDamageable aiBase = enemyBase.target.GetComponent<IDamageable>();
@@ -46,6 +46,7 @@ public class EnemyAttackState : State
         if ( enemyBase.target == null)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+            return;
         }
 
         if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f )
@@ -55,6 +56,7 @@ public class EnemyAttackState : State
             else
             {
                 enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+                return;
             }
         }
         timer.Init(() =>

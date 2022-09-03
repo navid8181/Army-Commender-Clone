@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AiPlayer sword man
   m_EditorClassIdentifier: 
   Name: sword man AI
-  prefab: {fileID: 4190057604089478822, guid: dffa2155406fbbe45b7e222dae9fd51e, type: 3}
+  prefab: {fileID: 1110571758695271312, guid: dffa2155406fbbe45b7e222dae9fd51e, type: 3}
   totalInstance: 12

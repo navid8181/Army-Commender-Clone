@@ -49,18 +49,18 @@ public class DieState : State
         {
             aiPlayer.EnableAvatar();
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+            return;
         }
         else
         {
             timer.Init(() =>
             {
-                AiBase[] aiBases = GetComponents<AiBase> ();    
-                for (int i = 0; i < aiBases.Length; i++)
-                {
-                    aiPlayer.currentDistribution.RemoveDistribut(aiBases[i]);
-                    aiBases[i].currentDistribution = null;
+                AiBase aiBases = GetComponent<AiBase> ();    
+               
+                    aiPlayer.currentDistribution.RemoveDistribut(aiBases);
+                    aiBases.currentDistribution = null;
                    
-                }
+                
                 MasterManager.Instance.PoolManager.BackToPool(aiPlayer.gameObject);
             });
         }

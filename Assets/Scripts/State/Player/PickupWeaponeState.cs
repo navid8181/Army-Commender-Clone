@@ -22,10 +22,19 @@ public class PickupWeaponeState : State
         if (target != null)
             aiPlayer.SetTraget(target.position);
         else
+        {
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+            return;
+        }
+            
 
         if (weaponStore.itemDistrubtionManager.GetDistributables().Length <=0 && weaponStore.coineDistributeManager.GetDistributables().Length<=0)
-            aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState; 
+        {
+            aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+            return;
+        }
+
+
     }
 
     public override void OnExit()

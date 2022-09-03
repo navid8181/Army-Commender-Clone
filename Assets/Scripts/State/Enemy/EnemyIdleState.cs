@@ -27,11 +27,12 @@ public class EnemyIdleState : State
     public override void OnStay()
     {
 
-        if (enemyBase.Health<=0) enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die;
+        if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
 
         if (enemyBase.target != null)
         {
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
+            return;
         }
 
         enemyBase.Move(firstPose);

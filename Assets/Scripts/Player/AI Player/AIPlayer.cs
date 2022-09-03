@@ -11,9 +11,16 @@ public class AIPlayer : AiBase
 
 
 
-   
+    public GameObject arrow;
 
 
+
+    public void EnableArrow()
+    {
+        arrow.SetActive(true);
+    }
+
+    public void DisableArrow() { arrow.SetActive(false); }
     private void FixedUpdate()
     {
                                                              

@@ -27,7 +27,7 @@ public class AttackState : State
     public override void OnExit()
     {
 
-      
+
 
         timer.ResetValue();
         if (aiPlayer.targetToAttack == null)
@@ -48,7 +48,11 @@ public class AttackState : State
           //  aiPlayer.FindEnemy();
 
             if (aiPlayer.targetToAttack == null)
+            {
                 aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+                return;
+            }
+              
         }
           
 
@@ -76,7 +80,12 @@ public class AttackState : State
             if (aiPlayer.targetToAttack != null)
                 targetAttack = aiPlayer.targetToAttack.transform.position;
             else
-            aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+            {
+                aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+
+                return;
+            }
+
         }
         targetAttack.y = 0;
 
@@ -87,13 +96,15 @@ public class AttackState : State
             aiPlayer.Attack();
         });
 
-        if (aiPlayer.Health <= 0) { aiPlayer.GetStateManager().currentStateType = currentStateType.Die; }
+        if (aiPlayer.Health <= 0) { aiPlayer.GetStateManager().currentStateType = currentStateType.Die;  return; }
 
 
 
         if (dis > aiPlayer.maxDistanceToAttack)
         {
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
+
+            return;
         }
     }
 }
