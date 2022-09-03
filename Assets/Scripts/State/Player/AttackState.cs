@@ -59,7 +59,17 @@ public class AttackState : State
         Vector3 targetAttack = Vector3.zero;
         aiPos.y = 0;
         if (aiPlayer.targetToAttack != null)
+        {
             targetAttack = aiPlayer.targetToAttack.transform.position;
+
+           Vector3 dire = targetAttack - aiPos;
+            dire.y = 0;
+
+            dire.Normalize();
+
+            transform.rotation = Quaternion.LookRotation(dire, Vector3.up);
+        }
+        
         else
         {
             //aiPlayer.FindEnemy();
@@ -78,6 +88,8 @@ public class AttackState : State
         });
 
         if (aiPlayer.Health <= 0) { aiPlayer.GetStateManager().currentStateType = currentStateType.Die; }
+
+
 
         if (dis > aiPlayer.maxDistanceToAttack)
         {

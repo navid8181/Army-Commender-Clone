@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
       
     }
 
-
+    public void setIntAnimiton(string name,int value)
+    {
+        anim.SetInteger(name, value);
+    }
     public void SetBoolAnimiton(string name,bool value)
     {
         anim.SetBool(name, value);

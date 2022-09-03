@@ -65,7 +65,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     public float damge = 0;
     public virtual void Attack()
     {
-
+        playerController.setIntAnimiton("weapone index", indexOfWeapone);
         playerController.SetBoolAnimiton("Attack", true);
 
         if(targetToAttack != null)
@@ -93,7 +93,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
         InitializeWapone();
-
+        Health = 100;
 
     }
 
@@ -362,7 +362,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         EnableAvatar();
         Health = 150;
         indexOfWeapone = 0;
-
+        GetStateManager().currentStateType =  currentStateType.PickupWeapone;
         setDieAnimiton(false);
 
     }

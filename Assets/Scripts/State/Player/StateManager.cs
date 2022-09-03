@@ -50,8 +50,7 @@ public class StateManager : BaseStateManager
                 case currentStateType.PickupWeapone:
                     ChangeState(GetComponent<PickupWeaponeState>());
                     break;
-                default:
-                    break;
+           
             }
 
             previousStateType = currentStateType;
