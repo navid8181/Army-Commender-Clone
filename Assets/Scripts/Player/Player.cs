@@ -30,6 +30,8 @@ public class Player : MonoBehaviour,IDamageable
 
     public float Health { get; set; }
 
+    public StatusBar healthbar;
+
     public bool isMoveing() => joyStick.getRawInput().sqrMagnitude >= 0.01f * 0.01f;
 
 
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour,IDamageable
         aIDistribution = GetComponent<AIDistribution>();
 
         Health = 100;
+        healthbar.SetFill(Health / 100);
         timer = new Timer(timeToAttack);
     }
 
@@ -183,6 +186,8 @@ public class Player : MonoBehaviour,IDamageable
     public void ApplyDamage(float damage)
     {
         Health -= damage/4;
+
+        healthbar.SetFill(Health / 100);
     }
 
     private void OnDrawGizmos()

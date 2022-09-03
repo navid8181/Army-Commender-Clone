@@ -48,7 +48,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         IDamageable idamges = target.GetComponent<IDamageable>();
       
         if(idamges != null)
-            idamges.ApplyDamage(50);
+            idamges.ApplyDamage(5);
      
     
     }

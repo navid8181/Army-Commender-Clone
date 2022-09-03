@@ -6,9 +6,11 @@ public abstract class Updater : MonoBehaviour
 {
 
 
-    public float maxUpdateIndex = 3;
+    public int maxUpdateIndex = 3;
 
     public AnimationCurve graphMoneyPyment;
+
+    public StatusBar updateStatusBar;
 
     private int currentMoney = 0;
 
@@ -16,11 +18,16 @@ public abstract class Updater : MonoBehaviour
 
     private int currentUpdateIndex = 0;
 
-
+    private void Start()
+    {
+        UpgradeStatusBar();
+    }
     public virtual void ExecuteUpdater()
     {
-
+        UpgradeStatusBar();
     }
+
+    private void UpgradeStatusBar() => updateStatusBar.SetFill(currentUpdateIndex / (float)maxUpdateIndex);
 
     public virtual void Update()
     {

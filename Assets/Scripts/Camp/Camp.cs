@@ -69,6 +69,7 @@ public class Camp : Updater
 
     public override void ExecuteUpdater()
     {
+        base.ExecuteUpdater();
         maxAi++;
     }
 }

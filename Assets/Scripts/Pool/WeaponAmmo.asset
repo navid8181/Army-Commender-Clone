@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WeaponAmmo
   m_EditorClassIdentifier: 
   Name: Weapon Ammo
-  prefab: {fileID: 0}
+  prefab: {fileID: 2347961627902089103, guid: 1e3259ca4d6ebc24cad5fe0468fdafd6, type: 3}
   totalInstance: 35

@@ -1703,7 +1703,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "slider",
     "m_DefaultReferenceName": "_slider",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_removeSegment",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",

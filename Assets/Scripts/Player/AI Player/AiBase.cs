@@ -103,7 +103,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     {
         if (previousIndexOfWeapone == indexOfWeapone) return;
 
-
+        //TDO little Optimiztion Need
 
         Weapone weapone = weapones[indexOfWeapone];
 
@@ -361,6 +361,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     {
         EnableAvatar();
         Health = 150;
+        indexOfWeapone = 0;
+
         setDieAnimiton(false);
 
     }

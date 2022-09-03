@@ -13,7 +13,7 @@ public class StatusBar : MonoBehaviour
 
     public float speed = 1;
 
-    float tareget = 0;
+ [Range(0.0f,1.0f)] public  float tareget = 0;
 
     public UnityEvent OnStatusBarCompleate;
 
@@ -34,7 +34,8 @@ public class StatusBar : MonoBehaviour
 
         material = GetComponent<Renderer>().materials[0];
 
-        tareget = 0;
+        // tareget = 0;
+        fill = tareget;
         material.SetFloat("_removeSegment", fill);
     }
 
