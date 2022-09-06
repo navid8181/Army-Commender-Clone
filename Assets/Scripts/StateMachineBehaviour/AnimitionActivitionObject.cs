@@ -6,31 +6,35 @@ public class AnimitionActivitionObject : StateMachineBehaviour
 
 {
 
-    AiBase aiBase;
+    IArrow arrow;
     public float timeDisable = 0.8f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-         aiBase = animator.transform.root.GetComponent<AiBase>();
-        if (aiBase != null)
-        {
-            ((AIPlayer)aiBase).EnableArrow();
-        }
+        arrow = animator.transform.root.GetComponent<IArrow>();
+
     }
 
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (aiBase != null)
+
+
+        if (arrow != null)
         {
+
+            if (stateInfo.normalizedTime >= 0.3f)
+                arrow.EnableArrow();
+
+
             if (stateInfo.normalizedTime >= timeDisable)
-            ((AIPlayer)aiBase).DisableArrow();
+                arrow.DisableArrow();
         }
     }
 
 
-  
-       
 
-    
+
+
+
 }

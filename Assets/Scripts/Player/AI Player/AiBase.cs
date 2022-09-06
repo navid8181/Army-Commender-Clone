@@ -45,6 +45,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     private AiBase currentCollisionAiBase;
 
+    public ParticleSystemController particleSystemController;
+
     public float getAiRadius() => aIRadius;
 
 
@@ -63,6 +65,35 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     [HideInInspector]
     public float timeToAttack = 0;
     public float damge = 0;
+
+
+
+
+
+
+
+    private void Awake()
+    {
+
+
+        stateManager = GetComponent<StateManager>();
+
+        playerController = GetComponent<PlayerController>();
+        navMeshPath = new NavMeshPath();
+
+        aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
+
+        particleSystemController = GetComponentInChildren<ParticleSystemController>();  
+
+
+        InitializeWapone();
+        Health = 100;
+
+    }
+
+
+
+
     public virtual void Attack()
     {
         playerController.setIntAnimiton("weapone index", indexOfWeapone);
@@ -81,21 +112,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         targetToAttack = target;
     }
 
-    private void Awake()
-    {
 
-
-        stateManager = GetComponent<StateManager>();
-
-        playerController = GetComponent<PlayerController>();
-        navMeshPath = new NavMeshPath();
-
-        aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
-
-        InitializeWapone();
-        Health = 100;
-
-    }
 
     public void SetBoolAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
 
@@ -225,6 +242,9 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
             velocity = Mathf.Lerp(0, 1, t);
 
+            particleSystemController.SetStartLifeTime(velocity * 1.22f);
+
+            particleSystemController.SetAvtive(velocity >= 0.15f);
 
             isMove = dis >= brackDistance;
 

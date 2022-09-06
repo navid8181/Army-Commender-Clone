@@ -21,6 +21,9 @@ public class Player : MonoBehaviour,IDamageable
 
     [SerializeField] private OptimizeCoinChest optimizeCoinChest;
 
+    [SerializeField] private ParticleSystemController AttackparticleSystemController;
+    [SerializeField] private ParticleSystemController FootStepparticleSystemController;
+
     private PlayerController PlayerController;
 
     private TriggerDetection triggerDetection;
@@ -43,6 +46,8 @@ public class Player : MonoBehaviour,IDamageable
 
     private Timer timer;
 
+
+
     private void Awake()
     {
         PlayerController = GetComponent<PlayerController>();
@@ -51,6 +56,8 @@ public class Player : MonoBehaviour,IDamageable
 
         triggerDetection.OnTriggerEnterDetection.AddListener(OntriggerEnter);
         aIDistribution = GetComponent<AIDistribution>();
+
+       
 
         Health = 100;
         healthbar.SetFill(Health / 100);
@@ -80,6 +87,11 @@ public class Player : MonoBehaviour,IDamageable
 
     private void Update()
     {
+
+
+
+
+
        // for (int i = 0; i < aIDistribution.CurrentDistribuionSize; i++)
        // {
            // AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
@@ -94,6 +106,7 @@ public class Player : MonoBehaviour,IDamageable
             {
                 targetToAttack.ApplyDamage(55);
                 PlayerController.SetBoolAnimiton("Attack", true);
+                AttackparticleSystemController.Play();
             });
   
 
@@ -129,8 +142,13 @@ public class Player : MonoBehaviour,IDamageable
 
         PlayerController.SetBoolAnimiton("Moving", joysStickPos.magnitude != 0);
 
+
+
         float velocity = (joysStickPos.magnitude > 1) ? joysStickPos.normalized.magnitude : joysStickPos.magnitude;
 
+
+        FootStepparticleSystemController.SetStartLifeTime(velocity * 1.29f);
+        FootStepparticleSystemController.SetAvtive(velocity >= 0.2f);
 
         PlayerController.SetFloatAnimiton("Velocity", velocity);
 

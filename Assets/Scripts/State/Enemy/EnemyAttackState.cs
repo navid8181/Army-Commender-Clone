@@ -22,7 +22,7 @@ public class EnemyAttackState : State
 
     public override void OnEnter()
     {
-
+       
     }
 
     public override void OnExit()
@@ -32,7 +32,8 @@ public class EnemyAttackState : State
 
     public override void OnStay()
     {
-        enemyBase.averageOfTargets();
+
+   
 
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
@@ -49,7 +50,16 @@ public class EnemyAttackState : State
             return;
         }
 
-        if (enemyBase.disTotarget() > enemyBase.distanceStopToAttack+0.1f )
+
+        Vector3 targetPos = enemyBase.averageOfTargets();
+        targetPos.y = 0;
+
+        Vector3 enemyPos = transform.position;
+        enemyPos.y = 0;
+
+        float dis = Vector3.Distance(targetPos, enemyPos);
+
+        if (dis > enemyBase.distanceStopToAttack+0.1f )
         {
             if (enemyBase.target != null)
             enemyBase.Move(enemyBase.target.position);
@@ -59,10 +69,22 @@ public class EnemyAttackState : State
                 return;
             }
         }
-        timer.Init(() =>
+        else
         {
-            enemyBase.Attack();
+            enemyBase.SetMoveAnim(false);
+            enemyBase.setVelocity(0);
+            enemyBase.FootStepparticleController.SetStartLifeTime(0);
+            Vector3 dire = targetPos - enemyPos;
+            dire.Normalize();
 
-        });
+            transform.rotation = Quaternion.LookRotation(dire, Vector3.up);
+
+            timer.Init(() =>
+            {
+                enemyBase.Attack();
+
+            });
+        }
+      
     }
 }

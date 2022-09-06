@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 
 
-public class AIPlayer : AiBase
+public class AIPlayer : AiBase,IArrow
 {
 
 
 
-
-    public GameObject arrow;
+    [SerializeField]
+    private GameObject arrow;
 
 
 
@@ -35,4 +35,6 @@ public class AIPlayer : AiBase
  
 
     }
+
+    
 }

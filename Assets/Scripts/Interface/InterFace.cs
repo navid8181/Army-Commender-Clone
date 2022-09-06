@@ -24,4 +24,10 @@ public interface IDistributable
 
 }
 
+public interface IArrow{
+
+    public void EnableArrow();
+    public void DisableArrow();
+   
+}
 

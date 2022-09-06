@@ -37,6 +37,10 @@ public class AttackState : State
 
     public override void OnStay()
     {
+
+
+        aiPlayer.particleSystemController.SetStartLifeTime(0);
+
         timer.SetCounter(aiPlayer.timeToAttack);
 
         if (aiPlayer.targetToAttack  != null && aiPlayer.targetToAttack.Health <= 0)

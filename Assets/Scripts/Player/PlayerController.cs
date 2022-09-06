@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    public Rigidbody GetRigidbody() => rigidbody;
+
     private void FixedUpdate()
     {
 
