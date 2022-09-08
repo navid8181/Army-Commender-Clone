@@ -31,7 +31,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
 
     public ParticleSystemController FootStepparticleController;
-    public ParticleSystemController AttackparticleController;
+
 
 
     public float Health { get; set; }
@@ -55,7 +55,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         IDamageable idamges = target.GetComponent<IDamageable>();
 
-        AttackparticleController.Play();
+
 
         if(idamges != null)
             idamges.ApplyDamage(Damge);
@@ -109,7 +109,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         dire.Normalize();
 
 
-        FootStepparticleController.SetStartLifeTime(velocity * 1.22f);
+        FootStepparticleController.SetStartLifeTime(velocity * 0.5f);
         FootStepparticleController.SetAvtive(velocity >= 0.15f);
 
         playerController.SetBoolAnimiton("Moving", distance > brackDistance * 2);

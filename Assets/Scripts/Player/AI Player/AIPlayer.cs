@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 
 
-public class AIPlayer : AiBase,IArrow
+public class AIPlayer : AiBase, IArrow
 {
 
 
@@ -17,14 +17,27 @@ public class AIPlayer : AiBase,IArrow
 
     public void EnableArrow()
     {
+        if (indexOfWeapone == 1)
+        {
+            weaponeParticleSystemControllers[indexOfWeapone].Stop();
+        }
         arrow.SetActive(true);
     }
 
-    public void DisableArrow() { arrow.SetActive(false); }
+    public void DisableArrow()
+    {
+
+
+        if (indexOfWeapone == 1)
+        {
+            weaponeParticleSystemControllers[indexOfWeapone].Play();
+        }
+        arrow.SetActive(false);
+    }
     private void FixedUpdate()
     {
-                                                             
-        
+
+
 
     }
 
@@ -32,9 +45,9 @@ public class AIPlayer : AiBase,IArrow
     public override void Attack()
     {
         base.Attack();
- 
+
 
     }
 
-    
+
 }

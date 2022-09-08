@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ARcher
   m_EditorClassIdentifier: 
   maxDistanceToAttack: 20
-  timeToAttack: 0.6
-  damge: 25
+  timeToAttack: 1.5
+  damge: 1

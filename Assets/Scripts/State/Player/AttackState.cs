@@ -39,7 +39,7 @@ public class AttackState : State
     {
 
 
-        aiPlayer.particleSystemController.SetStartLifeTime(0);
+        aiPlayer.FootStepparticleSystemController.SetStartLifeTime(0);
 
         timer.SetCounter(aiPlayer.timeToAttack);
 

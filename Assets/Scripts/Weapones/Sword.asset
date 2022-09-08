@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistanceToAttack: 1.5
   timeToAttack: 1.1
-  damge: 75
+  damge: 1

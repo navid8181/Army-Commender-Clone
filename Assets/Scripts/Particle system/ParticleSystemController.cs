@@ -23,8 +23,17 @@ public class ParticleSystemController : MonoBehaviour
         //.startLifetime = startLifeTime;
     }
 
+    public void Stop()
+    {
+        particleSystem.Stop();
+
+    }
+
     public void Play()
     {
+        if (particleSystem.isPlaying)
+            particleSystem.Stop();
+
         particleSystem.Play();
     }
 

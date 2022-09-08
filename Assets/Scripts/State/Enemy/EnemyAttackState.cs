@@ -33,7 +33,7 @@ public class EnemyAttackState : State
     public override void OnStay()
     {
 
-   
+        Debug.Log("Attack State ");
 
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
@@ -46,6 +46,9 @@ public class EnemyAttackState : State
         }
         if ( enemyBase.target == null)
         {
+
+        
+
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
             return;
         }
@@ -68,12 +71,15 @@ public class EnemyAttackState : State
                 enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
                 return;
             }
+
+            Debug.Log("dis > enemyBase.distanceStopToAttack+0.1f ");
         }
         else
         {
             enemyBase.SetMoveAnim(false);
             enemyBase.setVelocity(0);
             enemyBase.FootStepparticleController.SetStartLifeTime(0);
+
             Vector3 dire = targetPos - enemyPos;
             dire.Normalize();
 

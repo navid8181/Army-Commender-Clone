@@ -42,6 +42,9 @@ public class EnemyFolowState : State
         else
         {
             enemyBase.averageOfTargets();
+
+            Debug.Log(enemyBase.disTotarget());
+
             if (enemyBase.disTotarget() <= enemyBase.distanceStopToAttack)
             {
                 enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;

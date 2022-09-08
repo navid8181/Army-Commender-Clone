@@ -45,7 +45,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     private AiBase currentCollisionAiBase;
 
-    public ParticleSystemController particleSystemController;
+    public ParticleSystemController FootStepparticleSystemController;
+    public ParticleSystemController[] weaponeParticleSystemControllers;
 
     public float getAiRadius() => aIRadius;
 
@@ -83,7 +84,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
 
-        particleSystemController = GetComponentInChildren<ParticleSystemController>();  
+        
 
 
         InitializeWapone();
@@ -99,6 +100,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         playerController.setIntAnimiton("weapone index", indexOfWeapone);
         playerController.SetBoolAnimiton("Attack", true);
 
+        if (indexOfWeapone != 1)
+        weaponeParticleSystemControllers[indexOfWeapone].Play();
         if(targetToAttack != null)
 
         targetToAttack.ApplyDamage(damge);
@@ -242,9 +245,9 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
             velocity = Mathf.Lerp(0, 1, t);
 
-            particleSystemController.SetStartLifeTime(velocity * 1.22f);
+            FootStepparticleSystemController.SetStartLifeTime(velocity * 0.5f);
 
-            particleSystemController.SetAvtive(velocity >= 0.15f);
+            FootStepparticleSystemController.SetAvtive(velocity >= 0.15f);
 
             isMove = dis >= brackDistance;
 

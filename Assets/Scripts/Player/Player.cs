@@ -147,7 +147,7 @@ public class Player : MonoBehaviour,IDamageable
         float velocity = (joysStickPos.magnitude > 1) ? joysStickPos.normalized.magnitude : joysStickPos.magnitude;
 
 
-        FootStepparticleSystemController.SetStartLifeTime(velocity * 1.29f);
+        FootStepparticleSystemController.SetStartLifeTime(velocity * 0.5f);
         FootStepparticleSystemController.SetAvtive(velocity >= 0.2f);
 
         PlayerController.SetFloatAnimiton("Velocity", velocity);
