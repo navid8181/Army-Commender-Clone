@@ -62,19 +62,19 @@ public class EnemyAttackState : State
 
         float dis = Vector3.Distance(targetPos, enemyPos);
 
-        if (dis > enemyBase.distanceStopToAttack+0.1f )
-        {
-            if (enemyBase.target != null)
-            enemyBase.Move(enemyBase.target.position);
-            else
-            {
-                enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
-                return;
-            }
+        //if (dis > enemyBase.distanceStopToAttack+0.1f )
+        //{
+        //    if (enemyBase.target != null)
+        //    enemyBase.Move(enemyBase.target.position);
+        //    else
+        //    {
+        //        enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
+        //        return;
+        //    }
 
-            Debug.Log("dis > enemyBase.distanceStopToAttack+0.1f ");
-        }
-        else
+        //    Debug.Log("dis > enemyBase.distanceStopToAttack+0.1f ");
+        //}
+        //else
         {
             enemyBase.SetMoveAnim(false);
             enemyBase.setVelocity(0);

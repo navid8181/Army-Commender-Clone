@@ -440,6 +440,7 @@ MonoBehaviour:
   coinChest: {fileID: 8134333327866684726}
   optimizeCoinChest: {fileID: 677509491}
   AttackparticleSystemController: {fileID: 239039197}
+  FootStepparticleSystemController: {fileID: 589456466}
   healthbar: {fileID: 917981010}
   enemyLayermask:
     serializedVersion: 2
@@ -2520,6 +2521,36 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.5684395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864752840515912350, guid: 78ff56e3973620541a93b2c32a98e26e,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ff56e3973620541a93b2c32a98e26e, type: 3}
 --- !u!1 &6278950918333689024 stripped
@@ -2556,8 +2587,48 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
         type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.0001
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 24287
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756449746578660312, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumAlphaKeys
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7756449746578660313, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
         type: 3}
@@ -2587,12 +2658,12 @@ PrefabInstance:
     - target: {fileID: 7756449746578660313, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0035077792
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 7756449746578660313, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.23077011
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7756449746578660313, guid: d6fc5cc02140d5d4ca49cd17d853ac99,
         type: 3}

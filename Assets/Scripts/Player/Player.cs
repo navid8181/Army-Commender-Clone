@@ -46,6 +46,7 @@ public class Player : MonoBehaviour,IDamageable
 
     private Timer timer;
 
+    public bool CanMove { get; set; } = true;
 
 
     private void Awake()
@@ -91,13 +92,6 @@ public class Player : MonoBehaviour,IDamageable
 
 
 
-
-       // for (int i = 0; i < aIDistribution.CurrentDistribuionSize; i++)
-       // {
-           // AiBase ai = (AiBase)aIDistribution.GetDistributables()[i];
-            //ai.FindEnemy();
-        //}
-
         FindEnemy();
 
         if (targetToAttack != null)
@@ -118,7 +112,9 @@ public class Player : MonoBehaviour,IDamageable
 
     private void FixedUpdate()
     {
-       
+
+
+        if (!CanMove) return ;
 
         Vector2 joysStickPos = joyStick.getInput();
 

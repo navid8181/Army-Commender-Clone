@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2864752840515912350}
   - component: {fileID: 2864752840515912351}
   m_Layer: 0
-  m_Name: Slah
+  m_Name: Red Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1540,9 +1540,9 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 1450572559, guid: 3d10e55e8f7c009459868ee938d23da0, type: 3}
-    - sprite: {fileID: -1537298590, guid: 3d10e55e8f7c009459868ee938d23da0, type: 3}
-    - sprite: {fileID: 717400878, guid: 3d10e55e8f7c009459868ee938d23da0, type: 3}
+    - sprite: {fileID: 1450572559, guid: 0703387974603d34780d95c4c0f3da81, type: 3}
+    - sprite: {fileID: -1537298590, guid: 0703387974603d34780d95c4c0f3da81, type: 3}
+    - sprite: {fileID: 717400878, guid: 0703387974603d34780d95c4c0f3da81, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4821,8 +4821,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8a69ebbcf28682458aa696c6da30b11, type: 2}
-  - {fileID: 2100000, guid: f8a69ebbcf28682458aa696c6da30b11, type: 2}
+  - {fileID: 2100000, guid: 271ae49eb327802439b44b985e7261cb, type: 2}
+  - {fileID: 2100000, guid: 271ae49eb327802439b44b985e7261cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

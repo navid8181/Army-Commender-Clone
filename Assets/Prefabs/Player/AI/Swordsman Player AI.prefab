@@ -809,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3b20c9f8061f25646892a7a25d68c50c, type: 2}
+      objectReference: {fileID: 9100000, guid: 41b4ec0cf15d00948ad7549f559ab0e7, type: 2}
     - target: {fileID: 9500000, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

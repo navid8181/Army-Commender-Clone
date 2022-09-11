@@ -48,6 +48,8 @@ public class EnemyFolowState : State
             if (enemyBase.disTotarget() <= enemyBase.distanceStopToAttack)
             {
                 enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Attack;
+                enemyBase.SetMoveAnim(false);
+                enemyBase.setVelocity(0);
                 return;
             }
               

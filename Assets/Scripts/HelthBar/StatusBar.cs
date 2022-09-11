@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[ExecuteInEditMode]
+
 public class StatusBar : MonoBehaviour
 {
 
@@ -17,7 +17,7 @@ public class StatusBar : MonoBehaviour
 
     public UnityEvent OnStatusBarCompleate;
 
-
+   
     public void SetFill(float value)
     {
         float clamp01Vlaue = Mathf.Clamp01(value);
@@ -28,9 +28,9 @@ public class StatusBar : MonoBehaviour
     }
     private void Awake()
     {
+        OnStatusBarCompleate = new UnityEvent();
 
-
-       // material = GetComponent<Renderer>().sharedMaterial;
+        // material = GetComponent<Renderer>().sharedMaterial;
 
         material = GetComponent<Renderer>().materials[0];
 
