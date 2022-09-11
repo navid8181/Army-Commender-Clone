@@ -17,6 +17,8 @@ public class Catapult : MonoBehaviour
     public float speed = 3;
 
     public float t;
+
+    public bool CanUse { get; private set; } = false;
     public bool CanMove { get; set; } = false;
 
 
@@ -34,18 +36,17 @@ public class Catapult : MonoBehaviour
         {
             refreah = false;
 
-            timeToUse = DateTime.UtcNow;
-
-           timeToUse =  timeToUse.AddMinutes(30D);
+            AddTime(30);
         }
 
         if (timeToUse <= DateTime.UtcNow)
         {
             txt_Status.text = "Use";
+            CanUse = true;
         }
         else
         {
-
+            CanUse = false;
             StartCoroutine(ShowTime());
         }
 
@@ -74,13 +75,23 @@ public class Catapult : MonoBehaviour
     }
 
 
+
+    public void AddTime(double munite)
+    {
+        timeToUse = DateTime.UtcNow;
+
+        timeToUse = timeToUse.AddMinutes(munite);
+    }
+
     IEnumerator ShowTime()
     {
-        yield return new WaitForSeconds(1);
+
 
         var diff = (timeToUse - DateTime.UtcNow);
 
-        txt_Status.text = diff.Hours + ":" + diff.Minutes + " : " + diff.Seconds;
+        txt_Status.text = diff.Hours.ToString("00") + " : " + diff.Minutes.ToString("00") + " : " + diff.Seconds.ToString("00");
+
+        yield return new WaitForSeconds(1);
     }
     private void OnDrawGizmos()
     {

@@ -3310,7 +3310,7 @@ MonoBehaviour:
   curveHandler: {fileID: 514718681}
   JoyStick: {fileID: 526571762}
   txt_Status: {fileID: 706354765}
-  speed: 3
+  speed: 6
   t: 0
   refreah: 0
 --- !u!1001 &689093855
@@ -3415,7 +3415,7 @@ RectTransform:
   m_GameObject: {fileID: 706354763}
   m_LocalRotation: {x: -0.9998876, y: -0.0149965435, z: -0.00000025937334, w: 0.0000004172325}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025411367, y: 0.02541137, z: 0.025411362}
+  m_LocalScale: {x: 0.02136842, y: 0.02136842, z: 0.021368414}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3111144571151718589}
@@ -7812,7 +7812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111144571151718577}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 4.21, y: 0, z: -1.66}
+  m_LocalPosition: {x: 4.21, y: -0.75, z: -1.66}
   m_LocalScale: {x: 5.4431357, y: 5.4431357, z: 5.4431357}
   m_ConstrainProportionsScale: 0
   m_Children:
