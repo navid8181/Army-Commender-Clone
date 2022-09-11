@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ChangeCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+
+    public static void Change(Camera from,Camera to)
     {
-        
+
+        from.gameObject.SetActive(false);
+
+        to.gameObject.SetActive(true); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

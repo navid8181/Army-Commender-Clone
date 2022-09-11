@@ -12,9 +12,27 @@ public class ParticleSystemController : MonoBehaviour
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
+
+    
     }
 
+    public float getDuration()
+    {
+        ParticleSystem[] particles =  GetComponentsInChildren<ParticleSystem>();
 
+        float max = particleSystem.main.startLifetime.constant;
+
+
+        for (int i = 0; i < particles.Length; i++)
+        {
+            if (max < particles[i].main.startLifetime.constant)
+            {
+                max = particles[i].main.startLifetime.constant;
+            }
+        }
+
+        return max;
+    }
     private void Update()
     {
         var particle = particleSystem.main;
@@ -35,6 +53,8 @@ public class ParticleSystemController : MonoBehaviour
             particleSystem.Stop();
 
         particleSystem.Play();
+
+        
     }
 
     public void SetStartLifeTime(float value) => startLifeTime = value;

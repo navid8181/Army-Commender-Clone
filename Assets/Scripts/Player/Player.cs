@@ -49,6 +49,8 @@ public class Player : MonoBehaviour,IDamageable
     public bool CanMove { get; set; } = true;
 
 
+    public Camera getCamera() => camera;
+
     private void Awake()
     {
         PlayerController = GetComponent<PlayerController>();
@@ -114,8 +116,13 @@ public class Player : MonoBehaviour,IDamageable
     {
 
 
-        if (!CanMove) return ;
-
+        if (!CanMove)
+        {
+            PlayerController.SetFloatAnimiton("Velocity", 0);
+            FootStepparticleSystemController.SetStartLifeTime(0);
+            FootStepparticleSystemController.SetAvtive(false);
+            return;
+        }
         Vector2 joysStickPos = joyStick.getInput();
 
         Vector3 direMove = new Vector3(joysStickPos.x, 0, joysStickPos.y);

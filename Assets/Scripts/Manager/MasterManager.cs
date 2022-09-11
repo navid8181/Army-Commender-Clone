@@ -15,6 +15,9 @@ public class MasterManager : MonoBehaviour
     public PoolManager PoolManager { get; private set; }
     public EnemyManager enemyManager { get; private set; }
 
+    public UIManager uiManager { get; private set; }
+
+
     private void Awake()
     {
 
@@ -38,6 +41,7 @@ public class MasterManager : MonoBehaviour
 
         PoolManager = FindObjectOfType<PoolManager>();
         enemyManager = FindObjectOfType <EnemyManager>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
 

@@ -16,17 +16,27 @@ public class Catapult : MonoBehaviour
 
     public float speed = 3;
 
-    public float t;
+    public float t { get; set; }
 
-    public bool CanUse { get; private set; } = false;
+    public Bomb bomb;
+
+    public bool CanUse { get;  set; } = false;
     public bool CanMove { get; set; } = false;
 
 
     private DateTime timeToUse;
 
-    public bool refreah;
+    public bool refreah { get; set; }
+
+    private bool startExplosion = false;
+
+    private Animator animator;
+
     private void Awake()
     {
+
+        animator = GetComponent<Animator>();
+
         timeToUse = DateTime.UtcNow;
     }
     private void Update()
@@ -36,7 +46,7 @@ public class Catapult : MonoBehaviour
         {
             refreah = false;
 
-            AddTime(30);
+            AddTime(0.5f);
         }
 
         if (timeToUse <= DateTime.UtcNow)
@@ -49,6 +59,10 @@ public class Catapult : MonoBehaviour
             CanUse = false;
             StartCoroutine(ShowTime());
         }
+
+
+
+        HandleAttack();
 
 
         if (!CanMove) return;
@@ -65,7 +79,7 @@ public class Catapult : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(dire,Vector3.up);
 
 
-        Vector3 input = JoyStick.getRawInput();
+        Vector3 input = new Vector3(JoyStick.getRawInput().x, 0, JoyStick.getRawInput().y);
 
         input.Normalize();
 
@@ -74,6 +88,48 @@ public class Catapult : MonoBehaviour
 
     }
 
+
+   private void HandleAttack()
+    {
+        if (!startExplosion) return;
+
+        bomb.gameObject.SetActive(true);
+        bomb.transform.position = curveHandler.getPoint(t);
+        animator.SetBool("Attack", true);
+
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Attack"))
+        {
+            if (stateInfo.normalizedTime >= 0.8f)
+            {
+
+
+                t = Mathf.Lerp(t, 0, 2 * Time.deltaTime);
+
+
+                if (t<= 0.1f)
+                {
+                    bomb.Explosion();
+                    animator.SetBool("Attack", false);
+                    startExplosion = false;
+                    return;
+
+                }
+
+
+            }
+        }
+    
+
+
+    }
+
+    public void Attack()
+    {
+        curveHandler.GetComponent<LineRenderer>().enabled = false;
+        startExplosion = true;
+    }
 
 
     public void AddTime(double munite)

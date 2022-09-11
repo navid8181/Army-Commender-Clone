@@ -28,7 +28,7 @@ public class StatusBar : MonoBehaviour
     }
     private void Awake()
     {
-        OnStatusBarCompleate = new UnityEvent();
+      //  OnStatusBarCompleate = new UnityEvent();
 
         // material = GetComponent<Renderer>().sharedMaterial;
 
@@ -53,6 +53,8 @@ public class StatusBar : MonoBehaviour
 
         if ( fill == 1)
         {
+
+
             OnStatusBarCompleate?.Invoke();
         }
     }
