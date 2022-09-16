@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool(name, value);
     }
+
+    public bool GetBool(string name)=> anim.GetBool(name);
+
     public void SetFloatAnimiton(string name, float value)
     {
         anim.SetFloat(name, value);

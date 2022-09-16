@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class AttackState : State
 {
@@ -27,6 +28,7 @@ public class AttackState : State
     public override void OnExit()
     {
 
+        aiPlayer.StopAttack();
 
 
         timer.ResetValue();

@@ -28,11 +28,19 @@ public class AnimitionActivitionObject : StateMachineBehaviour
 
 
             if (stateInfo.normalizedTime >= timeDisable)
+            {
                 arrow.DisableArrow();
+          
+            }
+               
         }
     }
 
 
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       // arrow.DisableArrow();
+    }
 
 
 

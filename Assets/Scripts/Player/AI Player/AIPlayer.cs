@@ -14,6 +14,13 @@ public class AIPlayer : AiBase, IArrow
     private GameObject arrow;
 
 
+    private void Update()
+    {
+        if (targetToAttack == null)
+        {
+            weaponeParticleSystemControllers[indexOfWeapone].Stop();
+        }
+    }
 
     public void EnableArrow()
     {
@@ -30,6 +37,7 @@ public class AIPlayer : AiBase, IArrow
 
         if (indexOfWeapone == 1)
         {
+           if (targetToAttack != null)
             weaponeParticleSystemControllers[indexOfWeapone].Play();
         }
         arrow.SetActive(false);

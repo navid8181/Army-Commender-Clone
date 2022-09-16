@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 {
 
-    private PlayerController playerController;
+    protected PlayerController playerController;
 
     public Vector3? target = null;
 
@@ -107,6 +107,18 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         targetToAttack.ApplyDamage(damge);
 
     }
+
+    public virtual void StopAttack()
+    {
+       
+        playerController.SetBoolAnimiton("Attack", false);
+
+
+        weaponeParticleSystemControllers[indexOfWeapone].Stop();
+
+
+    }
+
     public void SetAttackTarget(EnemyBase target)
     {
         target.AddTarget(this.transform);
@@ -384,7 +396,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     {
         EnableAvatar();
         Health = 150;
-        indexOfWeapone = 0;
+        indexOfWeapone = 1;
         GetStateManager().currentStateType =  currentStateType.PickupWeapone;
         setDieAnimiton(false);
 

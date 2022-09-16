@@ -22,7 +22,8 @@ public class ArcherEnemy : EnemyBase,IArrow
     public void DisableArrow()
     {
       Arrow.SetActive(false);
-        AttackparticleController.Play();
+        if (target != null)
+            AttackparticleController.Play();
     }
 
     public void EnableArrow()
