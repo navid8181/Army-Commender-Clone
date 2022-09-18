@@ -33,6 +33,7 @@ public class DieState : State
 
 
         aiPlayer.targetToAttack = null;
+        aiPlayer.SetMoveAnim(false);
         aiPlayer.setDieAnimiton(true);
      aiPlayer.DisableAvatar();  
      

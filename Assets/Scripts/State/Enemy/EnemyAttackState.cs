@@ -33,7 +33,7 @@ public class EnemyAttackState : State
     public override void OnStay()
     {
 
-        Debug.Log("Attack State ");
+   //     Debug.Log("Attack State ");
 
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }

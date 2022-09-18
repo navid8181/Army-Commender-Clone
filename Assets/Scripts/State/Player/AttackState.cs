@@ -22,7 +22,7 @@ public class AttackState : State
 
     public override void OnEnter()
     {
-        aiPlayer.SetBoolAnim(false);
+        aiPlayer.SetMoveAnim(false);
     }
 
     public override void OnExit()
@@ -111,6 +111,10 @@ public class AttackState : State
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
 
             return;
+        }
+        else
+        {
+            aiPlayer.SetMoveAnim(false);
         }
     }
 }

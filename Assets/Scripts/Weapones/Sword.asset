@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb39e76808b34f4a93946e0f6b2dc8e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  maxDistanceToAttack: 1.5
+  maxDistanceToAttack: 4
   timeToAttack: 1.1
   damge: 30

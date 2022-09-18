@@ -109,7 +109,7 @@ public class PoolManager : MonoBehaviour
     public void BackToPool(GameObject pool)
     {
         int index = poolObjectsIndex.GetValueOrDefault(pool.name, -1);
-
+        if (index == -1) return ;
 
         pool.SetActive(false);
 

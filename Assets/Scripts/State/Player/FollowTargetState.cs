@@ -52,8 +52,11 @@ public class FollowTargetState : State
 
             float dis = Vector3.Distance(aiPos, targetAttack);
 
+            Debug.Log(dis + "??" + aiPlayer.maxDistanceToAttack);
+
             if (dis <= aiPlayer.maxDistanceToAttack)
             {
+                Debug.Log(dis);
                 aiPlayer.GetStateManager().currentStateType = currentStateType.Attack;
                 return;
             }

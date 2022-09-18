@@ -135,7 +135,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
 
 
-    public void SetBoolAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
+    public void SetMoveAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
 
     public void InitializeWapone()
     {

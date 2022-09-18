@@ -43,7 +43,7 @@ public class EnemyFolowState : State
         {
             enemyBase.averageOfTargets();
 
-            Debug.Log(enemyBase.disTotarget());
+            //Debug.Log(enemyBase.disTotarget());
 
             if (enemyBase.disTotarget() <= enemyBase.distanceStopToAttack)
             {
