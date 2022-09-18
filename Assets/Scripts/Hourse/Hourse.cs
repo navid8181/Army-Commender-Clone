@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Hourse : AiBase
 {
-    private void Awake()
+
+    public override void Awake()
+    {
+        base.Awake();
+        Health = 100;
+    }
+
+
+    private void Start()
     {
         Health = 100;
     }
 
     private void OnEnable()
     {
-        Health = 100;
+
     }
 
     public override void Attack()

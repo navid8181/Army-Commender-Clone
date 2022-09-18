@@ -59,7 +59,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     public float radiusEnemyFinder = 5;
 
-    public float Health { get; set; }
+    public float Health { get; set; } = 100;
 
     public LayerMask enemyLayermask;
 
@@ -73,7 +73,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
 
 
-    private void Awake()
+    public virtual void Awake()
     {
 
 
@@ -82,9 +82,11 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         playerController = GetComponent<PlayerController>();
         navMeshPath = new NavMeshPath();
 
-        aIRadius = brackDistance = GetComponent<CapsuleCollider>().radius + 0.25f;
+        CapsuleCollider CAP = GetComponent<CapsuleCollider>();
+        if (CAP != null)
+        aIRadius = brackDistance = CAP.radius + 0.25f;
 
-        
+
 
 
         InitializeWapone();
@@ -94,6 +96,10 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
 
 
+    private void Start()
+    {
+        if (navMeshPath == null) navMeshPath = new NavMeshPath();
+    }
 
     public virtual void Attack()
     {
@@ -101,16 +107,16 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         playerController.SetBoolAnimiton("Attack", true);
 
         if (indexOfWeapone != 1)
-        weaponeParticleSystemControllers[indexOfWeapone].Play();
-        if(targetToAttack != null)
+            weaponeParticleSystemControllers[indexOfWeapone].Play();
+        if (targetToAttack != null)
 
-        targetToAttack.ApplyDamage(damge);
+            targetToAttack.ApplyDamage(damge);
 
     }
 
     public virtual void StopAttack()
     {
-       
+
         playerController.SetBoolAnimiton("Attack", false);
 
 
@@ -157,7 +163,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     private void Update()
     {
         InitializeWapone();
-      //  FindEnemy();
+        //  FindEnemy();
 
 
 
@@ -291,7 +297,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         if (velocity <= 0.01f)
             playerController.SetBoolAnimiton("Moving", false);
 
-      
+
     }
 
     public float distanceToTarget()
@@ -336,7 +342,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     public Vector3? getTargetPos() => target;
 
 
- 
+
 
 
     private void OnCollisionStay(Collision collision)
@@ -397,7 +403,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         EnableAvatar();
         Health = 150;
         indexOfWeapone = 1;
-        GetStateManager().currentStateType =  currentStateType.PickupWeapone;
+        GetStateManager().currentStateType = currentStateType.PickupWeapone;
         setDieAnimiton(false);
 
     }
@@ -417,9 +423,9 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
             if (Health <= 0) return;
             EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
 
-           // if (enemyBase.targets.Count <= 0)
-           // {
-                SetAttackTarget(enemyBase);
+            // if (enemyBase.targets.Count <= 0)
+            // {
+            SetAttackTarget(enemyBase);
             //}
 
             //if (enemyBase.targets.Count > 0 && i +1 >=col.Length)
