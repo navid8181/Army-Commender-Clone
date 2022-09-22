@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,9 +9,29 @@ public class EnemyFolowState : State
 
     private EnemyBase enemyBase;
 
+    private Changeable<Transform> target;
+
     private void Start()
     {
         enemyBase = GetComponent<EnemyBase>();
+        target = new Changeable<Transform>(null);
+
+        target.onChangeValue += OnTargetChange;
+    }
+
+    private void OnTargetChange(Transform lastValue, Transform CurrentValue)
+    {
+        if(CurrentValue != null)
+        {
+            float distanceStop = enemyBase.distanceStopToAttack;
+            float collisonStop = enemyBase.collisionRadius;
+            float playerCollison = enemyBase.target.GetComponent<ICollisonable>().getCollisionRadius();
+
+            if (distanceStop < collisonStop + playerCollison)
+            {
+                enemyBase.distanceStopToAttack = collisonStop + playerCollison;
+            }
+        }
     }
 
     public override void OnEnter()
@@ -32,6 +53,8 @@ public class EnemyFolowState : State
     {
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
+
+        target.Value = enemyBase.target;
 
         if (enemyBase.target == null)
         {

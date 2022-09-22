@@ -106,7 +106,7 @@ public class AttackState : State
 
 
 
-        if (dis > aiPlayer.maxDistanceToAttack)
+        if (dis > aiPlayer.distanceStopToAttack)
         {
             aiPlayer.GetStateManager().currentStateType = currentStateType.FollowTargetState;
 

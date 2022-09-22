@@ -110,7 +110,7 @@ MonoBehaviour:
   weaponesModel:
   - {fileID: 6621277322881292671}
   - {fileID: 3841456209189446305}
-  indexOfWeapone: 1
+  indexOfWeapone: 0
   maxDistanceToAttack: 20
   FootStepparticleSystemController: {fileID: 8102248188069999946}
   weaponeParticleSystemControllers:

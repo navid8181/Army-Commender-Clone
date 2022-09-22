@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,29 @@ public class FollowTargetState : State
 
     private AiBase aiPlayer;
 
+    private Changeable<EnemyBase> enemy;
+
 
     private void Awake()
     {
         aiPlayer = GetComponent<AiBase>();
-       
+        enemy = new Changeable<EnemyBase>(null);
+        enemy.onChangeValue += targetChange;
+    }
+
+    private void targetChange(EnemyBase lastValue, EnemyBase CurrentValue)
+    {
+        if (CurrentValue != null)
+        {
+            float distanceStop = aiPlayer.distanceStopToAttack;
+            float collisonStop = aiPlayer.collisionRadius;
+            float playerCollison = CurrentValue.getCollisionRadius();
+
+            if (distanceStop < collisonStop + playerCollison)
+            {
+                aiPlayer.distanceStopToAttack = collisonStop + playerCollison;
+            }
+        }
     }
 
     public override void OnEnter()
@@ -31,10 +50,12 @@ public class FollowTargetState : State
             aiPlayer.GetStateManager().currentStateType = currentStateType.Die;
             return;
         }
-      
+
+        enemy.Value = aiPlayer.targetToAttack;
+
         if (aiPlayer.targetToAttack == null)
         {
-  
+
             if (aiPlayer.currentDistribution != null)
                 aiPlayer.currentDistribution.ExeCuteDistribute(aiPlayer.DistributIndex);
         }
@@ -52,9 +73,9 @@ public class FollowTargetState : State
 
             float dis = Vector3.Distance(aiPos, targetAttack);
 
-            Debug.Log(dis + "??" + aiPlayer.maxDistanceToAttack);
+            Debug.Log(dis + "??" + aiPlayer.distanceStopToAttack);
 
-            if (dis <= aiPlayer.maxDistanceToAttack)
+            if (dis <= aiPlayer.distanceStopToAttack)
             {
                 Debug.Log(dis);
                 aiPlayer.GetStateManager().currentStateType = currentStateType.Attack;

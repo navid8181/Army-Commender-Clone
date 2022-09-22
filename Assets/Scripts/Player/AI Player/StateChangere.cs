@@ -37,4 +37,19 @@ public class StateChangere : MonoBehaviour
             OnAIbaseComing?.Invoke(aiBase); 
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        AiBase aiBase = other.GetComponent<AiBase>();
+
+        if (aiBase != null)
+        {
+            if (aiBase.GetStateManager().currentStateType == currentStateType.SetTarget)
+            {
+                aiBase.GetStateManager().currentStateType = state;
+                OnAIbaseComing?.Invoke(aiBase);
+            }
+     
+        }
+    }
 }

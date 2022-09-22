@@ -100,5 +100,11 @@ public abstract class DistributionBase : MonoBehaviour
         }
     }
 
+    public void EditDistribution(int i ,IDistributable distributable)
+    {
+        distributable.DistributIndex = i;
+        distributables[i] = distributable;
+    }
+
     public virtual bool Validition(IDistributable distributable) => true;
 }

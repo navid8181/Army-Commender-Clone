@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 
 [RequireComponent(typeof(TriggerDetection))]
-public class Player : MonoBehaviour,IDamageable
+public class Player : MonoBehaviour,IDamageable, ICollisonable
 {
     [SerializeField] private JoyStick joyStick;
     [SerializeField] private float moveSpeed = 2.5f;
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour,IDamageable
     public float radiusEnemyFinder = 5;
 
     public float timeToAttack = 2;
-
+    public float collisionRadius = 2;
     private Timer timer;
 
     public bool CanMove { get; set; } = true;
@@ -216,6 +216,12 @@ public class Player : MonoBehaviour,IDamageable
 
         Gizmos.DrawWireSphere(transform.position, radiusEnemyFinder);
 
- 
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, collisionRadius);
+    }
+
+    public float getCollisionRadius()
+    {
+        return collisionRadius;
     }
 }

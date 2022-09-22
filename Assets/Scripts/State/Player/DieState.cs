@@ -63,6 +63,7 @@ public class DieState : State
                    
                 
                 MasterManager.Instance.PoolManager.BackToPool(aiPlayer.gameObject);
+                aiBases.GetStateManager().currentStateType = currentStateType.FollowTargetState;
             });
         }
     }

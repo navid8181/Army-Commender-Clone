@@ -5,13 +5,13 @@ using UnityEngine;
 
 
 
-public enum currentStateType { IdleState,FollowTargetState,Attack,Die,PickupWeapone}
+public enum currentStateType { IdleState,FollowTargetState,Attack,Die,SetTarget}
 
 [RequireComponent(typeof(IdleState))]
 [RequireComponent(typeof(FollowTargetState))]
 [RequireComponent(typeof(AttackState))]
 [RequireComponent(typeof(DieState))]
-[RequireComponent(typeof(PickupWeaponeState))]
+[RequireComponent(typeof(TargetState))]
 public class StateManager : BaseStateManager
 {
 
@@ -47,8 +47,8 @@ public class StateManager : BaseStateManager
                 case currentStateType.Die:
                     ChangeState(GetComponent<DieState>());
                     break;
-                case currentStateType.PickupWeapone:
-                    ChangeState(GetComponent<PickupWeaponeState>());
+                case currentStateType.SetTarget:
+                    ChangeState(GetComponent<TargetState>());
                     break;
            
             }

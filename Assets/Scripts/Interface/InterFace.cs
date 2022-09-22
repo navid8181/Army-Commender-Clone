@@ -31,3 +31,11 @@ public interface IArrow{
    
 }
 
+
+
+
+public interface ICollisonable
+{
+    public float getCollisionRadius();
+}
+

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent (typeof(EnemyStateManager))]
-public class EnemyBase : MonoBehaviour, IDamageable
+public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
 {
 
     public Transform target;
@@ -19,6 +19,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public float maxDistanceToStop = 2;
 
     public float brackDistance = 1;
+
+    public float collisionRadius = 0.7f;
 
     float distance = 0;
 
@@ -166,5 +168,17 @@ public class EnemyBase : MonoBehaviour, IDamageable
         playerController.Disable();
         GetComponent<Collider>().enabled = false;
         
+    }
+    private void OnDrawGizmos()
+    {
+
+
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, collisionRadius);
+    }
+    public float getCollisionRadius()
+    {
+        return collisionRadius;
     }
 }

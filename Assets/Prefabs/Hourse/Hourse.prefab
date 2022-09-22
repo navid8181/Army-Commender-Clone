@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1013929234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013929235}
+  m_Layer: 6
+  m_Name: player pos
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013929235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013929234}
+  m_LocalRotation: {x: -0.7052347, y: 0.07154229, z: 0.70422465, w: 0.0399184}
+  m_LocalPosition: {x: -0.298, y: 0.579, z: 0.013}
+  m_LocalScale: {x: 0.5457037, y: 0.5457036, z: 0.5457037}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2925259281393717555}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -170.963, y: 89.713, z: 2.5930023}
 --- !u!1 &49829291390562176
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +284,7 @@ Transform:
   m_Children:
   - {fileID: 127987930614689222}
   m_Father: {fileID: 2925259281393717555}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -3.41302e-22, y: -3.105991e-23, z: -3.0550985}
 --- !u!1 &758808129192440099
 GameObject:
@@ -347,6 +378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1013929235}
   - {fileID: 8418121142607890259}
   - {fileID: 8610572893247338142}
   - {fileID: 8621233104212526994}
@@ -564,6 +596,7 @@ GameObject:
   - component: {fileID: 2454856123703737495}
   - component: {fileID: 2454856123703737494}
   - component: {fileID: 2454856123703737493}
+  - component: {fileID: 1446703886}
   m_Layer: 6
   m_Name: Hourse
   m_TagString: Untagged
@@ -703,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febf60cb87f6c30438207a513cbbbfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStateType: 0
+  currentStateType: 1
 --- !u!114 &2454856123703737493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,9 +760,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e7591197f232c2e44aff604fbf7d0e0d, type: 2}
   weaponesModel: []
   indexOfWeapone: 0
-  maxDistanceToAttack: 1
+  distanceStopToAttack: 1
   FootStepparticleSystemController: {fileID: 2454856123863004108}
   weaponeParticleSystemControllers: []
+  collisionRadius: 1.31
   targetToAttack: {fileID: 0}
   radiusEnemyFinder: 5
   enemyLayermask:
@@ -737,6 +771,21 @@ MonoBehaviour:
     m_Bits: 0
   timeToAttack: 0
   damge: 0
+  aibse: {fileID: 0}
+  playerPos: {fileID: 1013929235}
+--- !u!114 &1446703886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454856123703737481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3120083c01a916a42a452e4b00d8d87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &2454856123863004098
 GameObject:
   m_ObjectHideFlags: 0
@@ -5852,7 +5901,7 @@ Transform:
   m_Children:
   - {fileID: 6128071840179961685}
   m_Father: {fileID: 2925259281393717555}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -1.6615319, y: 177.70871, z: 74.69683}
 --- !u!1 &4745230264121524628
 GameObject:
@@ -6223,7 +6272,7 @@ Transform:
   m_Children:
   - {fileID: 5281794692987556129}
   m_Father: {fileID: 2925259281393717555}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0.000042691012, y: -179.99994, z: -44.38286}
 --- !u!1 &6179421635560329523
 GameObject:
@@ -6516,7 +6565,7 @@ Transform:
   m_Children:
   - {fileID: 6288535486541871378}
   m_Father: {fileID: 2925259281393717555}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.6034606, y: 177.55206, z: -104.352516}
 --- !u!1 &7401913342950900429
 GameObject:

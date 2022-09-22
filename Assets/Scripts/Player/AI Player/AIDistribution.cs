@@ -23,9 +23,13 @@ public class AIDistribution : DistributionBase
     private void Awake()
     {
         MaxDistrubutionSize = maxSoldir;
+       
     }
     public override void ExeCuteDistribute(int i)
     {
+        if (i < 0 || i >= GetDistributables().Length)
+            return;
+
         Utility.RectangleDistribute(GetDistributables(), taregt, with, offfset, i);
     }
 

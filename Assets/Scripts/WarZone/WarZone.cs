@@ -104,16 +104,16 @@ public class WarZone : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         AiBase aiBase = other.GetComponent<AiBase>();
 
-        if (aiBase != null) players.Add(other.transform);
+        if (aiBase != null && aiBase.CanMove && !players.Contains(aiBase.transform)) players.Add(other.transform);
         else
         {
             Player player = other.GetComponent<Player>();
 
-            if (player != null)
+            if (player != null && !players.Contains(player.transform))
                 players.Add(player.transform);
         }
     }

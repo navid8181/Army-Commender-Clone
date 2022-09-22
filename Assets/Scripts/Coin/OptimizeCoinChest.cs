@@ -24,7 +24,7 @@ public class OptimizeCoinChest : DistributionBase
     Vector3 offsetDireMove;
     private void Awake()
     {
-        Debug.Log(transform.parent);
+     //   Debug.Log(transform.parent);
 
 
     }

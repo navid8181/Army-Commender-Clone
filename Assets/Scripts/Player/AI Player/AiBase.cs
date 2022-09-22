@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(StateManager))]
-public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
+public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,ICollisonable
 {
 
     protected PlayerController playerController;
@@ -36,17 +36,22 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     private int previousIndexOfWeapone = -1;
 
-    public float maxDistanceToAttack = 1;
+    public float distanceStopToAttack = 1;
 
     private float aIRadius;
 
     private bool stopFast = false;
 
+    public bool CanMove { get; set; } = true;
 
     private AiBase currentCollisionAiBase;
 
     public ParticleSystemController FootStepparticleSystemController;
     public ParticleSystemController[] weaponeParticleSystemControllers;
+
+
+
+    public float collisionRadius = 0.7f;
 
     public float getAiRadius() => aIRadius;
 
@@ -84,10 +89,10 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         CapsuleCollider CAP = GetComponent<CapsuleCollider>();
         if (CAP != null)
-        aIRadius = brackDistance = CAP.radius + 0.25f;
+            aIRadius = brackDistance = CAP.radius + 0.25f;
 
 
-
+        corners = new Vector3[0];
 
         InitializeWapone();
         Health = 100;
@@ -145,7 +150,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         Weapone weapone = weapones[indexOfWeapone];
 
-        maxDistanceToAttack = weapone.maxDistanceToAttack;
+        distanceStopToAttack = weapone.maxDistanceToAttack;
 
         timeToAttack = weapone.timeToAttack;
 
@@ -160,7 +165,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
     }
 
-    private void Update()
+    public virtual void Update()
     {
         InitializeWapone();
         //  FindEnemy();
@@ -185,12 +190,20 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
         Vector3 startPos = transform.position;
 
-        if (target == null || stopFast) return;
-
-
-
 
         bool canMove = NavMesh.CalculatePath(startPos + Vector3.up, target.GetValueOrDefault(Vector3.zero), NavMesh.AllAreas, navMeshPath);
+        if (corners.Length == 0 || stopFast)
+        {
+            playerController.SetBoolAnimiton("Moving", false);
+            playerController.SetFloatAnimiton("Velocity", 0);
+        }
+
+        if (target == null || stopFast || !CanMove) return;
+
+
+
+
+
 
         if (!canMove || (PathStatus == NavMeshPathStatus.PathInvalid || PathStatus == NavMeshPathStatus.PathPartial))
         {
@@ -278,11 +291,6 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
 
 
 
-        if (corners.Length == 0 || stopFast)
-        {
-            playerController.SetBoolAnimiton("Moving", false);
-            playerController.SetFloatAnimiton("Velocity", 0);
-        }
     }
 
 
@@ -402,8 +410,8 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
     {
         EnableAvatar();
         Health = 150;
-        indexOfWeapone = 1;
-        GetStateManager().currentStateType = currentStateType.PickupWeapone;
+        indexOfWeapone = 0;
+        GetStateManager().currentStateType = currentStateType.SetTarget;
         setDieAnimiton(false);
 
     }
@@ -445,6 +453,16 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable
         Gizmos.DrawWireSphere(transform.position, radiusEnemyFinder);
 
         Gizmos.DrawSphere(target.GetValueOrDefault(), 0.1f);
+
+
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, collisionRadius);
+    }
+
+    public float getCollisionRadius()
+    {
+        return collisionRadius;
     }
 }
 
