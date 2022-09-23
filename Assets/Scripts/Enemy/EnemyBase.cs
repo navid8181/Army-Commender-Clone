@@ -12,7 +12,7 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
     public float distanceStopToAttack = 1;
 
    
-    private PlayerController playerController;
+    public PlayerController playerController { get; private set; }
 
     public float speed = 3,rotationSpeed = 2;
 
@@ -37,6 +37,9 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
 
 
     public float Health { get; set; }
+    public bool CanMove { get; set; } = true;
+
+    
 
     private void Start()
     {
@@ -91,6 +94,17 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
     }
     public void Move(Vector3 targetPos)
     {
+
+        if (!CanMove)
+        {
+            velocity = 0;
+            FootStepparticleController.SetStartLifeTime(0);
+            FootStepparticleController.SetAvtive(false);
+            return;
+
+        }
+      
+
         //if (target == null) return;
 
         Vector3 tempTargetPos = targetPos;

@@ -151,7 +151,8 @@ MonoBehaviour:
   speed: 2
   rotationSpeed: 2
   maxDistanceToStop: 1.6
-  brackDistance: 1
+  brackDistance: 0.07
+  collisionRadius: 0.7
   Damge: 10
   FootStepparticleController: {fileID: 2648857171125971788}
   AttackparticleController: {fileID: 1652871443}

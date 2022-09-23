@@ -28,6 +28,8 @@ public class Hourse : AiBase
     {
         if (CurrentValue != null)
         {
+            currentDistribution.RemoveDistribut(this);
+
             currentDistribution = CurrentValue.currentDistribution;
 
             CurrentValue.currentDistribution.RemoveDistribut(CurrentValue);

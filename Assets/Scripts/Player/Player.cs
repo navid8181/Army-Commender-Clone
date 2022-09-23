@@ -179,6 +179,11 @@ public class Player : MonoBehaviour,IDamageable, ICollisonable
         {
             if (Health <= 0) return;
             EnemyBase enemyBase = col[i].GetComponent<EnemyBase>();
+
+
+            if (enemyBase != null && !enemyBase.CanMove)
+                continue;
+
             if (enemyBase != null)
             {
                 targetToAttack = enemyBase;

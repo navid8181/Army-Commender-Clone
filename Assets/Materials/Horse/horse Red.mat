@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: horse
+  m_Name: horse Red
   m_Shader: {fileID: -6465566751694194690, guid: 80664ba13a3cd8e41a2384c57fada40a,
     type: 3}
   m_ValidKeywords: []
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main_Text:
-        m_Texture: {fileID: 2800000, guid: 2179ef5e8f5190c439534feef4b85588, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ba04b52591f3f541a9ef1f2573988af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

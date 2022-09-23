@@ -32,6 +32,18 @@ public class WarZone : MonoBehaviour
         {
             if (enemyBases[i].Health <= 0)
             {
+                HourseEnemy hourse = enemyBases[i] as HourseEnemy;
+                if(hourse != null)
+                {
+                    EnemyBase enemyBase = hourse.enemyBase ;
+
+                    enemyBases[i] = enemyBase;
+                    enemyBase.CanMove = true;
+
+                    hourse.enemyBase = null;
+                    
+
+                }else
                 enemyBases.RemoveAt(i);
             }
 

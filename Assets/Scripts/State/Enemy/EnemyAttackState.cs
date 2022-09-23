@@ -58,6 +58,7 @@ public class EnemyAttackState : State
         }
 
 
+
         Vector3 targetPos = enemyBase.averageOfTargets();
         targetPos.y = 0;
 
@@ -65,6 +66,12 @@ public class EnemyAttackState : State
         enemyPos.y = 0;
 
         float dis = Vector3.Distance(targetPos, enemyPos);
+
+        if (dis > enemyBase.distanceStopToAttack * 1.5f)
+        {
+            enemyBase.GetEnemyStateManager().currentStateType = currentStateType.FollowTargetState;
+            return;
+        }
 
         //if (dis > enemyBase.distanceStopToAttack+0.1f )
         //{
