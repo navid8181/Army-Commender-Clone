@@ -20,17 +20,7 @@ public class FollowTargetState : State
 
     private void targetChange(EnemyBase lastValue, EnemyBase CurrentValue)
     {
-        if (CurrentValue != null)
-        {
-            float distanceStop = aiPlayer.distanceStopToAttack;
-            float collisonStop = aiPlayer.collisionRadius;
-            float playerCollison = CurrentValue.getCollisionRadius();
 
-            if (distanceStop < collisonStop + playerCollison)
-            {
-                aiPlayer.distanceStopToAttack = collisonStop + playerCollison;
-            }
-        }
     }
 
     public override void OnEnter()
@@ -40,11 +30,28 @@ public class FollowTargetState : State
 
     public override void OnExit()
     {
-
+        enemy.Value = aiPlayer.targetToAttack;
     }
 
     public override void OnStay()
     {
+
+        if (aiPlayer.targetToAttack != null)
+        {
+            float distanceStop = aiPlayer.distanceStopToAttack;
+            float collisonStop = aiPlayer.collisionRadius;
+            float playerCollison = aiPlayer.targetToAttack.getCollisionRadius();
+
+            float weaponeAtackStop = aiPlayer.distanceStopToAttack;
+
+            if (weaponeAtackStop <= collisonStop + playerCollison)
+
+                aiPlayer.distanceStopToAttack = collisonStop + playerCollison;
+            else
+                aiPlayer.distanceStopToAttack = weaponeAtackStop;
+
+        }
+
         if (aiPlayer.Health <= 0)
         {
             aiPlayer.GetStateManager().currentStateType = currentStateType.Die;
@@ -73,11 +80,11 @@ public class FollowTargetState : State
 
             float dis = Vector3.Distance(aiPos, targetAttack);
 
-            Debug.Log(dis + "??" + aiPlayer.distanceStopToAttack);
+            //Debug.Log(dis + "??" + aiPlayer.distanceStopToAttack);
 
             if (dis <= aiPlayer.distanceStopToAttack)
             {
-                Debug.Log(dis);
+                // Debug.Log(dis);
                 aiPlayer.GetStateManager().currentStateType = currentStateType.Attack;
                 return;
             }

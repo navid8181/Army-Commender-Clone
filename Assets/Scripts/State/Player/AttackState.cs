@@ -22,7 +22,7 @@ public class AttackState : State
 
     public override void OnEnter()
     {
-        aiPlayer.SetMoveAnim(false);
+        aiPlayer.SetVelocityAnim(0);
     }
 
     public override void OnExit()

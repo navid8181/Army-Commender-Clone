@@ -66,7 +66,7 @@ public abstract class DistributionBase : MonoBehaviour
         distributable.DistributIndex = -1;
     }
 
-
+    public IDistributable GetLastDistribuble() { if (distributables.Count > 0) return distributables[distributables.Count - 1]; else return null; }
 
 
     public IDistributable RemoveDistributAtLast()

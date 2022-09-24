@@ -86,9 +86,10 @@ public class EnemyAttackState : State
         //    Debug.Log("dis > enemyBase.distanceStopToAttack+0.1f ");
         //}
         //else
-        {
-            enemyBase.SetMoveAnim(false);
+        
+            enemyBase.SetVelocityAnim(0);
             enemyBase.setVelocity(0);
+        
             enemyBase.FootStepparticleController.SetStartLifeTime(0);
 
             Vector3 dire = targetPos - enemyPos;
@@ -101,7 +102,7 @@ public class EnemyAttackState : State
                 enemyBase.Attack();
 
             });
-        }
+        
       
     }
 }

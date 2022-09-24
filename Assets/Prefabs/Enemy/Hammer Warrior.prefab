@@ -278,9 +278,10 @@ MonoBehaviour:
   distanceStopToAttack: 2
   speed: 2
   rotationSpeed: 2
-  maxDistanceToStop: 1.6
+  maxDistanceToStop: 3.5
   brackDistance: 0.07
   collisionRadius: 0.7
+  weapone: {fileID: 11400000, guid: 2e4e6ab75d094a24ebcf0d62d227fc3a, type: 2}
   Damge: 40
   FootStepparticleController: {fileID: 1994500061357715983}
 --- !u!1 &7820946086224245808

@@ -21,17 +21,7 @@ public class EnemyFolowState : State
 
     private void OnTargetChange(Transform lastValue, Transform CurrentValue)
     {
-        if(CurrentValue != null)
-        {
-            float distanceStop = enemyBase.distanceStopToAttack;
-            float collisonStop = enemyBase.collisionRadius;
-            float playerCollison = enemyBase.target.GetComponent<ICollisonable>().getCollisionRadius();
-
-            if (distanceStop < collisonStop + playerCollison)
-            {
-                enemyBase.distanceStopToAttack = collisonStop + playerCollison;
-            }
-        }
+        
     }
 
     public override void OnEnter()
@@ -51,6 +41,26 @@ public class EnemyFolowState : State
 
     public override void OnStay()
     {
+
+
+        if (enemyBase.target != null)
+        {
+            float distanceStop = enemyBase.distanceStopToAttack;
+            float collisonStop = enemyBase.collisionRadius;
+            float playerCollison = enemyBase.target.GetComponent<ICollisonable>().getCollisionRadius();
+
+            float weaponeDistanceStop = enemyBase.weapone.maxDistanceToAttack;
+
+            if (weaponeDistanceStop <= collisonStop + playerCollison)
+            {
+                enemyBase.distanceStopToAttack = collisonStop + playerCollison;
+            }
+            else
+            {
+                enemyBase.distanceStopToAttack = weaponeDistanceStop;
+            }
+        }
+
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
 

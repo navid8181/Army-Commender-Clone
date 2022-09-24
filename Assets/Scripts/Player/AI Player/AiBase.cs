@@ -141,6 +141,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
 
 
     public void SetMoveAnim(bool value) { playerController.SetBoolAnimiton("Moving", value); }
+    public void SetVelocityAnim(float value) { playerController.SetFloatAnimiton("Velocity", value); }
 
     public void InitializeWapone()
     {
@@ -248,9 +249,9 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
             if (corners.Length == 2)
             {
                 float remeaningDistance = Vector3.Distance(corners[0], corners[1]);
-                if (remeaningDistance <= 0.01f)
+                if (remeaningDistance <= 0.06f)
                 {
-                    dire = Vector3.zero;
+                    transform.position = new Vector3(corners[1].x, transform.position.y, corners[1].z);
                 }
             }
 
@@ -266,19 +267,21 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
             float dis = distanceToTarget();
 
 
-            float t = dis / (distanceToStop + aIRadius);
+         //   float t = dis / (distanceToStop);
 
             // if (t >= 0.99f) t = 1;
             // if (t <= 0.01f) t = 0;
 
-            t = Mathf.Clamp01(t);
+          //  t = Mathf.Clamp01(t);
 
+
+            float t  = Mathf.InverseLerp(0, distanceToStop, dis);
 
             velocity = Mathf.Lerp(0, 1, t);
 
             FootStepparticleSystemController.SetStartLifeTime(velocity * 0.5f);
 
-            FootStepparticleSystemController.SetAvtive(velocity >= 0.15f);
+            FootStepparticleSystemController.SetAvtive(velocity >= 0.08f);
 
             isMove = dis >= brackDistance;
 
@@ -286,7 +289,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
             playerController.SetFloatAnimiton("Velocity", velocity);
 
             playerController.SetBoolAnimiton("Moving", dis >= brackDistance);
-            playerController.Move(dire, moveSpeed * t, rotationSpeed);
+            playerController.Move(dire, moveSpeed * velocity, rotationSpeed);
         }
 
 

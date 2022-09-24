@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(DistributeComming))]
-public class SetTargetDistribution : MonoBehaviour
+public abstract class SetTargetDistribution : MonoBehaviour
 {
 
 
@@ -22,6 +22,10 @@ public class SetTargetDistribution : MonoBehaviour
             {
                 AiBase aiBase = (AiBase)idistributes[i];
 
+               
+
+                if (BlockConditon(aiBase)) continue;
+                if (aiBase is Hourse) Debug.Log("hhhhhhhhhhhhh");
                 TargetState targetState = aiBase.GetComponent<TargetState>();
 
                 targetState.target = target;
@@ -32,4 +36,10 @@ public class SetTargetDistribution : MonoBehaviour
         });
     }
 
+
+
+
+
+
+    public abstract bool BlockConditon(AiBase aiBase);
 }

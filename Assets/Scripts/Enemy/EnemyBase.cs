@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
@@ -21,6 +22,8 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
     public float brackDistance = 1;
 
     public float collisionRadius = 0.7f;
+
+    public Weapone weapone;
 
     float distance = 0;
 
@@ -64,8 +67,8 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
 
         if(idamges != null)
             idamges.ApplyDamage(Damge);
-     
-    
+
+        Damge = weapone.damge;
     }
 
     public void setVelocity(int value) { velocity = Mathf.Lerp(velocity, value, Time.deltaTime); }
@@ -74,6 +77,11 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
     public void SetMoveAnim(bool value)
     {
         playerController.SetBoolAnimiton("Moving",value);
+    }
+    public void SetVelocityAnim(float value)
+    {
+        playerController.SetFloatAnimiton("Velocity", value);
+
     }
 
     public float disTotarget()
@@ -112,11 +120,13 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
         Vector3 playerPos = transform.position;
         playerPos.y = 0;
 
-        distance = Vector3.Distance(playerPos, tempTargetPos);  
+        distance = Vector3.Distance(playerPos, tempTargetPos);
 
-        velocity = distance / maxDistanceToStop;
+        float t = Mathf.InverseLerp(0, maxDistanceToStop, distance);
 
-        velocity = Mathf.Clamp01(velocity); 
+        velocity = Mathf.Lerp(0, 1, t);
+
+       // velocity = Mathf.Clamp01(velocity); 
 
         Vector3 dire =    targetPos - transform.position;
 
@@ -128,7 +138,7 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
         FootStepparticleController.SetStartLifeTime(velocity * 0.5f);
         FootStepparticleController.SetAvtive(velocity >= 0.15f);
 
-        playerController.SetBoolAnimiton("Moving", distance > brackDistance * 2);
+        playerController.SetBoolAnimiton("Moving", distance >= brackDistance );
         playerController.SetFloatAnimiton("Velocity", velocity);
 
      
@@ -181,6 +191,7 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
         target = null;
         playerController.Disable();
         GetComponent<Collider>().enabled = false;
+        FootStepparticleController.Stop();
         
     }
     private void OnDrawGizmos()

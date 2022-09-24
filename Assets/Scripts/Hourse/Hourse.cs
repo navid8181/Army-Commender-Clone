@@ -28,13 +28,19 @@ public class Hourse : AiBase
     {
         if (CurrentValue != null)
         {
+            CurrentValue.DisableAvatar();
+            CurrentValue.SetVelocityAnim(0);
+            CurrentValue.FootStepparticleSystemController.Stop();
+ 
+            if (currentDistribution != null)
             currentDistribution.RemoveDistribut(this);
 
             currentDistribution = CurrentValue.currentDistribution;
 
+            if(CurrentValue.currentDistribution != null)
             CurrentValue.currentDistribution.RemoveDistribut(CurrentValue);
-
-            currentDistribution.SetDistribut(this);
+            if (currentDistribution != null)
+                currentDistribution.SetDistribut(this);
            // currentDistribution = CurrentValue.currentDistribution;
 
            
@@ -54,6 +60,7 @@ public class Hourse : AiBase
         {
             if (lastValue != null)
             {
+                lastValue.EnableAvatar();
                 lastValue.CanMove = true;
                 lastValue.currentDistribution = currentDistribution;
                 lastValue.currentDistribution.SetDistribut(lastValue);
@@ -74,6 +81,10 @@ public class Hourse : AiBase
         if (aibse != null )
         {
 
+            aibse.indexOfWeapone = indexOfWeapone;
+
+            weapones = aibse.weapones;
+
             if (Health > 0)
             {
                 aibse.transform.position = playerPos.position;
@@ -91,7 +102,7 @@ public class Hourse : AiBase
         }
         else
         {
-       
+  
      
         }
 

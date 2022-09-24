@@ -100,10 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMove: 0
   PathStatus: 0
-  brackDistance: 1
+  brackDistance: 0.09
   moveSpeed: 4
   rotationSpeed: 2.5
-  distanceToStop: 1.5
+  distanceToStop: 3.5
   weapones:
   - {fileID: 11400000, guid: f41d9788679e2fc4e80e6ab3af94d690, type: 2}
   - {fileID: 11400000, guid: e7591197f232c2e44aff604fbf7d0e0d, type: 2}
@@ -111,11 +111,12 @@ MonoBehaviour:
   - {fileID: 6621277322881292671}
   - {fileID: 3841456209189446305}
   indexOfWeapone: 0
-  maxDistanceToAttack: 20
+  distanceStopToAttack: 1
   FootStepparticleSystemController: {fileID: 8102248188069999946}
   weaponeParticleSystemControllers:
   - {fileID: 6180784715778865141}
   - {fileID: 1702967650641770749}
+  collisionRadius: 0.7
   targetToAttack: {fileID: 0}
   radiusEnemyFinder: 15
   enemyLayermask:

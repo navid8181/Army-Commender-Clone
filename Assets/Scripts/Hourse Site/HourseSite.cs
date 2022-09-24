@@ -9,15 +9,34 @@ public class HourseSite : MonoBehaviour
 
     public float timeToCreateHourse = 3;
 
-    private AIDistribution aIDistribution;
+    public AIDistribution aIDistribution { get; private set; }
+
+
+    public StateChangere stateChanger;
+
 
     private Timer timer;
+
+    
 
     private void Awake()
     {
         aIDistribution = GetComponent<AIDistribution>();
 
         timer = new Timer(timeToCreateHourse);
+        stateChanger.OnAIbaseComing.AddListener((AiBase aibse) =>
+        {
+            if (aibse is Hourse) return;
+
+
+            IDistributable distributable = aIDistribution.GetLastDistribuble();
+
+            if (distributable == null) return;
+
+            Hourse hourse = (Hourse) distributable;
+
+            hourse.aibse = aibse;
+        });
     }
 
     private void Update()
