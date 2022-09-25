@@ -90,4 +90,18 @@ public class Utility : MonoBehaviour
 
 
     }
+
+
+    public static Quaternion smothlyRoationToTarget(Transform from,Transform to,float time)
+    {
+        Vector3 dire = to.position - from.position;
+
+        dire.Normalize();
+
+        dire.y = 0;
+        Quaternion rot = Quaternion.LookRotation(dire, Vector3.up);
+
+
+        return Quaternion.Slerp(from.rotation,rot,time * Time.deltaTime);
+    }
 }

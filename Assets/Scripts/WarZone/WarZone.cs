@@ -118,16 +118,30 @@ public class WarZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
+
+        Player player = other.GetComponent<Player>();
+
+        if (player != null && !players.Contains(player.transform))
+        {
+            players.Add(player.transform);
+        }
+     
+
+
         AiBase aiBase = other.GetComponent<AiBase>();
 
-        if (aiBase != null && aiBase.CanMove && !players.Contains(aiBase.transform)) players.Add(other.transform);
-        else
-        {
-            Player player = other.GetComponent<Player>();
+        if (aiBase == null) return;
 
-            if (player != null && !players.Contains(player.transform))
-                players.Add(player.transform);
+        if (aiBase  is Hourse  && !players.Contains(aiBase.transform))
+        {
+            players.Add(other.transform);
         }
+        else
+        if (!aiBase.CanMove) return;
+        else
+        if ( aiBase.CanMove && !players.Contains(aiBase.transform)) players.Add(other.transform);
+      
     }
 
     private void OnTriggerExit(Collider other)

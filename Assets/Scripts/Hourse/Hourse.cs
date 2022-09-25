@@ -14,7 +14,7 @@ public class Hourse : AiBase
     public Transform playerPos;
 
 
-    
+
 
     public override void Awake()
     {
@@ -31,19 +31,21 @@ public class Hourse : AiBase
             CurrentValue.DisableAvatar();
             CurrentValue.SetVelocityAnim(0);
             CurrentValue.FootStepparticleSystemController.Stop();
- 
+
+            weaponeParticleSystemControllers = CurrentValue.weaponeParticleSystemControllers;
+
             if (currentDistribution != null)
-            currentDistribution.RemoveDistribut(this);
+                currentDistribution.RemoveDistribut(this);
 
             currentDistribution = CurrentValue.currentDistribution;
 
-            if(CurrentValue.currentDistribution != null)
-            CurrentValue.currentDistribution.RemoveDistribut(CurrentValue);
+            if (CurrentValue.currentDistribution != null)
+                CurrentValue.currentDistribution.RemoveDistribut(CurrentValue);
             if (currentDistribution != null)
                 currentDistribution.SetDistribut(this);
-           // currentDistribution = CurrentValue.currentDistribution;
+            // currentDistribution = CurrentValue.currentDistribution;
 
-           
+
 
 
 
@@ -64,22 +66,24 @@ public class Hourse : AiBase
                 lastValue.CanMove = true;
                 lastValue.currentDistribution = currentDistribution;
                 lastValue.currentDistribution.SetDistribut(lastValue);
-              
+
 
 
             }
         }
     }
 
-    public void SetRider(AiBase rider) =>changeableAibace.Value = rider;
+    public void SetRider(AiBase rider) => changeableAibace.Value = rider;
 
 
     public override void Update()
     {
         base.Update();
 
-        if (aibse != null )
+        if (aibse != null)
         {
+            aibse.targetToAttack = targetToAttack;
+            //  Attack();
 
             aibse.indexOfWeapone = indexOfWeapone;
 
@@ -98,12 +102,12 @@ public class Hourse : AiBase
                 //CanMove = true;
             }
 
-         
+
         }
         else
         {
-  
-     
+
+
         }
 
 
@@ -119,25 +123,35 @@ public class Hourse : AiBase
 
     private void OnEnable()
     {
-        
+
     }
 
+    [ContextMenu("Attack Hourse")]
     public override void Attack()
     {
-     if (aibse != null)
+        if (aibse != null)
         {
-            aibse.Attack();
+              aibse.Attack();
+
+            if (indexOfWeapone != 1)
+            {
+                
+                    aibse.weaponeParticleSystemControllers[aibse.indexOfWeapone].Play();
+                
+            }
+
 
             float damage = weapones[indexOfWeapone].damge;
 
-           targetToAttack.ApplyDamage(damage);
+            if (targetToAttack != null)
+                targetToAttack.ApplyDamage(damage);
         }
     }
 
 
     public override void StopAttack()
     {
-       
+
     }
 
 

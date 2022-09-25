@@ -7,11 +7,14 @@ public class ParticleSystemController : MonoBehaviour
 
     [SerializeField] private float startLifeTime = 2;
 
-    private new ParticleSystem particleSystem;
+    private  ParticleSystem ParticleSystem;
+
+
+    public ParticleSystem GetParticle() => ParticleSystem;
 
     private void Awake()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        ParticleSystem = GetComponent<ParticleSystem>();
 
     
     }
@@ -20,7 +23,7 @@ public class ParticleSystemController : MonoBehaviour
     {
         ParticleSystem[] particles =  GetComponentsInChildren<ParticleSystem>();
 
-        float max = particleSystem.main.startLifetime.constant;
+        float max = ParticleSystem.main.startLifetime.constant;
 
 
         for (int i = 0; i < particles.Length; i++)
@@ -35,7 +38,9 @@ public class ParticleSystemController : MonoBehaviour
     }
     private void Update()
     {
-        var particle = particleSystem.main;
+        var particle = ParticleSystem.main;
+
+       
 
         particle.startLifetime = startLifeTime;
         //.startLifetime = startLifeTime;
@@ -43,22 +48,30 @@ public class ParticleSystemController : MonoBehaviour
 
     public void Stop()
     {
-        particleSystem.Stop();
+        ParticleSystem.Stop();
 
     }
 
     public void Play()
     {
-        if (particleSystem.isPlaying)
-            particleSystem.Stop();
 
-        particleSystem.Play();
+
+        //if (particleSystem.isPlaying)
+        //    particleSystem.Stop();
+
+ 
+
+   
+            Debug.Log("ParticleSystem.Play(true);");
+            ParticleSystem.Play(true);
+        
+
 
         
     }
 
     public void SetStartLifeTime(float value) => startLifeTime = value;
 
-    public void SetAvtive(bool value) => particleSystem.gameObject.SetActive(value);
+    public void SetAvtive(bool value) => ParticleSystem.gameObject.SetActive(value);
 
 }

@@ -17,7 +17,7 @@ public class AIPlayer : AiBase, IArrow
     public override void Update()
     {
         base.Update();
-        if (targetToAttack == null)
+        if (targetToAttack == null && CanMove)
         {
             weaponeParticleSystemControllers[indexOfWeapone].Stop();
         }

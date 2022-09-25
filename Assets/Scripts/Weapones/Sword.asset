@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   maxDistanceToAttack: 0
-  timeToAttack: 1.1
+  timeToAttack: 0.7
   damge: 30

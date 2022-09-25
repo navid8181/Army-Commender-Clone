@@ -28,7 +28,7 @@ public class AttackState : State
     public override void OnExit()
     {
 
-        aiPlayer.StopAttack();
+       // aiPlayer.StopAttack();
 
 
         timer.ResetValue();
@@ -77,7 +77,7 @@ public class AttackState : State
 
             dire.Normalize();
 
-            transform.rotation = Quaternion.LookRotation(dire, Vector3.up);
+            transform.rotation = Utility.smothlyRoationToTarget(transform, aiPlayer.targetToAttack.transform, 5);
         }
         
         else

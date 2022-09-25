@@ -22,11 +22,11 @@ public class EnemyAttackState : State
 
     public override void OnEnter()
     {
-  
 
-    
 
-      
+
+
+
     }
 
     public override void OnExit()
@@ -37,7 +37,7 @@ public class EnemyAttackState : State
     public override void OnStay()
     {
 
-   //     Debug.Log("Attack State ");
+        //     Debug.Log("Attack State ");
 
 
         if (enemyBase.Health <= 0) { enemyBase.GetEnemyStateManager().currentStateType = currentStateType.Die; return; }
@@ -46,12 +46,12 @@ public class EnemyAttackState : State
             IDamageable aiBase = enemyBase.target.GetComponent<IDamageable>();
             if (aiBase != null)
                 if (aiBase.Health <= 0) enemyBase.target = null;
-            
+
         }
-        if ( enemyBase.target == null)
+        if (enemyBase.target == null)
         {
 
-        
+
 
             enemyBase.GetEnemyStateManager().currentStateType = currentStateType.IdleState;
             return;
@@ -86,23 +86,23 @@ public class EnemyAttackState : State
         //    Debug.Log("dis > enemyBase.distanceStopToAttack+0.1f ");
         //}
         //else
-        
-            enemyBase.SetVelocityAnim(0);
-            enemyBase.setVelocity(0);
-        
-            enemyBase.FootStepparticleController.SetStartLifeTime(0);
 
-            Vector3 dire = targetPos - enemyPos;
-            dire.Normalize();
+        enemyBase.SetVelocityAnim(0);
+        enemyBase.setVelocity(0);
 
-            transform.rotation = Quaternion.LookRotation(dire, Vector3.up);
+        enemyBase.FootStepparticleController.SetStartLifeTime(0);
 
-            timer.Init(() =>
-            {
-                enemyBase.Attack();
+        Vector3 dire = targetPos - enemyPos;
+        dire.Normalize();
 
-            });
-        
-      
+        transform.rotation = Utility.smothlyRoationToTarget(transform, enemyBase.target, 5);   //Quaternion.LookRotation(dire, Vector3.up);
+
+        timer.Init(() =>
+        {
+            enemyBase.Attack();
+
+        });
+
+
     }
 }
