@@ -26,11 +26,14 @@ public class Hourse : AiBase
 
     private void riderChangeValue(AiBase lastValue, AiBase CurrentValue)
     {
+
         if (CurrentValue != null)
         {
             CurrentValue.DisableAvatar();
             CurrentValue.SetVelocityAnim(0);
             CurrentValue.FootStepparticleSystemController.Stop();
+
+            indexOfWeapone = CurrentValue.indexOfWeapone;
 
             weaponeParticleSystemControllers = CurrentValue.weaponeParticleSystemControllers;
 
@@ -71,6 +74,7 @@ public class Hourse : AiBase
 
             }
         }
+
     }
 
     public void SetRider(AiBase rider) => changeableAibace.Value = rider;
@@ -85,7 +89,7 @@ public class Hourse : AiBase
             aibse.targetToAttack = targetToAttack;
             //  Attack();
 
-            aibse.indexOfWeapone = indexOfWeapone;
+                aibse.indexOfWeapone = Mathf.Max(indexOfWeapone, aibse.indexOfWeapone);
 
             weapones = aibse.weapones;
 

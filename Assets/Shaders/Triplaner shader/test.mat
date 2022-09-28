@@ -48,11 +48,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intensity: 4.02
+    - _FrontOffset: 0.03
+    - _Intensity: 3.41
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SideOffset: -6.28
+    - _TopOffset: -0
     m_Colors:
-    - _FrontColor: {r: 1, g: 0.032075405, b: 0.10034491, a: 0}
-    - _Side_Color: {r: 1, g: 0.8649347, b: 0, a: 0}
-    - _TopColor: {r: 0.07677269, g: 1, b: 0, a: 0}
+    - _FrontColor: {r: 0.040370174, g: 0.33235523, b: 0.7924528, a: 0}
+    - _FrontColor1: {r: 1, g: 0, b: 0.09615421, a: 1}
+    - _FrontColor2: {r: 0.90552056, g: 1, b: 0, a: 0}
+    - _Side_Color: {r: 0.029957218, g: 0.38092393, b: 0.9339623, a: 0}
+    - _Side_Color1: {r: 1, g: 0.3157064, b: 0, a: 1}
+    - _Side_Color2: {r: 0.9169482, g: 1, b: 0, a: 0}
+    - _TopColor: {r: 0, g: 0.38587713, b: 1, a: 0}
+    - _TopColor1: {r: 0.9528302, g: 0, b: 0, a: 0}
+    - _TopColor2: {r: 1, g: 0.9856311, b: 0, a: 0}
   m_BuildTextureStacks: []

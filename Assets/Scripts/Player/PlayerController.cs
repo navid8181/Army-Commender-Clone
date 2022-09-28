@@ -16,7 +16,10 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
+
+        
     }
+
 
 
 
@@ -69,5 +72,6 @@ public class PlayerController : MonoBehaviour
         rigidbody.isKinematic = false;
         move = true;
     }
+
 
 }

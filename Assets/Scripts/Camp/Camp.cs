@@ -8,14 +8,17 @@ using UnityEngine;
 public class Camp : Updater
 {
 
-    private AIDistribution aIDistribution;
+  
 
     public float timeToCreateAiBace = 4;
 
     public int maxAi = 5;
 
-    private Timer timer;
 
+
+
+    private Timer timer;
+    private AIDistribution aIDistribution;
     private void Awake()
     {
         aIDistribution = GetComponent<AIDistribution>();
@@ -30,6 +33,8 @@ public class Camp : Updater
     public override void Update()
     {
         base.Update();
+        if (!isAvtice) return;
+     
         if (timer.getCounter() != timeToCreateAiBace)
         {
             timer.SetCounter(timeToCreateAiBace);

@@ -94,6 +94,12 @@ public class ActiveUpdater : MonoBehaviour
     private void UpdateTextPayment() => txt_UpdatePayment.text = updater.GetNextMoneyUpdater();
     private void Update()
     {
+
+        if (txt_UpdatePayment.text == "0 / 0")
+        {
+            UpdateTextPayment();
+        }
+
         if (objectPool.Count > 0)
         {
             timeBackPool.Init(() =>
