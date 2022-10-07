@@ -21,6 +21,8 @@ public class AIPlayer : AiBase, IArrow
         {
             weaponeParticleSystemControllers[indexOfWeapone].Stop();
         }
+
+        
     }
 
     public void EnableArrow()

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private void Start()
     {
+     
         rectTransform = GetComponent<RectTransform>();
     }
 
