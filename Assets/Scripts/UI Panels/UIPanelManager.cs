@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PanelType { MainMenue, PauseMenue }
+public enum PanelType { MainMenue, PauseMenue,LevelMenue }
 public class UIPanelManager : MonoBehaviour
 {
 
 
     public BasePanel[] allPanels;
 
+
+    public BasePanel startPanel = null;
+
     private Dictionary<PanelType, BasePanel> orderPanels;
 
     private Stack<BasePanel> activePanel;
 
+
+
+    private BasePanel currentPanel = null;
 
     private void Awake()
     {
@@ -20,6 +26,11 @@ public class UIPanelManager : MonoBehaviour
         activePanel = new Stack<BasePanel>();  
         
         InitializePanels();
+
+        if (startPanel != null)
+        {
+            AddPanel(startPanel);
+        }
 
     }
 
@@ -42,16 +53,20 @@ public class UIPanelManager : MonoBehaviour
         {
             panel.OnEnter();
             activePanel.Push(panel);
+
+
         }
         else
         {
-            currentAvtivePanel.OnExit();
+            currentAvtivePanel.OnPause();
             panel.OnEnter();
 
             activePanel.Push(panel);
         }
-           
 
+        currentPanel = panel;
+
+        panel.gameObject.SetActive(true);
     }
 
     public void RemovePanel()
@@ -65,5 +80,18 @@ public class UIPanelManager : MonoBehaviour
         BasePanel currentPanle = activePanel.Peek();
 
         currentPanle.OnEnter();
+
+        this.currentPanel = currentPanle;
+
+        currentPanel.gameObject.SetActive(true);
+    }
+
+
+    private void Update()
+    {
+        if (currentPanel != null)
+        {
+            currentPanel.OnResume();
+        }
     }
 }
