@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class LevelPanel : BasePanel
 {
     public float duration = 3;
@@ -17,6 +17,7 @@ public class LevelPanel : BasePanel
 
         lastPosition = transform.localPosition;
         transform.DOLocalMoveX(1000, duration);
+
     }
     public override void OnEnter()
     {

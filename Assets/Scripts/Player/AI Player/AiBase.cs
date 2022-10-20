@@ -32,6 +32,9 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
 
     public Weapone[] weapones;
     public Transform[] weaponesModel;
+
+    public MusicController[] weaponeMusicControllers;
+
     public int indexOfWeapone = 0;
 
     private int previousIndexOfWeapone = -1;
@@ -112,7 +115,12 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
         playerController.SetBoolAnimiton("Attack", true);
 
         if (indexOfWeapone != 1)
+        {
             weaponeParticleSystemControllers[indexOfWeapone].Play();
+
+            weaponeMusicControllers[indexOfWeapone].Play();
+        }
+          
         if (targetToAttack != null)
 
             targetToAttack.ApplyDamage(damge);

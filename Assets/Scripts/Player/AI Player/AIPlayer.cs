@@ -41,7 +41,11 @@ public class AIPlayer : AiBase, IArrow
         if (indexOfWeapone == 1)
         {
             if (targetToAttack != null)
+            {
                 weaponeParticleSystemControllers[indexOfWeapone].Play();
+                weaponeMusicControllers[indexOfWeapone].Play();
+            }
+           
         }
         arrow.SetActive(false);
     }

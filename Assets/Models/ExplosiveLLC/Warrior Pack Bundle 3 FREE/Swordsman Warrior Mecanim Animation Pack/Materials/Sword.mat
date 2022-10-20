@@ -88,7 +88,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _Ambient: 3.05
+    - _Ambient: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -102,6 +102,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _IntencityColor: 2.81
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005

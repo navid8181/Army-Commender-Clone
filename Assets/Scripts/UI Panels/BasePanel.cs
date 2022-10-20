@@ -25,7 +25,7 @@ public abstract class BasePanel : MonoBehaviour
 
       bool isDisable =  DisableCondition() ? false : true;
 
-        Debug.Log(isDisable);
+
         this.gameObject.SetActive(isDisable);
 
 
