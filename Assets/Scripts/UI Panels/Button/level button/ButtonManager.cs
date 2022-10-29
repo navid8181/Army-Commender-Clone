@@ -17,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     public AsyncOperation loadingOperation;
 
    public string currentLoadedScene;
+
+    private LoadingPanel loadingPanel;
     private void Awake()
     {
         for (int i = 1; i <= allScene; i++)
@@ -24,12 +26,20 @@ public class ButtonManager : MonoBehaviour
 
             levelButton levelButton = Instantiate(levelButtonPrefab, content);
 
+                      levelButton.GetButtonTextMesh().text = "level " + (i); 
             levelButton.AddListener(() =>
             {
 
             //    loadingOperation = SceneManager.LoadSceneAsync("level " + (i - 1), LoadSceneMode.Single);
 
                 currentLoadedScene = "level " + (i - 1);
+
+
+                BasePanel basePanel = MasterManager.Instance.uIPanelManager.GetPanel(PanelType.Loading);
+
+                loadingPanel = (LoadingPanel)basePanel;
+
+                MasterManager.Instance.uIPanelManager.AddPanel(basePanel);
                 StartCoroutine(loadSceneASync(currentLoadedScene));
                // loadingOperation.allowSceneActivation = false;
             });
@@ -66,12 +76,24 @@ public class ButtonManager : MonoBehaviour
             loadingOperation.completed += LoadingOperation_completed;
         }
 
+        loadingOperation.allowSceneActivation = false;
 
 
 
         while (!loadingOperation.isDone)
         {
             yield return null;
+            loadingPanel.statusBar.SetFill(loadingOperation.progress + 0.1f);
+
+            if(loadingPanel.statusBar.fill >= 0.9f)
+            {
+                loadingPanel.statusBar.fill = 0;
+                loadingOperation.allowSceneActivation = true;
+
+            
+            }
+    
+
             Debug.Log(loadingOperation.progress);
 
         }

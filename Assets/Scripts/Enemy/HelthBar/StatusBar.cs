@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 
 public class StatusBar : MonoBehaviour
 {
 
     private Material material;
 
-    private float fill {  get;  set; }
+    public float fill {  get;   set; }
 
     public float speed = 1;
 
@@ -28,11 +28,15 @@ public class StatusBar : MonoBehaviour
     }
     private void Awake()
     {
-      //  OnStatusBarCompleate = new UnityEvent();
+        //  OnStatusBarCompleate = new UnityEvent();
 
         // material = GetComponent<Renderer>().sharedMaterial;
 
-        material = GetComponent<Renderer>().materials[0];
+        Renderer renderer = GetComponent<Renderer>();
+        if(renderer != null)
+            material = renderer.material;
+        else
+            material = GetComponent<Image>().material;
 
         // tareget = 0;
         fill = tareget;

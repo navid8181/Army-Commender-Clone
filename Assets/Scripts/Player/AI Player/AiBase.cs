@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(StateManager))]
-public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,ICollisonable
+public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable, ICollisonable
 {
 
     protected PlayerController playerController;
@@ -75,7 +75,7 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
     public float timeToAttack = 0;
     public float damge = 0;
 
-
+    private Coroutine Damgecoroutine;
 
 
 
@@ -120,12 +120,28 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
 
             weaponeMusicControllers[indexOfWeapone].Play();
         }
-          
-        if (targetToAttack != null)
 
-            targetToAttack.ApplyDamage(damge);
+        if (targetToAttack != null)
+        {
+            Damgecoroutine = this.wait(0.5f, () =>
+              {
+                  targetToAttack?.ApplyDamage(damge);
+              });
+
+        }
+        else
+        {
+            if (Damgecoroutine != null)
+            {
+                StopCoroutine(Damgecoroutine);
+            }
+        }
+
 
     }
+
+
+
 
     public virtual void StopAttack()
     {
@@ -275,15 +291,15 @@ public abstract class AiBase : MonoBehaviour, IDistributable, IDamageable,IColli
             float dis = distanceToTarget();
 
 
-         //   float t = dis / (distanceToStop);
+            //   float t = dis / (distanceToStop);
 
             // if (t >= 0.99f) t = 1;
             // if (t <= 0.01f) t = 0;
 
-          //  t = Mathf.Clamp01(t);
+            //  t = Mathf.Clamp01(t);
 
 
-            float t  = Mathf.InverseLerp(0, distanceToStop, dis);
+            float t = Mathf.InverseLerp(0, distanceToStop, dis);
 
             velocity = Mathf.Lerp(0, 1, t);
 

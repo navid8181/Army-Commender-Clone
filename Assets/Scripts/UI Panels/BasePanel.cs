@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class BasePanel : MonoBehaviour
 {
 
+    public bool DontdisableLastPanel;
+
     public PanelType  panelName;
 
     public abstract void OnEnter();

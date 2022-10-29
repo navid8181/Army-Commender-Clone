@@ -34,10 +34,12 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
     public float Damge = 10;
 
 
+    private Coroutine Damgecoroutine;
+
 
     public ParticleSystemController FootStepparticleController;
 
-
+    public MusicController weaponeMusicController;
 
     public float Health { get; set; }
     public bool CanMove { get; set; } = true;
@@ -57,7 +59,14 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
    
     public virtual void Attack() {
 
-       if (target == null)return;
+        if (target == null)
+        {
+            if(Damgecoroutine != null)
+            {
+                StopCoroutine(Damgecoroutine);
+            }
+            return;
+        }
 
         playerController.SetBoolAnimiton("Attack", true);
 
@@ -66,7 +75,14 @@ public class EnemyBase : MonoBehaviour, IDamageable,ICollisonable
 
 
         if(idamges != null)
-            idamges.ApplyDamage(Damge);
+        {
+          Damgecoroutine =   this.wait(0.5f, () =>
+            {
+                idamges?.ApplyDamage(Damge);
+            });
+      
+        }
+        
 
         Damge = weapone.damge;
     }

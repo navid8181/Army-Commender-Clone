@@ -23,7 +23,11 @@ public class ArcherEnemy : EnemyBase,IArrow
     {
       Arrow.SetActive(false);
         if (target != null)
+        {
             AttackparticleController.Play();
+            weaponeMusicController.Play();
+        }
+    
     }
 
     public void EnableArrow()

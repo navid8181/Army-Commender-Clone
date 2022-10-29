@@ -123,15 +123,16 @@ public class Player : MonoBehaviour,IDamageable, ICollisonable
             FootStepparticleSystemController.SetAvtive(false);
             return;
         }
-        Vector2 joysStickPos = joyStick.getInput();
+
+        Vector2 joysStickPos = joyStick != null ? joyStick.getInput() : Vector2.zero;
 
         Vector3 direMove = new Vector3(joysStickPos.x, 0, joysStickPos.y);
 
 
-        Vector3 rightCam = camera.transform.right;
+        Vector3 rightCam = camera !=null? camera.transform.right : Vector3.zero;
         rightCam.y = 0;
 
-        Vector3 forwardCam = camera.transform.forward;
+        Vector3 forwardCam = camera != null ? camera.transform.forward : Vector3.zero;
         forwardCam.y = 0;
 
 

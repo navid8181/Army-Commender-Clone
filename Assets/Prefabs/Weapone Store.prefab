@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1734536361}
   - component: {fileID: 1734536360}
   - component: {fileID: 1734536363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DistributComming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5065985169652330330}
   - component: {fileID: 7537030303328961352}
   - component: {fileID: 7662317509287152578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Name (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72697959589264950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.01}
+  m_LocalPosition: {x: 0, y: -0, z: -0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1800843993014748670}
   - component: {fileID: 1800843993014748671}
   - component: {fileID: 1800843993014748544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1800843994195548266}
   - component: {fileID: 1800843994195548277}
   - component: {fileID: 1800843994195548276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Money Set Status
   m_TagString: PickUpZone
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 2132323127912104166}
   - component: {fileID: 6577060482432644250}
   - component: {fileID: 6366629727731540444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 2724243317262416359}
   - component: {fileID: 2724243317262416357}
   - component: {fileID: 2724243317262416356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: paymentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2724243317369042451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2724243317567319373}
   - component: {fileID: 2724243317567319362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'Item Distribut Manger '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2724243317643778195}
   - component: {fileID: 2724243317643778192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Coin Distribut Manger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 2724243317724171024}
   - component: {fileID: 2724243317724171030}
   - component: {fileID: 2724243317724171025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: paymentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +1011,7 @@ GameObject:
   - component: {fileID: 2724243317845457388}
   - component: {fileID: 2724243317845457379}
   - component: {fileID: 2724243317845457378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 2724243318328125484}
   - component: {fileID: 2724243318328125474}
   - component: {fileID: 2724243318328125485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: paymentText (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1267,13 +1267,13 @@ GameObject:
   - component: {fileID: 2724243318355598556}
   - component: {fileID: 2724243318355598559}
   - component: {fileID: 2724243318355598558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2724243318355598553
 Transform:
   m_ObjectHideFlags: 0
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 2724243318383282908}
   - component: {fileID: 2724243318383282911}
   - component: {fileID: 2724243318383282910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: statusBar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 2724243318578917957}
   - component: {fileID: 2724243318578917956}
   - component: {fileID: 2724243318578917959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChangeState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1593,13 +1593,13 @@ GameObject:
   - component: {fileID: 2724243318912413493}
   - component: {fileID: 2724243318912413492}
   - component: {fileID: 2724243318912413495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2724243318912413494
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 2724243319088669759}
   - component: {fileID: 2724243319088669756}
   - component: {fileID: 2724243319088669757}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapone Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1816,7 +1816,7 @@ GameObject:
   - component: {fileID: 2282254217860756786}
   - component: {fileID: 4745574568550808825}
   - component: {fileID: 3700775367747791722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CAMP
+  m_text: Weapone Store
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -1932,8 +1932,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.54
-  m_fontSizeBase: 52.54
+  m_fontSize: 44.28
+  m_fontSizeBase: 44.28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.22139406, y: -3.306169, z: 0.05640649, w: -5.8106227}
+  m_margin: {x: -1.0263343, y: -4.521651, z: -0.7576041, w: -7.219663}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -1989,7 +1989,7 @@ GameObject:
   - component: {fileID: 7746517899460458013}
   - component: {fileID: 7746517899460458012}
   - component: {fileID: 7746517899460458002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: linere helthBat (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

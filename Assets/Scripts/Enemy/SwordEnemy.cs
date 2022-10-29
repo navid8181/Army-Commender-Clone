@@ -11,5 +11,6 @@ public class SwordEnemy : EnemyBase
         base.Attack();
 
         AttackparticleController.Play();
+        weaponeMusicController.Play();
     }
 }

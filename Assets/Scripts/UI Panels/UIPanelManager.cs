@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PanelType { MainMenue, PauseMenue,LevelMenue }
+public enum PanelType { MainMenue, PauseMenue,LevelMenue,Loading }
 public class UIPanelManager : MonoBehaviour
 {
 
@@ -19,6 +19,9 @@ public class UIPanelManager : MonoBehaviour
 
 
     private BasePanel currentPanel = null;
+
+    
+    public BasePanel GetPanel(PanelType panelType) => orderPanels.GetValueOrDefault(panelType,null);
 
     private void Awake()
     {
@@ -58,7 +61,9 @@ public class UIPanelManager : MonoBehaviour
         }
         else
         {
+            if(!panel.DontdisableLastPanel)
             currentAvtivePanel.OnPause();
+
             panel.OnEnter();
 
             activePanel.Push(panel);

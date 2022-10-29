@@ -47,6 +47,9 @@ public class HourseEnemy : EnemyBase
             CurrentValue.CanMove = false;
 
             distanceStopToAttack = CurrentValue.distanceStopToAttack;
+
+            weaponeMusicController = CurrentValue.weaponeMusicController;
+
             Damge = enemyBase.Damge * 2;
         }
     }
@@ -56,6 +59,7 @@ public class HourseEnemy : EnemyBase
         if (enemyBase == null) return;
 
             enemyBase.playerController.SetBoolAnimiton("Attack", true);
+        enemyBase.weaponeMusicController.Play();
         IDamageable idamges = target.GetComponent<IDamageable>();
 
         if (idamges != null)

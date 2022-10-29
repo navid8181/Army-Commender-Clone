@@ -36,6 +36,8 @@ public class Hourse : AiBase
             indexOfWeapone = CurrentValue.indexOfWeapone;
 
             weaponeParticleSystemControllers = CurrentValue.weaponeParticleSystemControllers;
+            weaponeMusicControllers = CurrentValue.weaponeMusicControllers;
+
 
             if (currentDistribution != null)
                 currentDistribution.RemoveDistribut(this);
